@@ -1,9 +1,9 @@
 var escapeHTML = require('escape-html');
 var sassdoc = require('sassdoc');
 
-module.exports = function(value, config, cb) {
-  sassdoc.parse(value, config).then(function(data) {
-    cb(null, processTree(data));
+module.exports = function(value, config) {
+  return sassdoc.parse(value, config).then(function(data) {
+    return processTree(data);
   });
 }
 

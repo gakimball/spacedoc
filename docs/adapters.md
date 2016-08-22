@@ -4,13 +4,12 @@ An adapter is a function that hooks into a documentation generator to fetch data
 
 Adapters can have an optional configuration object (defined on `module.exports.config`), which can be used to allow developers to pass settings to the specific docs generator for that adapter.
 
-An adapter function accepts three parameters:
+An adapter function accepts two parameters:
 
 - **value** (Mixed): page-specific configuration values. This could be any YAML-compatible value, but it's often a string.
 - **config** (Object): global configuration values. This is the adapter's defaults, extended by the developer's own settings.
-- **cb** (Function): a callback to run when parsing is finished. The function takes two parameters: an error (or `null` if there's no error), and the parsed data.
 
-Supercollider has two built-in adapters: `sass`, which uses SassDoc, and `js`, which uses JSDoc. You can create your own by calling the `adapter()` method on Supercollider. An adapter is an asynchronous function that passes parsed data through a callback.
+Supercollider has two built-in adapters: `sass`, which uses SassDoc, and `js`, which uses JSDoc. You can create your own by calling the `adapter()` method on Supercollider. An adapter is an asynchronous function that returns a promise containing an object of parsed data.
 
 Here's what the built-in SassDoc adapter looks like.
 
@@ -18,8 +17,8 @@ Here's what the built-in SassDoc adapter looks like.
 var sassdoc = require('sassdoc');
 
 module.exports = function(value, config, cb) {
-  sassdoc.parse(value, config).then(function(data) {
-    cb(null, processTree(data));
+  return sassdoc.parse(value, config).then(function(data) {
+    return processTree(data);
   });
 }
 

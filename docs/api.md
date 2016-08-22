@@ -40,7 +40,8 @@ Sets search-specific settings.
 Generates a JSON file of search results using the current set of parsed data.
 
 - **outFile** (String): location to write to disk.
-- **cb** (Function): callback to run when the file is written to disk.
+
+Returns a promise.
 
 ### tree
 

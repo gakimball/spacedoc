@@ -10,7 +10,12 @@ Search result generation should only happen when Supercollider is done processin
 
 ```js
 Super.init().on('finish', function() {
-  Super.buildSearch('_build/data/search.json');
+  // Supercollider done processing files
+  Super.buildSearch('_build/data/search.json').then(() => {
+    // Supercollider done building search JSON
+  }).catch(err => {
+    // Error encountered
+  });
 });
 ```
 

@@ -17,7 +17,7 @@ describe('Supercollider.buildSearch()', function() {
     });
 
     s.init().on('finish', function() {
-      s.buildSearch('test/fixtures/_build/search.json', done);
+      s.buildSearch('test/fixtures/_build/search.json').then(done).catch(done);
     });
   });
 
@@ -30,7 +30,7 @@ describe('Supercollider.buildSearch()', function() {
     }).searchConfig({});
 
     s.init().on('finish', function() {
-      s.buildSearch('test/fixtures/_build/search.json', function() {
+      s.buildSearch('test/fixtures/_build/search.json').then(() => {
         var data = fs.readFileSync('./test/fixtures/_build/search.json').toString();
         page = JSON.parse(data)[0];
 
@@ -49,7 +49,7 @@ describe('Supercollider.buildSearch()', function() {
     }).searchConfig({}).adapter('sass');
 
     s.init().on('finish', function() {
-      s.buildSearch('test/fixtures/_build/search.json', function() {
+      s.buildSearch('test/fixtures/_build/search.json').then(() => {
         var data = fs.readFileSync('./test/fixtures/_build/search.json').toString();
         data = JSON.parse(data);
 
@@ -79,7 +79,7 @@ describe('Supercollider.buildSearch()', function() {
     });
 
     s.init().on('finish', function() {
-      s.buildSearch('test/fixtures/_build/search.json', function() {
+      s.buildSearch('test/fixtures/_build/search.json').then(() => {
         var data = fs.readFileSync('./test/fixtures/_build/search.json').toString();
         page = JSON.parse(data)[0];
 
@@ -98,7 +98,7 @@ describe('Supercollider.buildSearch()', function() {
     }).searchConfig({}).adapter('sass').adapter('js');
 
     s.init().on('finish', function() {
-      s.buildSearch('test/fixtures/_build/search.json', function() {
+      s.buildSearch('test/fixtures/_build/search.json').then(() => {
         var data = fs.readFileSync('./test/fixtures/_build/search.json').toString();
         data = JSON.parse(data);
 
@@ -120,7 +120,7 @@ describe('Supercollider.buildSearch()', function() {
     }).adapter('sass').adapter('js');
 
     s.init().on('finish', function() {
-      s.buildSearch('test/fixtures/_build/search.json', function() {
+      s.buildSearch('test/fixtures/_build/search.json').then(() => {
         var data = fs.readFileSync('./test/fixtures/_build/search.json').toString();
         data = JSON.parse(data);
 

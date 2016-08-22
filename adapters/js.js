@@ -1,7 +1,7 @@
 var escapeHTML = require('escape-html');
 var jsdoc = require('jsdoc-api');
 
-module.exports = function(value, config, cb) {
+module.exports = function(value, config) {
   return jsdoc.explain({ files: value }).then(function(data) {
     return processTree(data);
   });

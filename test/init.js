@@ -3,7 +3,6 @@ var fs = require('fs');
 var rimraf = require('rimraf');
 var Supercollider = require('..').Supercollider;
 var vfs = require('vinyl-fs');
-var watch = require('watchjs').watch;
 
 describe('Supercollider.init()', function() {
   it('parses and builds a documentation page', function(done) {

@@ -10,7 +10,7 @@ describe('Supercollider.parse()', function() {
       template: 'test/fixtures/template.html'
     });
 
-    s.parse(TEST_FILE, function(err, data) {
+    s.parse(TEST_FILE, {}, function(err, data) {
       expect(data).to.be.an('object');
       expect(data.docs).to.contain('<h2');
     });
@@ -23,7 +23,7 @@ describe('Supercollider.parse()', function() {
       marked: null
     });
 
-    s.parse(TEST_FILE, function(err, data) {
+    s.parse(TEST_FILE, {}, function(err, data) {
       expect(data).to.be.an('object');
       expect(data.docs).to.not.contain('<h2');
     });
@@ -36,7 +36,7 @@ describe('Supercollider.parse()', function() {
       marked: null
     }).adapter('sass').adapter('js');
 
-    s.parse(TEST_FILE, function(err, data) {
+    s.parse(TEST_FILE, {}, function(err, data) {
       expect(data._adapterData).to.have.all.keys(['sass', 'js']);
       expect(data.sass).to.be.an('object');
       expect(data.js).to.be.an('object');

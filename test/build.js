@@ -44,7 +44,7 @@ describe('Supercollider.build()', function() {
       keepFm: true
     });
 
-    s.parse(TEST_FILE, function(err, data) {
+    s.parse(TEST_FILE, {}, function(err, data) {
       var output = s.build(data);
       expect(output).to.contain('---');
       done();

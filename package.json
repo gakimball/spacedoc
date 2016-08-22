@@ -28,30 +28,31 @@
     "url": "https://github.com/gakimball/supercollider/issues"
   },
   "dependencies": {
-    "async": "^0.9.0",
+    "async": "^2.0.1",
     "chalk": "^1.1.1",
     "commander": "^2.8.1",
     "escape-html": "^1.0.3",
     "extend": "^3.0.0",
-    "front-matter": "^1.0.0",
-    "glob": "^4.3.5",
+    "front-matter": "^2.1.0",
+    "glob": "^7.0.5",
     "gulp-util": "^3.0.7",
-    "handlebars": "^2.0.0",
+    "handlebars": "^4.0.5",
+    "highlight.js": "^9.6.0",
     "js-yaml": "^3.4.3",
-    "jsdoc-api": "^1.0.5",
+    "jsdoc-api": "^2.0.1",
     "jsdoc3-parser": "^1.0.4",
     "marked": "^0.3.2",
     "mkdirp": "^0.5.1",
     "rimraf": "^2.2.8",
     "sassdoc": "^2.0.0-rc.17",
-    "string-template": "^0.2.0",
-    "through2": "^0.6.3",
-    "vinyl-fs": "^1.0.0"
+    "string-template": "^1.0.0",
+    "through2": "^2.0.1",
+    "vinyl-fs": "^2.4.3"
   },
   "devDependencies": {
     "chai": "^3.5.0",
     "highlight.js": "^8.4.0",
-    "mocha": "^2.2.4",
+    "mocha": "^3.0.2",
     "vinyl": "^1.1.1"
   }
 }

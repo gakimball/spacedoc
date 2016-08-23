@@ -90,7 +90,7 @@ describe('Supercollider.buildSearch()', () => {
     });
   });
 
-  it.only('creates a JSON file of search results', done => {
+  it('creates a JSON file of search results', done => {
     var s = new Supercollider().config({
       src: 'test/fixtures/*.md',
       template: 'test/fixtures/template.html',

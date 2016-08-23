@@ -23,18 +23,20 @@ The `.buildSearch()` function takes two parameters: a path to the file to write,
 
 ### Configuration
 
-Search-specific settings are set with the `.searchConfig()` method. It takes an object of settings:
+Search-specific settings are set with the `.config()` method, on the `search` key of the configuration object. These search settings are available:
 
 - **extra** (String): file path to a JSON or YML file with an array of search results. These will be loaded and added as-is to the search result list.
 - **pageTypes** (Object): definitions for custom page types. Each key is a type label, and the value is a function that determines if the label should be applied to a page.
 - **sort** (Array): an array of strings representing sort criteria. The results list can be sorted by the `type` property on each result.
 
 ```js
-Super.searchConfig({
-  // The contents of this file will be added to the final results
-  extra: 'src/assets/search.yml',
-  // Sort search results so pages always appear first in the list
-  sort: ['page', 'component', 'sass variable', 'sass mixin', 'sass function']
+Super.config({
+  search: {
+    // The contents of this file will be added to the final results
+    extra: 'src/assets/search.yml',
+    // Sort search results so pages always appear first in the list
+    sort: ['page', 'component', 'sass variable', 'sass mixin', 'sass function']
+  }
 })
 ```
 

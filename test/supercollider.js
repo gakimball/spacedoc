@@ -11,8 +11,6 @@ describe('Supercollider constructor', () => {
     var s = new Supercollider();
 
     expect(s.options).to.be.an('object');
-    expect(s.searchOptions).to.be.an('object');
-    expect(s.searchOptions).to.have.all.keys(['extra', 'sort', 'pageTypes']);
     expect(s.adapters).to.be.an('object');
     expect(s.tree).to.be.an('array');
     expect(s.template).to.be.null;

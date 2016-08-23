@@ -15,6 +15,10 @@ Sets configuration settings.
   - **silent** (Boolean): enable/disable console logging as pages are processed. The default is `true`.
   - **pageRoot** (String): path to the common folder that every source page sits in. This is only necessary if you're generating [search results](search.md).
   - **data** (Object): extra data to add to the Handlebars instance.
+  - **search** (Object): search settings.
+    - **extra** (String): file path to a JSON or YML file with an array of search results. These will be loaded and added as-is to the search result list.
+    - **sort** (Array): an array of strings representing sort criteria. The results list can be sorted by the `type` property on each result.
+    - **pageTypes** (Object): custom tags for search result items.
 
 ### init()
 
@@ -26,14 +30,6 @@ Adds a adapter to parse documentation. Refer to [Custom Adapters](#custom-adapte
 
 - **name** (String): the name of the adapter. These names are reserved and can't be used: `scss`, `js`, `docs`, `fileName`.
 - **func** (Function): a function that accepts an input parameter and runs a callback with the parsed data.
-
-### searchConfig(options)
-
-Sets search-specific settings.
-
-- **options** (Object):
-  - **extra** (String): file path to a JSON or YML file with an array of search results. These will be loaded and added as-is to the search result list.
-  - **sort** (Array): an array of strings representing sort criteria. The results list can be sorted by the `type` property on each result.
 
 ### buildSearch(outFile, cb)
 

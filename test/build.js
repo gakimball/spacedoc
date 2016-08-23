@@ -50,4 +50,14 @@ describe('Supercollider.build()', () => {
       done();
     }).catch(done);
   });
+
+  it('throws an error if no template is defined', done => {
+    var s = new Supercollider();
+    s.config({});
+
+    s.parse(TEST_FILE).then(data => {
+      expect(() => s.build(data)).to.throw(Error);
+      done();
+    }).catch(done);
+  });
 });

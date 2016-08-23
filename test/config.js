@@ -17,17 +17,12 @@ describe('Supercollider.config()', () => {
 
   it('throws an error if no template is defined', () => {
     var s = new Supercollider();
+    s = s.config({
+      src: 'src',
+      dest: 'dest',
+      template: 'test/fixtures/template.html'
+    }).adapter('sass').adapter('js');
 
-    expect(() => {
-      s.config({});
-    }).to.throw(Error);
-  });
-
-  it('throws an error if the template cannot be loaded', () => {
-    var s = new Supercollider();
-
-    expect(() => {
-      s.config({ template: 'test/kitten.html' });
-    }).to.throw(Error);
+    expect(s.template).to.be.a('function');
   });
 });

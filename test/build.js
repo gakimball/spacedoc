@@ -1,10 +1,10 @@
-var expect = require('chai').expect;
-var Supercollider = require('..').Supercollider;
+const { expect } = require('chai');
+const { Supercollider } = require('..');
 
 var TEST_FILE = require('./fixtures/test_file');
 
-describe('Supercollider.build()', function() {
-  it('builds an HTML file from the data of a page', function() {
+describe('Supercollider.build()', () => {
+  it('builds an HTML file from the data of a page', () => {
     var s = new Supercollider();
     s.config({
       template: 'test/fixtures/template-simple.html'
@@ -15,7 +15,7 @@ describe('Supercollider.build()', function() {
     expect(output).to.contain('kitty');
   });
 
-  it('adds global data to the Handlebars instance', function() {
+  it('adds global data to the Handlebars instance', () => {
     var s = new Supercollider();
     s.config({
       template: 'test/fixtures/template-simple.html',
@@ -26,13 +26,13 @@ describe('Supercollider.build()', function() {
     expect(output).to.contain('kitty');
   });
 
-  it('catches Handlebars errors', function() {
+  it('catches Handlebars errors', () => {
     var s = new Supercollider();
     s.config({
       template: 'test/fixtures/template-broken.html'
     });
 
-    expect(function() {
+    expect(() => {
       s.build({})
     }).to.throw(Error);
   });

@@ -1,11 +1,11 @@
-var expect = require('chai').expect;
-var fs = require('fs');
-var rimraf = require('rimraf');
-var Supercollider = require('..').Supercollider;
-var vfs = require('vinyl-fs');
+const { expect } = require('chai');
+const fs = require('fs');
+const rimraf = require('rimraf');
+const { Supercollider } = require('..');
+const vfs = require('vinyl-fs');
 
-describe('Supercollider.init()', function() {
-  it('parses and builds a documentation page', function(done) {
+describe('Supercollider.init()', () => {
+  it('parses and builds a documentation page', done => {
     var s = new Supercollider();
     s.config({
       src: 'test/fixtures/*.md',
@@ -17,13 +17,13 @@ describe('Supercollider.init()', function() {
     var stream = s.init();
 
     expect(stream).to.have.property('on');
-    stream.on('finish', function() {
+    stream.on('finish', () => {
       expect(fs.existsSync('test/fixtures/_build/example.html')).to.be.ok;
       done();
     });
   });
 
-  it('works within a stream of Vinyl files if src and dest are omitted', function(done) {
+  it('works within a stream of Vinyl files if src and dest are omitted', done => {
     var s = new Supercollider();
     s.config({
       template: 'test/fixtures/template.html',
@@ -39,7 +39,7 @@ describe('Supercollider.init()', function() {
       });
   });
 
-  it('resets the internal data tree on each build', function(done) {
+  it('resets the internal data tree on each build', done => {
     var s = new Supercollider();
     s.config({
       src: 'test/fixtures/*.md',
@@ -47,17 +47,17 @@ describe('Supercollider.init()', function() {
       silent: true
     });
 
-    s.init().on('finish', function() {
+    s.init().on('finish', () => {
       expect(s.tree).to.have.length(1);
 
-      s.init().on('finish', function() {
+      s.init().on('finish', () => {
         expect(s.tree).to.have.length(1);
         done();
       });
     });
   });
 
-  it('allows for incremental builds', function(done) {
+  it('allows for incremental builds', done => {
     var s = new Supercollider();
     s.config({
       src: 'test/fixtures/*.md',
@@ -65,10 +65,10 @@ describe('Supercollider.init()', function() {
       silent: true
     });
 
-    s.init().on('finish', function() {
+    s.init().on('finish', () => {
       expect(s.tree).to.have.length(1);
 
-      s.init({ incremental: true }).on('finish', function() {
+      s.init({ incremental: true }).on('finish', () => {
         expect(s.tree).to.have.length(1);
         done();
       });

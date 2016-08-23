@@ -1,8 +1,8 @@
-var expect = require('chai').expect;
-var Supercollider = require('..').Supercollider;
+const { expect } = require('chai');
+const { Supercollider } = require('..');
 
-describe('Supercollider.config()', function() {
-  it('sets configuration settings', function() {
+describe('Supercollider.config()', () => {
+  it('sets configuration settings', () => {
     var s = new Supercollider();
     s = s.config({
       src: 'src',
@@ -15,18 +15,18 @@ describe('Supercollider.config()', function() {
     expect(s.options.dest).to.equal('dest');
   });
 
-  it('throws an error if no template is defined', function() {
+  it('throws an error if no template is defined', () => {
     var s = new Supercollider();
 
-    expect(function() {
+    expect(() => {
       s.config({});
     }).to.throw(Error);
   });
 
-  it('throws an error if the template cannot be loaded', function() {
+  it('throws an error if the template cannot be loaded', () => {
     var s = new Supercollider();
 
-    expect(function() {
+    expect(() => {
       s.config({ template: 'test/kitten.html' });
     }).to.throw(Error);
   });

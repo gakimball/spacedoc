@@ -1,14 +1,14 @@
-var expect = require('chai').expect;
-var fs = require('fs');
-var rimraf = require('rimraf');
-var Supercollider = require('..').Supercollider;
+const { expect } = require('chai');
+const fs = require('fs');
+const rimraf = require('rimraf');
+const { Supercollider } = require('..');
 
-describe('Supercollider.buildSearch()', function() {
-  afterEach(function(done) {
+describe('Supercollider.buildSearch()', () => {
+  afterEach(done => {
     rimraf('test/fixtures/_build', done);
   });
 
-  it('works even if searchConfig() was not called', function(done) {
+  it('works even if searchConfig() was not called', done => {
     var s = new Supercollider().config({
       src: 'test/fixtures/*.md',
       template: 'test/fixtures/template.html',
@@ -16,12 +16,12 @@ describe('Supercollider.buildSearch()', function() {
       silent: true
     });
 
-    s.init().on('finish', function() {
+    s.init().on('finish', () => {
       s.buildSearch('test/fixtures/_build/search.json').then(done).catch(done);
     });
   });
 
-  it('flags generic pages as "page"', function(done) {
+  it('flags generic pages as "page"', done => {
     var s = new Supercollider().config({
       src: 'test/fixtures/*.md',
       template: 'test/fixtures/template.html',
@@ -29,7 +29,7 @@ describe('Supercollider.buildSearch()', function() {
       silent: true
     }).searchConfig({});
 
-    s.init().on('finish', function() {
+    s.init().on('finish', () => {
       s.buildSearch('test/fixtures/_build/search.json').then(() => {
         var data = fs.readFileSync('./test/fixtures/_build/search.json').toString();
         page = JSON.parse(data)[0];
@@ -40,7 +40,7 @@ describe('Supercollider.buildSearch()', function() {
     });
   });
 
-  it('flags pages with code hooks as "component"', function(done) {
+  it('flags pages with code hooks as "component"', done => {
     var s = new Supercollider().config({
       src: 'test/fixtures/*.md',
       template: 'test/fixtures/template.html',
@@ -48,7 +48,7 @@ describe('Supercollider.buildSearch()', function() {
       silent: true
     }).searchConfig({}).adapter('sass');
 
-    s.init().on('finish', function() {
+    s.init().on('finish', () => {
       s.buildSearch('test/fixtures/_build/search.json').then(() => {
         var data = fs.readFileSync('./test/fixtures/_build/search.json').toString();
         data = JSON.parse(data);
@@ -63,7 +63,7 @@ describe('Supercollider.buildSearch()', function() {
     });
   });
 
-  it('allows for custom page types', function(done) {
+  it('allows for custom page types', done => {
     var s = new Supercollider().config({
       src: 'test/fixtures/*.md',
       template: 'test/fixtures/template.html',
@@ -78,7 +78,7 @@ describe('Supercollider.buildSearch()', function() {
       }
     });
 
-    s.init().on('finish', function() {
+    s.init().on('finish', () => {
       s.buildSearch('test/fixtures/_build/search.json').then(() => {
         var data = fs.readFileSync('./test/fixtures/_build/search.json').toString();
         page = JSON.parse(data)[0];
@@ -89,7 +89,7 @@ describe('Supercollider.buildSearch()', function() {
     });
   });
 
-  it('creates a JSON file of search results', function(done) {
+  it('creates a JSON file of search results', done => {
     var s = new Supercollider().config({
       src: 'test/fixtures/*.md',
       template: 'test/fixtures/template.html',
@@ -97,7 +97,7 @@ describe('Supercollider.buildSearch()', function() {
       silent: true
     }).searchConfig({}).adapter('sass').adapter('js');
 
-    s.init().on('finish', function() {
+    s.init().on('finish', () => {
       s.buildSearch('test/fixtures/_build/search.json').then(() => {
         var data = fs.readFileSync('./test/fixtures/_build/search.json').toString();
         data = JSON.parse(data);
@@ -109,7 +109,7 @@ describe('Supercollider.buildSearch()', function() {
     });
   });
 
-  it('allows extra external results to be added', function(done) {
+  it('allows extra external results to be added', done => {
     var s = new Supercollider().config({
       src: 'test/fixtures/*.md',
       template: 'test/fixtures/template.html',
@@ -119,7 +119,7 @@ describe('Supercollider.buildSearch()', function() {
       extra: 'test/fixtures/search.yml'
     }).adapter('sass').adapter('js');
 
-    s.init().on('finish', function() {
+    s.init().on('finish', () => {
       s.buildSearch('test/fixtures/_build/search.json').then(() => {
         var data = fs.readFileSync('./test/fixtures/_build/search.json').toString();
         data = JSON.parse(data);

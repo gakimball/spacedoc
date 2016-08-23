@@ -1,10 +1,10 @@
-var expect = require('chai').expect;
+var { expect } = require('chai');
 var Supercollider = require('..').Supercollider;
 
 var TEST_FILE = require('./fixtures/test_file');
 
-describe('Supercollider.parse()', function() {
-  it('converts Markdown into HTML', function(done) {
+describe('Supercollider.parse()', () => {
+  it('converts Markdown into HTML', done => {
     var s = new Supercollider();
     s.config({
       template: 'test/fixtures/template.html'
@@ -17,7 +17,7 @@ describe('Supercollider.parse()', function() {
     });
   });
 
-  it('does not touch Markdown if configured to ignore it', function(done) {
+  it('does not touch Markdown if configured to ignore it', done => {
     var s = new Supercollider();
     s.config({
       template: 'test/fixtures/template.html',
@@ -31,7 +31,7 @@ describe('Supercollider.parse()', function() {
     });
   });
 
-  it('loads data from adapters', function(done) {
+  it('loads data from adapters', done => {
     var s = new Supercollider();
     s.config({
       template: 'test/fixtures/template.html',
@@ -46,7 +46,7 @@ describe('Supercollider.parse()', function() {
     });
   });
 
-  it('catches Markdown errors', function(done) {
+  it('catches Markdown errors', done => {
     var s = new Supercollider();
     s.config({
       template: 'test/fixtures/template.html',

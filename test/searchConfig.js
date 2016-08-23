@@ -1,8 +1,8 @@
-var expect = require('chai').expect;
-var Supercollider = require('..').Supercollider;
+const { expect } = require('chai');
+const { Supercollider } = require('..');
 
-describe('Supercollider.searchConfig()', function() {
-  it('loads JSON data', function() {
+describe('Supercollider.searchConfig()', () => {
+  it('loads JSON data', () => {
     var s = new Supercollider();
     s.searchConfig({ extra: 'test/fixtures/search.json' });
 
@@ -10,7 +10,7 @@ describe('Supercollider.searchConfig()', function() {
     expect(s.searchOptions.extra).to.have.length(2);
   });
 
-  it('loads YAML data', function() {
+  it('loads YAML data', () => {
     var s = new Supercollider();
     s.searchConfig({ extra: 'test/fixtures/search.yml' });
 

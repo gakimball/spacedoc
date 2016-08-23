@@ -1,13 +1,13 @@
-var expect = require('chai').expect;
-var Supercollider = require('..').Supercollider;
+const { expect } = require('chai');
+const { Supercollider } = require('..');
 
-describe('Supercollider constructor', function() {
-  it('creates a new instance of Supercollider', function() {
+describe('Supercollider constructor', () => {
+  it('creates a new instance of Supercollider', () => {
     var s = new Supercollider();
     expect(s).to.be.an.instanceOf(Supercollider);
   });
 
-  it('sets blank defaults for config settings', function() {
+  it('sets blank defaults for config settings', () => {
     var s = new Supercollider();
 
     expect(s.options).to.be.an('object');

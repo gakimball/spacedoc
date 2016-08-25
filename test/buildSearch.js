@@ -36,7 +36,7 @@ describe('Spacedoc.buildSearch()', () => {
 
         expect(page.type).to.equal('page');
         done();
-      });
+      }).catch(done);
     });
   });
 
@@ -59,7 +59,7 @@ describe('Spacedoc.buildSearch()', () => {
         }
 
         done();
-      });
+      }).catch(done);
     });
   });
 
@@ -86,7 +86,7 @@ describe('Spacedoc.buildSearch()', () => {
 
         expect(page.type).to.equal('custom');
         done();
-      });
+      }).catch(done);
     });
   });
 
@@ -104,14 +104,13 @@ describe('Spacedoc.buildSearch()', () => {
         data = JSON.parse(data);
 
         expect(data).to.be.an('array');
-        expect(data).to.have.length(17);
+        expect(data).to.have.length(18);
         done();
-      });
+      }).catch(done);
     });
   });
 
-  it('allows extra external results to be added', function(done) {
-    this.timeout(3000);
+  it('allows extra external results to be added', done => {
     var s = new Spacedoc().config({
       src: 'test/fixtures/*.md',
       template: 'test/fixtures/template.html',
@@ -128,9 +127,9 @@ describe('Spacedoc.buildSearch()', () => {
         data = JSON.parse(data);
 
         expect(data).to.be.an('array');
-        expect(data).to.have.length(17 + 2); // 2 extra results in the YML file
+        expect(data).to.have.length(18 + 2); // 2 extra results in the YML file
         done();
-      });
+      }).catch(done);
     });
   });
 });

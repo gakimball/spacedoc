@@ -25,6 +25,15 @@ describe('Supercollider.config()', () => {
     expect(s.template).to.be.a('function');
   });
 
+  it('allows a pre-made template function to be used', () => {
+    var s = new Supercollider();
+    s = s.config({
+      template: () => 'test'
+    });
+
+    expect(s.template()).to.equal('test');
+  });
+
   it('loads JSON data from search config', () => {
     var s = new Supercollider();
     s.config({

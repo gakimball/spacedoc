@@ -5,7 +5,7 @@
 Sets configuration settings.
 
 - **options** (Object):
-  - **template** (String): path to the Handlebars template to use for each component.
+  - **template** (String or Function): path to the Handlebars template to use for each component, or any function that takes an object of data and returns a string. If you want to use another templating language, you can pass in a pre-compiled template function.
   - **src** (String or Array): a glob of files to process. Each file is a component, and can be attached to zero or more adapters to documentation generators.
   - **dest** (String): file path to write the finished HTML to.
   - **marked** (Object): a custom instance of Marked to use when parsing the markdown of your documentation pages. This allows you to pass in custom rendering methods.

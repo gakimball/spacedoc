@@ -1,0 +1,71 @@
+h1= title
+.lead= description
+
+!= body
+
+hr
+
+if sass
+  section
+    h2 Using Sass
+    if sass.variable
+      section
+        h3 Variables
+        table
+          tr
+            th Name
+            th Type
+            th Default Value
+            th Description
+          each variable in sass.variable
+            tr
+              td: code $#{variable.context.name}
+              td= variable.type
+              td: code= variable.context.value
+              td= variable.description
+
+    hr
+
+    if sass.mixin
+      section
+        h3 Mixins
+        each mixin in sass.mixin
+          section
+            h4= mixin.context.name
+            p= mixin.description
+            if mixin.parameter
+              table
+                tr
+                  th Name
+                  th Type
+                  th Default Value
+                  th Description
+                each param in mixin.parameter
+                  tr
+                    td: code $#{param.name}
+                    td= param.type
+                    td: code= param.default
+                    td= param.description
+
+    hr
+
+    if sass.mixin
+      section
+        h3 Mixins
+        each mixin in sass.mixin
+          section
+            h4= mixin.context.name
+            p= mixin.description
+            if mixin.parameter
+              table
+                tr
+                  th Name
+                  th Type
+                  th Default Value
+                  th Description
+                each param in mixin.parameter
+                  tr
+                    td: code $#{param.name}
+                    td= param.type
+                    td: code= param.default
+                    td= param.description

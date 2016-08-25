@@ -7,7 +7,7 @@ describe('Spacedoc.parse()', () => {
   it('converts Markdown into HTML', done => {
     const s = new Spacedoc();
     s.config({
-      template: 'test/fixtures/template.html'
+      template: 'test/fixtures/template.pug'
     });
 
     s.parse(TEST_FILE, {}).then(data => {
@@ -20,7 +20,7 @@ describe('Spacedoc.parse()', () => {
   it('does not touch Markdown if configured to ignore it', done => {
     const s = new Spacedoc();
     s.config({
-      template: 'test/fixtures/template.html',
+      template: 'test/fixtures/template.pug',
       marked: null
     });
 
@@ -34,7 +34,7 @@ describe('Spacedoc.parse()', () => {
   it('loads data from adapters', done => {
     const s = new Spacedoc();
     s.config({
-      template: 'test/fixtures/template.html',
+      template: 'test/fixtures/template.pug',
       marked: null
     }).adapter('sass').adapter('js');
 
@@ -48,7 +48,7 @@ describe('Spacedoc.parse()', () => {
   it('catches Markdown errors', done => {
     const s = new Spacedoc();
     s.config({
-      template: 'test/fixtures/template.html',
+      template: 'test/fixtures/template.pug',
       marked: require('./fixtures/marked-broken')
     });
 

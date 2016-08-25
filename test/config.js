@@ -19,7 +19,7 @@ describe('Spacedoc.config()', () => {
     s = s.config({
       src: 'src',
       dest: 'dest',
-      template: 'test/fixtures/template.html'
+      template: 'test/fixtures/template.pug'
     }).adapter('sass').adapter('js');
 
     expect(s.template).to.be.a('function');

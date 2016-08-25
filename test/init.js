@@ -10,7 +10,7 @@ describe('Spacedoc.init()', () => {
     s.config({
       src: 'test/fixtures/*.md',
       dest: 'test/fixtures/_build',
-      template: 'test/fixtures/template.html',
+      template: 'test/fixtures/template.pug',
       silent: true
     });
 
@@ -26,7 +26,7 @@ describe('Spacedoc.init()', () => {
   it('works within a stream of Vinyl files if src and dest are omitted', done => {
     const s = new Spacedoc();
     s.config({
-      template: 'test/fixtures/template.html',
+      template: 'test/fixtures/template.pug',
       silent: true
     });
 
@@ -43,7 +43,7 @@ describe('Spacedoc.init()', () => {
     const s = new Spacedoc();
     s.config({
       src: 'test/fixtures/*.md',
-      template: 'test/fixtures/template.html',
+      template: 'test/fixtures/template.pug',
       silent: true
     });
 
@@ -61,7 +61,7 @@ describe('Spacedoc.init()', () => {
     const s = new Spacedoc();
     s.config({
       src: 'test/fixtures/*.md',
-      template: 'test/fixtures/template.html',
+      template: 'test/fixtures/template.pug',
       silent: true
     });
 

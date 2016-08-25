@@ -1,6 +1,6 @@
 ## Overview
 
-Spacedoc parses a glob of Markdown files, pulls in relevant documentation from Sass and JavaScript files, and combines it all into one JSON object, which is passed to a Handlebars template that renders the final HTML page.
+Spacedoc parses a glob of Markdown files, pulls in relevant documentation from Sass and JavaScript files, and combines it all into one JSON object, which is passed to a Pug template that renders the final HTML page.
 
 A typical documentation page will look like this:
 
@@ -31,7 +31,7 @@ The Markdown, as well as any documentation parsed by SassDoc or JSDoc, is conver
 }
 ```
 
-Finally, this data is passed to a Handlebars template and used to build new HTML pages, designed by *you*! Spacedoc doesn't include any templates or themes; it just gives you the big JavaScript object you need to write a template.
+Finally, this data is passed to a Pug template and used to build new HTML pages, designed by *you*! Spacedoc doesn't include any templates or themes; it just gives you the big JavaScript object you need to write a template.
 
 ## Next
 

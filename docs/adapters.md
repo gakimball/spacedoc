@@ -10,7 +10,7 @@ Spacedoc has two built-in adapters: `sass`, which uses SassDoc, and `js`, which 
 
 You can write your own adapter for any documentation generator&mdash;or any data source at all.
 
-An adapter is a static class that hooks into a documentation generator to fetch, organize, and filter doclets associated with a page. This data is passed to the Handlebars template used to render the page's documentation.
+An adapter is a static class that hooks into a documentation generator to fetch, organize, and filter doclets associated with a page. This data is passed to the Pug template used to render the page's documentation.
 
 ```js
 class Parser {

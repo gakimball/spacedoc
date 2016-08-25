@@ -11,8 +11,7 @@ describe('Spacedoc.buildSearch()', () => {
   it('works even if search was not configured', done => {
     const s = new Spacedoc().config({
       src: 'test/fixtures/*.md',
-      template: 'test/fixtures/template.html',
-      handlebars: require('./fixtures/handlebars'),
+      template: 'test/fixtures/template.pug',
       silent: true
     });
 
@@ -24,8 +23,7 @@ describe('Spacedoc.buildSearch()', () => {
   it('flags generic pages as "page"', done => {
     const s = new Spacedoc().config({
       src: 'test/fixtures/*.md',
-      template: 'test/fixtures/template.html',
-      handlebars: require('./fixtures/handlebars'),
+      template: 'test/fixtures/template.pug',
       silent: true
     });
 
@@ -43,8 +41,7 @@ describe('Spacedoc.buildSearch()', () => {
   it('flags pages with code hooks as "component"', done => {
     const s = new Spacedoc().config({
       src: 'test/fixtures/*.md',
-      template: 'test/fixtures/template.html',
-      handlebars: require('./fixtures/handlebars'),
+      template: 'test/fixtures/template.pug',
       silent: true
     }).adapter('sass');
 
@@ -66,8 +63,7 @@ describe('Spacedoc.buildSearch()', () => {
   it('allows for custom page types', done => {
     const s = new Spacedoc().config({
       src: 'test/fixtures/*.md',
-      template: 'test/fixtures/template.html',
-      handlebars: require('./fixtures/handlebars'),
+      template: 'test/fixtures/template.pug',
       silent: true,
       search: {
         pageTypes: {
@@ -93,8 +89,7 @@ describe('Spacedoc.buildSearch()', () => {
   it('creates a JSON file of search results', done => {
     const s = new Spacedoc().config({
       src: 'test/fixtures/*.md',
-      template: 'test/fixtures/template.html',
-      handlebars: require('./fixtures/handlebars'),
+      template: 'test/fixtures/template.pug',
       silent: true
     }).adapter('sass').adapter('js');
 
@@ -113,8 +108,7 @@ describe('Spacedoc.buildSearch()', () => {
   it('allows extra external results to be added', done => {
     const s = new Spacedoc().config({
       src: 'test/fixtures/*.md',
-      template: 'test/fixtures/template.html',
-      handlebars: require('./fixtures/handlebars'),
+      template: 'test/fixtures/template.pug',
       silent: true,
       search: {
         extra: 'test/fixtures/search.yml'

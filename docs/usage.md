@@ -16,7 +16,7 @@ const Spacedoc = require('spacedoc');
 Spacedoc.config({
   src: './pages/*.md',
   dest: './build',
-  template: './template.html'
+  template: './template.pug'
 });
 ```
 
@@ -69,11 +69,10 @@ Spacedoc can be installed globally and used from the command line. For now, only
     -h, --help               output usage information
     -V, --version            output the version number
     -s, --source <glob>      Glob of files to process
-    -t, --template <file>    Handlebars template to use
+    -t, --template <file>    Pug template to use
     -a, --adapters <items>   Adapters to use
     -d, --dest <folder>      Folder to output HTML to
     -m, --marked <file>      Path to a Marked renderer instance
-    -h, --handlebars <file>  Path to a Handlebars instance
 ```
 
 ## Next

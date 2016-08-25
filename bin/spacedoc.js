@@ -8,11 +8,10 @@ program
   .version('0.2.0')
   .usage('[options]')
   .option('-s, --source <glob>', 'Glob of files to process')
-  .option('-t, --template <file>', 'Handlebars template to use')
+  .option('-t, --template <file>', 'Pug template to use')
   .option('-a, --adapters <items>', 'Adapters to use', list)
   .option('-d, --dest <folder>', 'Folder to output HTML to')
   .option('-m, --marked <file>', 'Path to a Marked renderer instance', lib)
-  .option('-h, --handlebars <file>', 'Path to a Handlebars instance', lib)
   .parse(process.argv);
 
 Spacedoc.config({
@@ -20,7 +19,6 @@ Spacedoc.config({
   template: program.template || false,
   dest: program.dest || false,
   marked: program.marked || false,
-  handlebars: program.handlebars || false
 });
 
 for (let i in program.adapters) {

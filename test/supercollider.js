@@ -1,14 +1,14 @@
 const { expect } = require('chai');
-const { Supercollider } = require('..');
+const { Spacedoc } = require('..');
 
-describe('Supercollider constructor', () => {
-  it('creates a new instance of Supercollider', () => {
-    var s = new Supercollider();
-    expect(s).to.be.an.instanceOf(Supercollider);
+describe('Spacedoc constructor', () => {
+  it('creates a new instance of Spacedoc', () => {
+    var s = new Spacedoc();
+    expect(s).to.be.an.instanceOf(Spacedoc);
   });
 
   it('sets blank defaults for config settings', () => {
-    var s = new Supercollider();
+    var s = new Spacedoc();
 
     expect(s.options).to.be.an('object');
     expect(s.adapters).to.be.an('object');

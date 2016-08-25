@@ -1,21 +1,21 @@
 const { expect } = require('chai');
-const { Supercollider } = require('..');
+const { Spacedoc } = require('..');
 
-describe('Supercollider.config()', () => {
+describe('Spacedoc.config()', () => {
   it('sets configuration settings', () => {
-    var s = new Supercollider();
+    var s = new Spacedoc();
     s = s.config({
       src: 'src',
       dest: 'dest'
     }).adapter('sass').adapter('js');
 
-    expect(s).to.be.an.instanceOf(Supercollider);
+    expect(s).to.be.an.instanceOf(Spacedoc);
     expect(s.options.src).to.equal('src');
     expect(s.options.dest).to.equal('dest');
   });
 
   it('loads an HTML template', () => {
-    var s = new Supercollider();
+    var s = new Spacedoc();
     s = s.config({
       src: 'src',
       dest: 'dest',
@@ -26,7 +26,7 @@ describe('Supercollider.config()', () => {
   });
 
   it('allows a pre-made template function to be used', () => {
-    var s = new Supercollider();
+    var s = new Spacedoc();
     s = s.config({
       template: () => 'test'
     });
@@ -35,7 +35,7 @@ describe('Supercollider.config()', () => {
   });
 
   it('loads JSON data from search config', () => {
-    var s = new Supercollider();
+    var s = new Spacedoc();
     s.config({
       search: { extra: 'test/fixtures/search.json' }
     });
@@ -45,7 +45,7 @@ describe('Supercollider.config()', () => {
   });
 
   it('loads YAML data from search config', () => {
-    var s = new Supercollider();
+    var s = new Spacedoc();
     s.config({
       search: { extra: 'test/fixtures/search.yml' }
     });

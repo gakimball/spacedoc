@@ -3,27 +3,27 @@
 ## Installation
 
 ```bash
-npm install supercollider --save-dev
+npm install spacedoc --save-dev
 ```
 
 ## Setup
 
-Before running the parser, call `Supercollider.config()` with an object of configuration settings. Refer to the [full API](api.md) to see every option.
+Before running the parser, call `Spacedoc.config()` with an object of configuration settings. Refer to the [full API](api.md) to see every option.
 
 ```js
-var Super = require('supercollider');
+var Spacedoc = require('spacedoc');
 
-Super.config({
+Spacedoc.config({
   src: './pages/*.md',
   dest: './build',
   template: './template.html'
 });
 ```
 
-By default, Supercollider can parse Markdown into HTML for you. It also includes two built-in *adapters*, which hook into external documentation generators. The built-in adapters are called `sass` (SassDoc) and `js` (JSDoc). Enbale them with the `.adapter()` method.
+By default, Spacedoc can parse Markdown into HTML for you. It also includes two built-in *adapters*, which hook into external documentation generators. The built-in adapters are called `sass` (SassDoc) and `js` (JSDoc). Enbale them with the `.adapter()` method.
 
 ```js
-Super
+Spacedoc
   .adapter('sass')
   .adapter('js');
 ```
@@ -34,16 +34,16 @@ You can also create custom adapters by passing in a function as a second paramet
 
 The plugin can be used standalone or with the [Gulp](https://github.com/gulpjs/gulp) build system.
 
-To use the library standalone, call `Supercollider.init()` with the option `src` being a glob of files, and `dest` being an output folder.
+To use the library standalone, call `Spacedoc.init()` with the option `src` being a glob of files, and `dest` being an output folder.
 
 ```js
-Super.init();
+Spacedoc.init();
 ```
 
 The `.init()` function returns a stream. You can listen to the `finish` event to know when the processing is done.
 
 ```
-var stream = Super.init();
+var stream = Spacedoc.init();
 stream.on('finish', function() {
   // ...
 });
@@ -53,16 +53,16 @@ You can also omit the `src` and `dest` settings when calling `.config()`, and us
 
 ```js
 gulp.src('./pages/*.md')
-  .pipe(Super.init())
+  .pipe(Spacedoc.init())
   .pipe(gulp.dest('./build'));
 ```
 
 ## Command Line Use
 
-Supercollider can be installed globally and used from the command line. For now, only the `sass` and `js` adapters can be used.
+Spacedoc can be installed globally and used from the command line. For now, only the `sass` and `js` adapters can be used.
 
 ```
-  Usage: supercollider [options]
+  Usage: Spacedoc [options]
 
   Options:
 

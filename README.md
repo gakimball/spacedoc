@@ -1,4 +1,4 @@
-# Supercollider
+# Spacedoc
 
 A fancy documentation generator that can mash up documentation from multiple sources, such as [SassDoc](http://sassdoc.com/) and [JSDoc](http://usejsdoc.org/). Used by the [Foundation](https://github.com/zurb/foundation-sites) family of frameworks.
 
@@ -11,13 +11,13 @@ A fancy documentation generator that can mash up documentation from multiple sou
 
 ## Documentation
 
-Read the [overview section](docs/overview.md) of the documentation to get an overview of how Supercollider works. Then check out the [full documentation](docs).
+Read the [overview section](docs/overview.md) of the documentation to get an overview of how Spacedoc works. Then check out the [full documentation](docs).
 
 ## Local Development
 
 ```
-git clone https://github.com/gakimball/supercollider
-cd supercollider
+git clone https://github.com/gakimball/spacedoc
+cd Spacedoc
 npm install
 npm test
 ```

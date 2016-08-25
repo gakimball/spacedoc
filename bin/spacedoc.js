@@ -2,7 +2,7 @@
 
 var program = require('commander');
 var path = require('path');
-var Super = require('../index');
+var Spacedoc = require('../index');
 
 program
   .version('0.2.0')
@@ -15,7 +15,7 @@ program
   .option('-h, --handlebars <file>', 'Path to a Handlebars instance', lib)
   .parse(process.argv);
 
-Super.config({
+Spacedoc.config({
   src: program.source || false,
   template: program.template || false,
   dest: program.dest || false,
@@ -24,10 +24,10 @@ Super.config({
 });
 
 for (var i in program.adapters) {
-  Super.adapter(program.adapters[i]);
+  Spacedoc.adapter(program.adapters[i]);
 }
 
-Super.init().on('finish', process.exit);
+Spacedoc.init().on('finish', process.exit);
 
 // Creates an array from a comma-separated list
 function list(val) {

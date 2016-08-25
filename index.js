@@ -1,16 +1,16 @@
-function Supercollider() {
+function Spacedoc() {
   this.options = {};
   this.adapters = {};
   this.tree = [];
   this.template = null;
 }
 
-Supercollider.prototype.init = require('./lib/init');
-Supercollider.prototype.parse = require('./lib/parse');
-Supercollider.prototype.build = require('./lib/build');
-Supercollider.prototype.adapter = require('./lib/adapter');
-Supercollider.prototype.config = require('./lib/config');
-Supercollider.prototype.buildSearch = require('./lib/buildSearch');
+Spacedoc.prototype.init = require('./lib/init');
+Spacedoc.prototype.parse = require('./lib/parse');
+Spacedoc.prototype.build = require('./lib/build');
+Spacedoc.prototype.adapter = require('./lib/adapter');
+Spacedoc.prototype.config = require('./lib/config');
+Spacedoc.prototype.buildSearch = require('./lib/buildSearch');
 
-module.exports = new Supercollider();
-module.exports.Supercollider = Supercollider;
+module.exports = new Spacedoc();
+module.exports.Spacedoc = Spacedoc;

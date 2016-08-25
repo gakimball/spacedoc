@@ -1,18 +1,18 @@
 ## Search
 
-Supercollider can generate a list of search results from the pages and documentation items it processes. This list is output as a JSON file, which can be fed to a search library like [Bloodhound](https://github.com/twitter/typeahead.js/blob/master/doc/bloodhound.md).
+Spacedoc can generate a list of search results from the pages and documentation items it processes. This list is output as a JSON file, which can be fed to a search library like [Bloodhound](https://github.com/twitter/typeahead.js/blob/master/doc/bloodhound.md).
 
-To create the result list, Supercollider gives each *page* its own result item, and also every documented *item* within each page a result as well. So, for example, given a page `button.md` with two documented Sass variables, you'll get three total results: one for the button page itself, and two for each of the button's variables.
+To create the result list, Spacedoc gives each *page* its own result item, and also every documented *item* within each page a result as well. So, for example, given a page `button.md` with two documented Sass variables, you'll get three total results: one for the button page itself, and two for each of the button's variables.
 
 ### Usage
 
-Search result generation should only happen when Supercollider is done processing. You can listen to the `finish` event on the stream the plugin creates to know when it's ready.
+Search result generation should only happen when Spacedoc is done processing. You can listen to the `finish` event on the stream the plugin creates to know when it's ready.
 
 ```js
 Super.init().on('finish', function() {
-  // Supercollider done processing files
+  // Spacedoc done processing files
   Super.buildSearch('_build/data/search.json').then(() => {
-    // Supercollider done building search JSON
+    // Spacedoc done building search JSON
   }).catch(err => {
     // Error encountered
   });

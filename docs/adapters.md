@@ -9,7 +9,7 @@ An adapter function accepts two parameters:
 - **value** (Mixed): page-specific configuration values. This could be any YAML-compatible value, but it's often a string.
 - **config** (Object): global configuration values. This is the adapter's defaults, extended by the developer's own settings.
 
-Supercollider has two built-in adapters: `sass`, which uses SassDoc, and `js`, which uses JSDoc. You can create your own by calling the `adapter()` method on Supercollider. An adapter is an asynchronous function that returns a promise containing an object of parsed data.
+Spacedoc has two built-in adapters: `sass`, which uses SassDoc, and `js`, which uses JSDoc. You can create your own by calling the `adapter()` method on Spacedoc. An adapter is an asynchronous function that returns a promise containing an object of parsed data.
 
 Here's what the built-in SassDoc adapter looks like.
 
@@ -43,7 +43,7 @@ function processTree(tree) {
 
 ### Search Integration
 
-Supercollider can generate a JSON file of search results from the data it parses from pages. Each adapter exposes its own function to add its data to the results list. So the `sass` adapter converts SassDoc items into search results, `js` converts JSDoc items, and so on.
+Spacedoc can generate a JSON file of search results from the data it parses from pages. Each adapter exposes its own function to add its data to the results list. So the `sass` adapter converts SassDoc items into search results, `js` converts JSDoc items, and so on.
 
 Search hooks are optional&mdash;if an adapter has no search function, those items simply won't be added to the final results list.
 

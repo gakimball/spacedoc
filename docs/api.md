@@ -41,7 +41,7 @@ Returns a promise.
 
 ### tree
 
-An array containing all of the processed data from the last time Supercollider ran. Each item in the array is a page that was processed.
+An array containing all of the processed data from the last time Spacedoc ran. Each item in the array is a page that was processed.
 
 ## Next
 

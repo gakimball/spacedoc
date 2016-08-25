@@ -1,11 +1,11 @@
 const { expect } = require('chai');
-const { Supercollider } = require('..');
+const { Spacedoc } = require('..');
 
 var TEST_FILE = require('./fixtures/test_file');
 
-describe('Supercollider.build()', () => {
+describe('Spacedoc.build()', () => {
   it('builds an HTML file from the data of a page', () => {
-    var s = new Supercollider();
+    var s = new Spacedoc();
     s.config({
       template: 'test/fixtures/template-simple.html'
     });
@@ -16,7 +16,7 @@ describe('Supercollider.build()', () => {
   });
 
   it('adds global data to the Handlebars instance', () => {
-    var s = new Supercollider();
+    var s = new Spacedoc();
     s.config({
       template: 'test/fixtures/template-simple.html',
       data: { var: 'kitty' }
@@ -27,7 +27,7 @@ describe('Supercollider.build()', () => {
   });
 
   it('catches Handlebars errors', () => {
-    var s = new Supercollider();
+    var s = new Spacedoc();
     s.config({
       template: 'test/fixtures/template-broken.html'
     });
@@ -38,7 +38,7 @@ describe('Supercollider.build()', () => {
   });
 
   it('allows Front Matter to be retained on the page', function(done) {
-    var s = new Supercollider();
+    var s = new Spacedoc();
     s.config({
       template: 'test/fixtures/template.html',
       keepFm: true
@@ -52,7 +52,7 @@ describe('Supercollider.build()', () => {
   });
 
   it('throws an error if no template is defined', done => {
-    var s = new Supercollider();
+    var s = new Spacedoc();
     s.config({});
 
     s.parse(TEST_FILE).then(data => {

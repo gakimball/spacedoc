@@ -1,12 +1,12 @@
 const { expect } = require('chai');
 const fs = require('fs');
 const rimraf = require('rimraf');
-const { Supercollider } = require('..');
+const { Spacedoc } = require('..');
 const vfs = require('vinyl-fs');
 
-describe('Supercollider.init()', () => {
+describe('Spacedoc.init()', () => {
   it('parses and builds a documentation page', done => {
-    var s = new Supercollider();
+    var s = new Spacedoc();
     s.config({
       src: 'test/fixtures/*.md',
       dest: 'test/fixtures/_build',
@@ -24,7 +24,7 @@ describe('Supercollider.init()', () => {
   });
 
   it('works within a stream of Vinyl files if src and dest are omitted', done => {
-    var s = new Supercollider();
+    var s = new Spacedoc();
     s.config({
       template: 'test/fixtures/template.html',
       silent: true
@@ -40,7 +40,7 @@ describe('Supercollider.init()', () => {
   });
 
   it('resets the internal data tree on each build', done => {
-    var s = new Supercollider();
+    var s = new Spacedoc();
     s.config({
       src: 'test/fixtures/*.md',
       template: 'test/fixtures/template.html',
@@ -58,7 +58,7 @@ describe('Supercollider.init()', () => {
   });
 
   it('allows for incremental builds', done => {
-    var s = new Supercollider();
+    var s = new Spacedoc();
     s.config({
       src: 'test/fixtures/*.md',
       template: 'test/fixtures/template.html',

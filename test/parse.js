@@ -1,11 +1,11 @@
 var { expect } = require('chai');
-var Supercollider = require('..').Supercollider;
+var Spacedoc = require('..').Spacedoc;
 
 var TEST_FILE = require('./fixtures/test_file');
 
-describe('Supercollider.parse()', () => {
+describe('Spacedoc.parse()', () => {
   it('converts Markdown into HTML', done => {
-    var s = new Supercollider();
+    var s = new Spacedoc();
     s.config({
       template: 'test/fixtures/template.html'
     });
@@ -18,7 +18,7 @@ describe('Supercollider.parse()', () => {
   });
 
   it('does not touch Markdown if configured to ignore it', done => {
-    var s = new Supercollider();
+    var s = new Spacedoc();
     s.config({
       template: 'test/fixtures/template.html',
       marked: null
@@ -32,7 +32,7 @@ describe('Supercollider.parse()', () => {
   });
 
   it('loads data from adapters', done => {
-    var s = new Supercollider();
+    var s = new Spacedoc();
     s.config({
       template: 'test/fixtures/template.html',
       marked: null
@@ -46,7 +46,7 @@ describe('Supercollider.parse()', () => {
   });
 
   it('catches Markdown errors', done => {
-    var s = new Supercollider();
+    var s = new Spacedoc();
     s.config({
       template: 'test/fixtures/template.html',
       marked: require('./fixtures/marked-broken')

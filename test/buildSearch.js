@@ -1,15 +1,15 @@
 const { expect } = require('chai');
 const fs = require('fs');
 const rimraf = require('rimraf');
-const { Supercollider } = require('..');
+const { Spacedoc } = require('..');
 
-describe('Supercollider.buildSearch()', () => {
+describe('Spacedoc.buildSearch()', () => {
   afterEach(done => {
     rimraf('test/fixtures/_build', done);
   });
 
   it('works even if search was not configured', done => {
-    var s = new Supercollider().config({
+    var s = new Spacedoc().config({
       src: 'test/fixtures/*.md',
       template: 'test/fixtures/template.html',
       handlebars: require('./fixtures/handlebars'),
@@ -22,7 +22,7 @@ describe('Supercollider.buildSearch()', () => {
   });
 
   it('flags generic pages as "page"', done => {
-    var s = new Supercollider().config({
+    var s = new Spacedoc().config({
       src: 'test/fixtures/*.md',
       template: 'test/fixtures/template.html',
       handlebars: require('./fixtures/handlebars'),
@@ -41,7 +41,7 @@ describe('Supercollider.buildSearch()', () => {
   });
 
   it('flags pages with code hooks as "component"', done => {
-    var s = new Supercollider().config({
+    var s = new Spacedoc().config({
       src: 'test/fixtures/*.md',
       template: 'test/fixtures/template.html',
       handlebars: require('./fixtures/handlebars'),
@@ -64,7 +64,7 @@ describe('Supercollider.buildSearch()', () => {
   });
 
   it('allows for custom page types', done => {
-    var s = new Supercollider().config({
+    var s = new Spacedoc().config({
       src: 'test/fixtures/*.md',
       template: 'test/fixtures/template.html',
       handlebars: require('./fixtures/handlebars'),
@@ -91,7 +91,7 @@ describe('Supercollider.buildSearch()', () => {
   });
 
   it('creates a JSON file of search results', done => {
-    var s = new Supercollider().config({
+    var s = new Spacedoc().config({
       src: 'test/fixtures/*.md',
       template: 'test/fixtures/template.html',
       handlebars: require('./fixtures/handlebars'),
@@ -112,7 +112,7 @@ describe('Supercollider.buildSearch()', () => {
 
   it('allows extra external results to be added', function(done) {
     this.timeout(3000);
-    var s = new Supercollider().config({
+    var s = new Spacedoc().config({
       src: 'test/fixtures/*.md',
       template: 'test/fixtures/template.html',
       handlebars: require('./fixtures/handlebars'),

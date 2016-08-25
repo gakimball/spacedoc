@@ -12,7 +12,7 @@ describe('Supercollider.parse()', () => {
 
     s.parse(TEST_FILE, {}).then(data => {
       expect(data).to.be.an('object');
-      expect(data.docs).to.contain('<h2');
+      expect(data.body).to.contain('<h2');
       done();
     });
   });
@@ -26,7 +26,7 @@ describe('Supercollider.parse()', () => {
 
     s.parse(TEST_FILE).then(data => {
       expect(data).to.be.an('object');
-      expect(data.docs).to.not.contain('<h2');
+      expect(data.body).to.not.contain('<h2');
       done();
     });
   });
@@ -39,11 +39,10 @@ describe('Supercollider.parse()', () => {
     }).adapter('sass').adapter('js');
 
     s.parse(TEST_FILE).then(data => {
-      expect(data._adapterData).to.have.all.keys(['sass', 'js']);
-      expect(data.sass).to.be.an('object');
-      expect(data.js).to.be.an('object');
+      expect(data.docs.sass).to.be.an('object');
+      expect(data.docs.js).to.be.an('object');
       done();
-    });
+    }).catch(done);
   });
 
   it('catches Markdown errors', done => {

@@ -8,8 +8,9 @@ A typical documentation page will look like this:
 ---
 title: Component Name
 description: Description of the component.
-sass: path/to/sass.scss
-js: path/to/js.js
+docs:
+  sass: path/to/sass.scss
+  js: path/to/js.js
 ---
 
 General documentation for your component.
@@ -22,9 +23,11 @@ The Markdown, as well as any documentation parsed by SassDoc or JSDoc, is conver
   "title": "Component Name",
   "description": "Description of the component",
   "fileName": "componentName.html",
-  "docs": "<p>General documentation for your component.</p>",
-  "sass": [],
-  "js": []
+  "body": "<p>General documentation for your component.</p>",
+  "docs": {
+    "sass": [],
+    "js": []
+  }
 }
 ```
 

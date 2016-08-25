@@ -45,7 +45,6 @@
     "mkdirp": "^0.5.1",
     "rimraf": "^2.2.8",
     "sassdoc": "^2.0.0-rc.17",
-    "string-template": "^1.0.0",
     "through2": "^2.0.1",
     "vinyl-fs": "^2.4.3"
   },

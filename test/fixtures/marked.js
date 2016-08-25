@@ -1,5 +1,4 @@
 var marked = require('marked');
-var format = require('string-template');
 var hljs   = require('highlight.js');
 
 var mdRenderer = new marked.Renderer();
@@ -7,7 +6,7 @@ var mdRenderer = new marked.Renderer();
 mdRenderer.heading = function(text, level) {
   var escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
 
-  return format('<h{0} class="docs-heading"><a name="{1}" class="docs-heading-icon" href="#{1}"></a>{2}</h{0}>', [level, escapedText, text]);
+  return `<h${level} class="docs-heading"><a name="${escapedText}" class="docs-heading-icon" href="#${escapedText}"></a>${text}</h{0}>`;
 }
 
 mdRenderer.code = function(code, language) {
@@ -22,7 +21,7 @@ mdRenderer.code = function(code, language) {
   }
 
   var renderedCode = hljs.highlight(language, code).value;
-  var output = format('<div class="docs-code" data-docs-code><pre><code class="{0}">{1}</code></pre></div>', [language, renderedCode]);
+  var output = `<div class="docs-code" data-docs-code><pre><code class="${language}">${renderedCode}</code></pre></div>`;
 
   return output + extraOutput;
 }

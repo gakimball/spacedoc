@@ -1,5 +1,5 @@
-var escapeHTML = require('escape-html');
-var jsdoc = require('jsdoc-api');
+const escapeHTML = require('escape-html');
+const jsdoc = require('jsdoc-api');
 
 class JSDocParser {
   static parse(value, config) {

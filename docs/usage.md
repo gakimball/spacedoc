@@ -11,7 +11,7 @@ npm install spacedoc --save-dev
 Before running the parser, call `Spacedoc.config()` with an object of configuration settings. Refer to the [full API](api.md) to see every option.
 
 ```js
-var Spacedoc = require('spacedoc');
+const Spacedoc = require('spacedoc');
 
 Spacedoc.config({
   src: './pages/*.md',
@@ -42,8 +42,8 @@ Spacedoc.init();
 
 The `.init()` function returns a stream. You can listen to the `finish` event to know when the processing is done.
 
-```
-var stream = Spacedoc.init();
+```js
+const stream = Spacedoc.init();
 stream.on('finish', function() {
   // ...
 });

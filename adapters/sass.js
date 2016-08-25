@@ -1,5 +1,5 @@
-var escapeHTML = require('escape-html');
-var sassdoc = require('sassdoc');
+const escapeHTML = require('escape-html');
+const sassdoc = require('sassdoc');
 
 class SassDocParser {
   static parse(value, config) {

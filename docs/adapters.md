@@ -88,8 +88,8 @@ Must return an object.
 Here's what the built-in SassDoc adapter looks like.
 
 ```js
-var escapeHTML = require('escape-html');
-var sassdoc = require('sassdoc');
+const escapeHTML = require('escape-html');
+const sassdoc = require('sassdoc');
 
 class SassDocParser {
   static parse(value, config) {

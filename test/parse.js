@@ -1,11 +1,11 @@
-var { expect } = require('chai');
-var Spacedoc = require('..').Spacedoc;
+const { expect } = require('chai');
+const Spacedoc = require('..').Spacedoc;
 
-var TEST_FILE = require('./fixtures/test_file');
+const TEST_FILE = require('./fixtures/test_file');
 
 describe('Spacedoc.parse()', () => {
   it('converts Markdown into HTML', done => {
-    var s = new Spacedoc();
+    const s = new Spacedoc();
     s.config({
       template: 'test/fixtures/template.html'
     });
@@ -18,7 +18,7 @@ describe('Spacedoc.parse()', () => {
   });
 
   it('does not touch Markdown if configured to ignore it', done => {
-    var s = new Spacedoc();
+    const s = new Spacedoc();
     s.config({
       template: 'test/fixtures/template.html',
       marked: null
@@ -32,7 +32,7 @@ describe('Spacedoc.parse()', () => {
   });
 
   it('loads data from adapters', done => {
-    var s = new Spacedoc();
+    const s = new Spacedoc();
     s.config({
       template: 'test/fixtures/template.html',
       marked: null
@@ -46,7 +46,7 @@ describe('Spacedoc.parse()', () => {
   });
 
   it('catches Markdown errors', done => {
-    var s = new Spacedoc();
+    const s = new Spacedoc();
     s.config({
       template: 'test/fixtures/template.html',
       marked: require('./fixtures/marked-broken')

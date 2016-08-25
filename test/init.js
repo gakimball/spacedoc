@@ -6,7 +6,7 @@ const vfs = require('vinyl-fs');
 
 describe('Spacedoc.init()', () => {
   it('parses and builds a documentation page', done => {
-    var s = new Spacedoc();
+    const s = new Spacedoc();
     s.config({
       src: 'test/fixtures/*.md',
       dest: 'test/fixtures/_build',
@@ -14,7 +14,7 @@ describe('Spacedoc.init()', () => {
       silent: true
     });
 
-    var stream = s.init();
+    const stream = s.init();
 
     expect(stream).to.have.property('on');
     stream.on('finish', () => {
@@ -24,7 +24,7 @@ describe('Spacedoc.init()', () => {
   });
 
   it('works within a stream of Vinyl files if src and dest are omitted', done => {
-    var s = new Spacedoc();
+    const s = new Spacedoc();
     s.config({
       template: 'test/fixtures/template.html',
       silent: true
@@ -40,7 +40,7 @@ describe('Spacedoc.init()', () => {
   });
 
   it('resets the internal data tree on each build', done => {
-    var s = new Spacedoc();
+    const s = new Spacedoc();
     s.config({
       src: 'test/fixtures/*.md',
       template: 'test/fixtures/template.html',
@@ -58,7 +58,7 @@ describe('Spacedoc.init()', () => {
   });
 
   it('allows for incremental builds', done => {
-    var s = new Spacedoc();
+    const s = new Spacedoc();
     s.config({
       src: 'test/fixtures/*.md',
       template: 'test/fixtures/template.html',

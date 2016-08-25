@@ -3,12 +3,12 @@ const { Spacedoc } = require('..');
 
 describe('Spacedoc constructor', () => {
   it('creates a new instance of Spacedoc', () => {
-    var s = new Spacedoc();
+    const s = new Spacedoc();
     expect(s).to.be.an.instanceOf(Spacedoc);
   });
 
   it('sets blank defaults for config settings', () => {
-    var s = new Spacedoc();
+    const s = new Spacedoc();
 
     expect(s.options).to.be.an('object');
     expect(s.adapters).to.be.an('object');

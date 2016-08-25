@@ -3,7 +3,7 @@ const { Spacedoc } = require('..');
 
 describe('Spacedoc.config()', () => {
   it('sets configuration settings', () => {
-    var s = new Spacedoc();
+    let s = new Spacedoc();
     s = s.config({
       src: 'src',
       dest: 'dest'
@@ -15,7 +15,7 @@ describe('Spacedoc.config()', () => {
   });
 
   it('loads an HTML template', () => {
-    var s = new Spacedoc();
+    let s = new Spacedoc();
     s = s.config({
       src: 'src',
       dest: 'dest',
@@ -26,8 +26,8 @@ describe('Spacedoc.config()', () => {
   });
 
   it('allows a pre-made template function to be used', () => {
-    var s = new Spacedoc();
-    s = s.config({
+    const s = new Spacedoc();
+    s.config({
       template: () => 'test'
     });
 
@@ -35,7 +35,7 @@ describe('Spacedoc.config()', () => {
   });
 
   it('loads JSON data from search config', () => {
-    var s = new Spacedoc();
+    const s = new Spacedoc();
     s.config({
       search: { extra: 'test/fixtures/search.json' }
     });
@@ -45,7 +45,7 @@ describe('Spacedoc.config()', () => {
   });
 
   it('loads YAML data from search config', () => {
-    var s = new Spacedoc();
+    const s = new Spacedoc();
     s.config({
       search: { extra: 'test/fixtures/search.yml' }
     });

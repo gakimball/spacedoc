@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-var program = require('commander');
-var path = require('path');
-var Spacedoc = require('../index');
+const program = require('commander');
+const path = require('path');
+const Spacedoc = require('../index');
 
 program
   .version('0.2.0')
@@ -23,7 +23,7 @@ Spacedoc.config({
   handlebars: program.handlebars || false
 });
 
-for (var i in program.adapters) {
+for (let i in program.adapters) {
   Spacedoc.adapter(program.adapters[i]);
 }
 
@@ -36,6 +36,6 @@ function list(val) {
 
 // Returns a require'd library from a path
 function lib(val) {
-  var p = path.join(process.cwd(), val);
+  const p = path.join(process.cwd(), val);
   return require(p);
 }

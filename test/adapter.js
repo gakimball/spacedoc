@@ -31,7 +31,7 @@ describe('Spacedoc.adapter()', () => {
     var s = new Spacedoc();
 
     expect(() => {
-      s.adapter('docs', () => {});
+      s.adapter('body', () => {});
     }).to.throw(Error);
   });
 
@@ -39,7 +39,7 @@ describe('Spacedoc.adapter()', () => {
     var s = new Spacedoc();
 
     expect(() => {
-      s.adapter('docs', 'kittens');
+      s.adapter('custom', 'kittens');
     }).to.throw(Error);
   });
 });

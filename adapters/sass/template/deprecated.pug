@@ -1,0 +1,5 @@
+mixin deprecated(depr)
+  if depr
+    .callout.alert
+      p: strong Deprecated:
+      != markdown(depr)

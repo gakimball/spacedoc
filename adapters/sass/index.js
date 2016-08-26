@@ -1,4 +1,5 @@
 const escapeHTML = require('escape-html');
+const path = require('path');
 const sassdoc = require('sassdoc');
 
 class SassDocParser {

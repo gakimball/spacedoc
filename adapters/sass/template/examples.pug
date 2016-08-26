@@ -1,0 +1,10 @@
+include ./code.jade
+
+mixin examples(examples)
+  if examples
+    section
+      h4 Examples
+      each example in examples
+        section
+          p!= markdown(example.description)
+          +code(example.code)

@@ -1,0 +1,24 @@
+include ./deprecated.jade
+include ./parameters.jade
+include ./properties.jade
+include ./returns.jade
+include ./throw.jade
+include ./outputs.jade
+include ./examples.jade
+include ./changelog.jade
+
+mixin item(item)
+  section
+    h3= item.context.name
+    if item.type
+      p <strong>Type:</strong> #{type(item.type)}
+    +code(sample(item))
+    +deprecated(item.deprecated)
+    != markdown(item.description)
+    +parameters(item.parameter)
+    +properties(item.property)
+    +returns(item.return)
+    +throws(item.throw)
+    +outputs(item.output)
+    +examples(item.example)
+    +changelog(item.since)

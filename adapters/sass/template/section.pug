@@ -1,0 +1,8 @@
+include ./item.jade
+
+mixin section(name, items)
+  section
+    h2!= title(name)
+    each item in items
+      +item(item)
+      hr

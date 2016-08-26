@@ -16,7 +16,7 @@ mdRenderer.code = function(code, language) {
 
   // If the language is *_example, live code will print out along with the sample
   if (language.match(/_example$/)) {
-    extraOutput = '\n\n' + code;
+    extraOutput = `\n\n${code}`;
     language = language.replace(/_example$/, '');
   }
 

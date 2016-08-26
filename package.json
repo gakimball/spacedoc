@@ -1,6 +1,6 @@
 {
   "name": "spacedoc",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "Documentation generator that can combine data from multiple parsers, such as SassDoc and JSDoc.",
   "keywords": [
     "documentation",
@@ -10,7 +10,7 @@
   ],
   "main": "index.js",
   "bin": {
-    "Spacedoc": "./bin/spacedoc.js"
+    "spacedoc": "./bin/spacedoc.js"
   },
   "directories": {
     "test": "test"

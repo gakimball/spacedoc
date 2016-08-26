@@ -1,6 +1,6 @@
 # Spacedoc
 
-A fancy documentation generator that can mash up documentation from multiple sources, such as [SassDoc](http://sassdoc.com/) and [JSDoc](http://usejsdoc.org/). Used by the [Foundation](https://github.com/zurb/foundation-sites) family of frameworks.
+A fancy documentation generator that can mash up documentation from multiple sources, such as [SassDoc](http://sassdoc.com/) and [JSDoc](http://usejsdoc.org/). Spacedoc was originally forked from [Supercollider](https://github.com/zurb/supercollider), the documentation tool used by the [Foundation](https://github.com/zurb/foundation-sites) family of frameworks.
 
 ## Features
 
@@ -16,7 +16,7 @@ Read the [overview section](docs/overview.md) of the documentation to get an ove
 ## Local Development
 
 ```
-git clone https://github.com/gakimball/spacedoc
+git clone https://github.com/spacedoc/spacedoc
 cd Spacedoc
 npm install
 npm test

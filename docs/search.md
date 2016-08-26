@@ -9,9 +9,9 @@ To create the result list, Spacedoc gives each *page* its own result item, and a
 Search result generation should only happen when Spacedoc is done processing. You can listen to the `finish` event on the stream the plugin creates to know when it's ready.
 
 ```js
-Super().on('finish', function() {
+Spacedoc().on('finish', function() {
   // Spacedoc done processing files
-  Super.buildSearch('_build/data/search.json').then(() => {
+  Spacedoc.buildSearch('_build/data/search.json').then(() => {
     // Spacedoc done building search JSON
   }).catch(err => {
     // Error encountered
@@ -30,7 +30,7 @@ Search-specific settings are set with the `.config()` method, on the `search` ke
 - **sort** (Array): an array of strings representing sort criteria. The results list can be sorted by the `type` property on each result.
 
 ```js
-Super.config({
+Spacedoc.config({
   search: {
     // The contents of this file will be added to the final results
     extra: 'src/assets/search.yml',

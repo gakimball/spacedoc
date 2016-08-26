@@ -22,7 +22,18 @@ describe('Spacedoc.build()', () => {
       data: { kitty: 'kitty' }
     });
 
-    const output = s.build({});
+    const output = s.build();
+    expect(output).to.contain('kitty');
+  });
+
+  it('adds template locals to the context', () => {
+    const s = new Spacedoc();
+    const template = require('./fixtures/template-with-locals');
+    s.config({
+      template: template
+    });
+
+    const output = s.build();
     expect(output).to.contain('kitty');
   });
 
@@ -33,7 +44,7 @@ describe('Spacedoc.build()', () => {
     });
 
     expect(() => {
-      s.build({})
+      s.build()
     }).to.throw(Error);
   });
 

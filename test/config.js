@@ -14,6 +14,13 @@ describe('Spacedoc.config()', () => {
     expect(s.options.dest).to.equal('dest');
   });
 
+  it('loads the default template', () => {
+    let s = new Spacedoc();
+    s = s.config().adapter('sass').adapter('js');
+
+    expect(s.template).to.be.a('function');
+  });
+
   it('loads an HTML template', () => {
     let s = new Spacedoc();
     s = s.config({

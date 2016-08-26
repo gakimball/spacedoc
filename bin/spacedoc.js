@@ -2,7 +2,7 @@
 
 const program = require('commander');
 const path = require('path');
-const Spacedoc = require('../index');
+const { Spacedoc } = require('../index');
 
 program
   .version('0.2.0')

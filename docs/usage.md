@@ -25,16 +25,22 @@ Spacedoc.config({
 
 The plugin can be used standalone or with the [Gulp](https://github.com/gulpjs/gulp) build system.
 
-To use the library standalone, call `Spacedoc.init()` with the option `src` being a glob of files, and `dest` being an output folder.
+To use the library standalone, call `Spacedoc()` with the option `src` being a glob of files, and `dest` being an output folder.
 
 ```js
-Spacedoc.init();
+Spacedoc({
+  src: 'docs/*.md',
+  dest: 'dist'
+});
 ```
 
-The `.init()` function returns a stream. You can listen to the `finish` event to know when the processing is done.
+The `Spacedoc()` function returns a stream. You can listen to the `finish` event to know when the processing is done.
 
 ```js
-const stream = Spacedoc.init();
+const stream = Spacedoc({
+  src: 'docs/*.md',
+  dest: 'dist'
+});
 stream.on('finish', function() {
   // ...
 });
@@ -44,7 +50,7 @@ You can also omit the `src` and `dest` settings when calling `.config()`, and us
 
 ```js
 gulp.src('./pages/*.md')
-  .pipe(Spacedoc.init())
+  .pipe(Spacedoc())
   .pipe(gulp.dest('./build'));
 ```
 

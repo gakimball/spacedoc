@@ -9,7 +9,7 @@ To create the result list, Spacedoc gives each *page* its own result item, and a
 Search result generation should only happen when Spacedoc is done processing. You can listen to the `finish` event on the stream the plugin creates to know when it's ready.
 
 ```js
-Super.init().on('finish', function() {
+Super().on('finish', function() {
   // Spacedoc done processing files
   Super.buildSearch('_build/data/search.json').then(() => {
     // Spacedoc done building search JSON

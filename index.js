@@ -13,5 +13,17 @@ Spacedoc.prototype.addAdapter = require('./lib/addAdapter');
 Spacedoc.prototype.config = require('./lib/config');
 Spacedoc.prototype.buildSearch = require('./lib/buildSearch');
 
-module.exports = new Spacedoc();
+const sd = new Spacedoc();
+
+// Public API
+module.exports = sd.init.bind(sd);
+module.exports.config = sd.config.bind(sd);
+module.exports.buildSearch = sd.buildSearch.bind(sd);
+Object.defineProperty(module.exports, 'tree', {
+  get: () => sd.tree
+});
+
+module.exports._instance = sd;
+
+// Standalone class
 module.exports.Spacedoc = Spacedoc;

@@ -3,6 +3,10 @@ const path = require('path');
 const sassdoc = require('sassdoc');
 
 class SassDocParser {
+  static name() {
+    return 'sass';
+  }
+
   static parse(value, config) {
     return sassdoc.parse(value, config).then(function(data) {
       return data;

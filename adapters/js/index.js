@@ -2,6 +2,10 @@ const escapeHTML = require('escape-html');
 const jsdoc = require('jsdoc-api');
 
 class JSDocParser {
+  static name() {
+    return 'js';
+  }
+
   static parse(value, config) {
     return jsdoc.explain({ files: value }).then(function(data) {
       return data;

@@ -14,6 +14,7 @@ An adapter is a static class that hooks into a documentation generator to fetch,
 
 ```js
 class Parser {
+  static name() {}
   static parse(value, config) {}
   static group(item) {}
   static filter(item) {}
@@ -23,6 +24,12 @@ class Parser {
 ```
 
 ## Adapter API
+
+### name()
+
+Return the name of the adapter.
+
+Must return a string.
 
 ### parse(value[, config])
 

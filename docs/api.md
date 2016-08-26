@@ -23,12 +23,13 @@ Sets configuration settings.
 
 Parses and builds documentation. Returns a Node stream of Vinyl files.
 
-### adapter(name, func)
+### adapter(cls)
 
-Adds a adapter to parse documentation. Refer to [Custom Adapters](#custom-adapters) below to see how they work.
+Adds a adapter to parse documentation. Refer to [Adapters](adapters.md) to learn how they work.
 
-- **name** (String): the name of the adapter. These names are reserved and can't be used: `scss`, `js`, `docs`, `fileName`.
-- **func** (Function): a function that accepts an input parameter and runs a callback with the parsed data.
+- **cls** (String or Class):
+  - String: load a built-in adapter (`sass` or `js`).
+  - Class: load a custom adapter.
 
 ### buildSearch(outFile, cb)
 

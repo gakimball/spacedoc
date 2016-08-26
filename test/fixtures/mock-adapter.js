@@ -1,6 +1,10 @@
 const Data = require('./mock-adapter-data');
 
 module.exports = class MockAdapter {
+  static name() {
+    return 'custom';
+  }
+
   static parse(value, config) {
     return Promise.resolve(Data);
   }

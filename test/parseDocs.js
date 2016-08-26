@@ -14,7 +14,7 @@ describe('Spacedoc.parseDocs()', () => {
     sinon.spy(MockAdapter, 'parse');
 
     const s = new Spacedoc;
-    s.adapter('custom', MockAdapter);
+    s.adapter(MockAdapter);
     s.config({
       config: {
         custom: { setting: 'hi' }

@@ -1,5 +1,6 @@
 const { expect } = require('chai');
 const { Spacedoc } = require('..');
+const MockAdapter = require('./fixtures/mock-adapter');
 
 describe('Spacedoc.adapter()', () => {
   it('loads built-in adapters', () => {
@@ -21,7 +22,7 @@ describe('Spacedoc.adapter()', () => {
 
   it('loads custom adapters', () => {
     let s = new Spacedoc();
-    s = s.adapter('custom', () => {});
+    s = s.adapter(MockAdapter);
 
     expect(s.adapters).to.have.key('custom');
     expect(s.adapters.custom).to.be.a('function');
@@ -31,7 +32,16 @@ describe('Spacedoc.adapter()', () => {
     const s = new Spacedoc();
 
     expect(() => {
-      s.adapter('custom', 'kittens');
+      s.adapter({});
+    }).to.throw(Error);
+  });
+
+  it('throws an error if an adapter does not have a name', () => {
+    const s = new Spacedoc();
+    const BadAdapter = class BadAdapter {};
+
+    expect(() => {
+      s.adapter(BadAdapter);
     }).to.throw(Error);
   });
 });

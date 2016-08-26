@@ -7,7 +7,7 @@ describe('Spacedoc.config()', () => {
     s = s.config({
       src: 'src',
       dest: 'dest'
-    }).adapter('sass').adapter('js');
+    });
 
     expect(s).to.be.an.instanceOf(Spacedoc);
     expect(s.options.src).to.equal('src');
@@ -16,7 +16,7 @@ describe('Spacedoc.config()', () => {
 
   it('loads the default template', () => {
     let s = new Spacedoc();
-    s = s.config().adapter('sass').adapter('js');
+    s = s.config();
 
     expect(s.template).to.be.a('function');
   });
@@ -27,7 +27,7 @@ describe('Spacedoc.config()', () => {
       src: 'src',
       dest: 'dest',
       template: 'test/fixtures/template.pug'
-    }).adapter('sass').adapter('js');
+    });
 
     expect(s.template).to.be.a('function');
   });

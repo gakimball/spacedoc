@@ -1,0 +1,17 @@
+link(rel='stylesheet', href='https://cdn.jsdelivr.net/foundation/6.2.1/foundation.min.css')
+
+style.
+  .sd-codeblock code {
+    display: block;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+article.column.row
+  h1= title
+  if description
+    p= description
+  != body
+  each data, name in docs
+    h2= name
+    != spacedoc(name, data)

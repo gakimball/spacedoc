@@ -43,7 +43,7 @@ describe('Spacedoc.buildSearch()', () => {
       src: 'test/fixtures/*.md',
       template: 'test/fixtures/template.pug',
       silent: true
-    }).adapter('sass');
+    }).adapter('test/fixtures/spacedoc-mock');
 
     s.init().on('finish', () => {
       s.buildSearch('test/fixtures/_build/search.json').then(() => {
@@ -91,7 +91,7 @@ describe('Spacedoc.buildSearch()', () => {
       src: 'test/fixtures/*.md',
       template: 'test/fixtures/template.pug',
       silent: true
-    }).adapter('sass').adapter('js');
+    }).adapter('test/fixtures/spacedoc-mock');
 
     s.init().on('finish', () => {
       s.buildSearch('test/fixtures/_build/search.json').then(() => {
@@ -99,7 +99,7 @@ describe('Spacedoc.buildSearch()', () => {
         data = JSON.parse(data);
 
         expect(data).to.be.an('array');
-        expect(data).to.have.length(18);
+        expect(data).to.have.length(5);
         done();
       }).catch(done);
     });
@@ -113,7 +113,7 @@ describe('Spacedoc.buildSearch()', () => {
       search: {
         extra: 'test/fixtures/search.yml'
       }
-    }).adapter('sass').adapter('js');
+    }).adapter('test/fixtures/spacedoc-mock');
 
     s.init().on('finish', () => {
       s.buildSearch('test/fixtures/_build/search.json').then(() => {
@@ -121,7 +121,7 @@ describe('Spacedoc.buildSearch()', () => {
         data = JSON.parse(data);
 
         expect(data).to.be.an('array');
-        expect(data).to.have.length(18 + 2); // 2 extra results in the YML file
+        expect(data).to.have.length(5 + 2); // 2 extra results in the YML file
         done();
       }).catch(done);
     });

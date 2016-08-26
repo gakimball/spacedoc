@@ -2,7 +2,7 @@ const chai = require('chai');
 const sinon = require('sinon');
 const sinonChai = require('sinon-chai');
 const Spacedoc = require('..').Spacedoc;
-const MockAdapter = require('./fixtures/mock-adapter');
+const MockAdapter = require('./fixtures/spacedoc-mock');
 
 chai.use(sinonChai);
 const { expect } = chai;
@@ -14,16 +14,16 @@ describe('Spacedoc.parseDocs()', () => {
     sinon.spy(MockAdapter, 'parse');
 
     const s = new Spacedoc;
-    s.adapter(MockAdapter);
+    s.adapter('test/fixtures/spacedoc-mock');
     s.config({
       config: {
-        custom: { setting: 'hi' }
+        mock: { setting: 'hi' }
       }
     });
-    s.parseDocs({ custom: 'customValue' }).then(data => {
+    s.parseDocs({ mock: 'customValue' }).then(data => {
       output = data;
       done();
-    }).catch(done)
+    }).catch(done);
   });
 
   after(() => {

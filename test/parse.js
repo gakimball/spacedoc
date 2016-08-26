@@ -38,7 +38,7 @@ describe('Spacedoc.parse()', () => {
 
     s.parse(TEST_FILE_HTML).then(data => {
       expect(data).to.be.an('object');
-      expect(data.body).to.contain('## Basic');
+      expect(data.body).to.contain('## Heading');
       done();
     }).catch(done);
   });
@@ -48,11 +48,10 @@ describe('Spacedoc.parse()', () => {
     s.config({
       template: 'test/fixtures/template.pug',
       marked: null
-    }).adapter('sass').adapter('js');
+    }).adapter('test/fixtures/spacedoc-mock');
 
     s.parse(TEST_FILE).then(data => {
-      expect(data.docs.sass).to.be.an('object');
-      expect(data.docs.js).to.be.an('object');
+      expect(data.docs.mock).to.be.an('object');
       done();
     }).catch(done);
   });
@@ -75,7 +74,7 @@ describe('Spacedoc.parse()', () => {
     s.config();
 
     s.parse('test/fixtures/example.md').then(data => {
-      expect(data.title).to.equal('Button');
+      expect(data.title).to.equal('Test');
       done();
     }).catch(done);
   });

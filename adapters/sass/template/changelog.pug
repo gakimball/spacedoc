@@ -1,7 +1,0 @@
-mixin changelog(since)
-  if since
-    section
-      h4 Changelog
-      ul
-        each snc in since
-          li <strong>#{snc.version}</strong> !{markdown(snc.description)}

@@ -61,14 +61,4 @@ describe('Spacedoc.build()', () => {
       done();
     }).catch(done);
   });
-
-  it('throws an error if no template is defined', done => {
-    const s = new Spacedoc();
-    s.config({});
-
-    s.parse(TEST_FILE).then(data => {
-      expect(() => s.build(data)).to.throw(Error);
-      done();
-    }).catch(done);
-  });
 });

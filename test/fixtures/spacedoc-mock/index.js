@@ -1,8 +1,8 @@
-const Data = require('./mock-adapter-data');
+const Data = require('./data');
 
 module.exports = class MockAdapter {
   static name() {
-    return 'custom';
+    return 'mock';
   }
 
   static parse(value, config) {

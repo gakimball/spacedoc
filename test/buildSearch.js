@@ -3,6 +3,8 @@ const fs = require('fs');
 const rimraf = require('rimraf');
 const { Spacedoc } = require('..');
 
+const Adapters = ['test/fixtures/spacedoc-mock'];
+
 describe('Spacedoc.buildSearch()', () => {
   afterEach(done => {
     rimraf('test/fixtures/_build', done);
@@ -40,10 +42,11 @@ describe('Spacedoc.buildSearch()', () => {
 
   it('flags pages with code hooks as "component"', done => {
     const s = new Spacedoc().config({
+      adapters: Adapters,
       src: 'test/fixtures/*.md',
       template: 'test/fixtures/template.pug',
       silent: true
-    }).adapter('test/fixtures/spacedoc-mock');
+    });
 
     s.init().on('finish', () => {
       s.buildSearch('test/fixtures/_build/search.json').then(() => {
@@ -88,10 +91,11 @@ describe('Spacedoc.buildSearch()', () => {
 
   it('creates a JSON file of search results', done => {
     const s = new Spacedoc().config({
+      adapters: Adapters,
       src: 'test/fixtures/*.md',
       template: 'test/fixtures/template.pug',
       silent: true
-    }).adapter('test/fixtures/spacedoc-mock');
+    });
 
     s.init().on('finish', () => {
       s.buildSearch('test/fixtures/_build/search.json').then(() => {
@@ -107,13 +111,14 @@ describe('Spacedoc.buildSearch()', () => {
 
   it('allows extra external results to be added', done => {
     const s = new Spacedoc().config({
+      adapters: Adapters,
       src: 'test/fixtures/*.md',
       template: 'test/fixtures/template.pug',
       silent: true,
       search: {
         extra: 'test/fixtures/search.yml'
       }
-    }).adapter('test/fixtures/spacedoc-mock');
+    });
 
     s.init().on('finish', () => {
       s.buildSearch('test/fixtures/_build/search.json').then(() => {

@@ -46,9 +46,10 @@ describe('Spacedoc.parse()', () => {
   it('loads data from adapters', done => {
     const s = new Spacedoc();
     s.config({
+      adapters: ['test/fixtures/spacedoc-mock'],
       template: 'test/fixtures/template.pug',
       marked: null
-    }).adapter('test/fixtures/spacedoc-mock');
+    });
 
     s.parse(TEST_FILE).then(data => {
       expect(data.docs.mock).to.be.an('object');

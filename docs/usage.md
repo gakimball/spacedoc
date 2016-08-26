@@ -14,21 +14,12 @@ Before running the parser, call `Spacedoc.config()` with an object of configurat
 const Spacedoc = require('spacedoc');
 
 Spacedoc.config({
+  adapters: ['sass', 'js'],
   src: './pages/*.md',
   dest: './build',
   template: './template.pug'
 });
 ```
-
-By default, Spacedoc can parse Markdown into HTML for you. It also includes two built-in *adapters*, which hook into external documentation generators. The built-in adapters are called `sass` (SassDoc) and `js` (JSDoc). Enbale them with the `.adapter()` method.
-
-```js
-Spacedoc
-  .adapter('sass')
-  .adapter('js');
-```
-
-You can also create custom adapters by passing in a function as a second parameter. Refer to the [adapters](adapters.md) section of the docs to learn more.
 
 ## Initializing
 

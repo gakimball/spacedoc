@@ -2,12 +2,14 @@
 
 An *adapter* is a module that pulls information from a documentation generator and adds it to the data of a page. When a page references an adapter in its Front Matter, the adapter goes and gets the right documentation data for the page. That data is then used in the template that renders the final docs page.
 
-Adapters are set by calling `Spacedoc.adapter(name)`, where `name` is the name of the adapter. When you call the function, it will first look for an installed package called `spacedoc-[name]`. If that doesn't exist, then it will try to `require()` a module relative to the current working directory.
+Adapters are set with the `adapters` option in `Spacedoc.config()`, where `adapters` is an array of names of adapters. When you call the function, it will first look for an installed package called `spacedoc-[name]`. If that doesn't exist, then it will try to `require()` a module relative to the current working directory.
 
 If you have a custom adapter in the folder `lib/adapter`, you can call:
 
 ```js
-Spacedoc.adapter('lib/adapter');
+Spacedoc.config({
+  adapters: ['sass', 'lib/adapter']
+});
 ```
 
 ## Custom Adapters

@@ -14,8 +14,8 @@ describe('Spacedoc.parseDocs()', () => {
     sinon.spy(MockAdapter, 'parse');
 
     const s = new Spacedoc;
-    s.adapter('test/fixtures/spacedoc-mock');
     s.config({
+      adapters: ['test/fixtures/spacedoc-mock'],
       config: {
         mock: { setting: 'hi' }
       }

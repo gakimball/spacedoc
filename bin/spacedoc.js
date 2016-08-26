@@ -19,11 +19,8 @@ Spacedoc.config({
   template: program.template || false,
   dest: program.dest || false,
   marked: program.marked || false,
+  adapters: program.adapters || []
 });
-
-for (let i in program.adapters) {
-  Spacedoc.adapter(program.adapters[i]);
-}
 
 Spacedoc.init().on('finish', process.exit);
 

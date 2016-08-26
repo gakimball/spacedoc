@@ -14,6 +14,13 @@ describe('Spacedoc.config()', () => {
     expect(s.options.dest).to.equal('dest');
   });
 
+  it('loads adapters', () => {
+    const s = new Spacedoc();
+    s.config({ adapters: ['test/fixtures/spacedoc-mock'] });
+
+    expect(s.adapters.mock).to.be.a('function');
+  });
+
   it('loads the default template', () => {
     let s = new Spacedoc();
     s = s.config();

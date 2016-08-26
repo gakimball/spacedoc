@@ -5,6 +5,7 @@
 Sets configuration settings.
 
 - **options** (Object):
+  - **adapters** (Array of Strings): adapters to load. See [Adapters](adapters.md) to see how they're loaded.
   - **template** (String or Function): path to the Pug template to use for each component, or any function that takes an object of data and returns a string. If you want to use another templating language, you can pass in a pre-compiled template function.
   - **src** (String or Array): a glob of files to process. Each file is a component, and can be attached to zero or more adapters to documentation generators.
   - **dest** (String): file path to write the finished HTML to.
@@ -22,14 +23,6 @@ Sets configuration settings.
 ### init()
 
 Parses and builds documentation. Returns a Node stream of Vinyl files.
-
-### adapter(cls)
-
-Adds a adapter to parse documentation. Refer to [Adapters](adapters.md) to learn how they work.
-
-- **cls** (String or Class):
-  - String: load a built-in adapter (`sass` or `js`).
-  - Class: load a custom adapter.
 
 ### buildSearch(outFile, cb)
 

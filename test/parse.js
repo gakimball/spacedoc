@@ -69,4 +69,24 @@ describe('Spacedoc.parse()', () => {
       done();
     });
   });
+
+  it('can load files from a string', done => {
+    const s = new Spacedoc();
+    s.config();
+
+    s.parse('test/fixtures/example.md').then(data => {
+      expect(data.title).to.equal('Button');
+      done();
+    }).catch(done);
+  });
+
+  it.only('throws an error if a file path is not found', done => {
+    const s = new Spacedoc();
+    s.config();
+
+    s.parse('test/fixtures/nope.md').catch(err => {
+      expect(err).to.be.an.instanceOf(Error);
+      done();
+    });
+  });
 });

@@ -30,3 +30,7 @@ module.exports = class MockAdapter {
     return {}
   }
 }
+
+module.exports.helpers = {
+  test: () => 'test'
+}

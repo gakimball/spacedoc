@@ -2,6 +2,7 @@ const { expect } = require('chai');
 const Spacedoc = require('..').Spacedoc;
 
 const TEST_FILE = require('./fixtures/test_file');
+const TEST_FILE_HTML = require('./fixtures/test_file_html');
 
 describe('Spacedoc.parse()', () => {
   it('converts Markdown into HTML', done => {
@@ -29,6 +30,17 @@ describe('Spacedoc.parse()', () => {
       expect(data.body).to.not.contain('<h2');
       done();
     });
+  });
+
+  it('only compiles files ending in .md', done => {
+    const s = new Spacedoc();
+    s.config({});
+
+    s.parse(TEST_FILE_HTML).then(data => {
+      expect(data).to.be.an('object');
+      expect(data.body).to.contain('## Basic');
+      done();
+    }).catch(done);
   });
 
   it('loads data from adapters', done => {

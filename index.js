@@ -7,6 +7,7 @@ function Spacedoc() {
 
 Spacedoc.prototype.init = require('./lib/init');
 Spacedoc.prototype.parse = require('./lib/parse');
+Spacedoc.prototype.parseDocs = require('./lib/parseDocs');
 Spacedoc.prototype.build = require('./lib/build');
 Spacedoc.prototype.adapter = require('./lib/adapter');
 Spacedoc.prototype.config = require('./lib/config');

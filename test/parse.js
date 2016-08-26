@@ -80,7 +80,7 @@ describe('Spacedoc.parse()', () => {
     }).catch(done);
   });
 
-  it.only('throws an error if a file path is not found', done => {
+  it('throws an error if a file path is not found', done => {
     const s = new Spacedoc();
     s.config();
 

@@ -34,7 +34,6 @@ describe('Spacedoc.parse()', () => {
 
   it('only compiles files ending in .md', done => {
     const s = new Spacedoc();
-    s.config({});
 
     s.parse(TEST_FILE_HTML).then(data => {
       expect(data).to.be.an('object');
@@ -72,7 +71,6 @@ describe('Spacedoc.parse()', () => {
 
   it('can load files from a string', done => {
     const s = new Spacedoc();
-    s.config();
 
     s.parse('test/fixtures/example.md').then(data => {
       expect(data.title).to.equal('Test');
@@ -82,7 +80,6 @@ describe('Spacedoc.parse()', () => {
 
   it('throws an error if a file path is not found', done => {
     const s = new Spacedoc();
-    s.config();
 
     s.parse('test/fixtures/nope.md').catch(err => {
       expect(err).to.be.an.instanceOf(Error);

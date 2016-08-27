@@ -73,5 +73,11 @@ describe('Spacedoc.init()', () => {
         done();
       });
     });
-  })
+  });
+
+  it('can be run without first calling Spacedoc.config()', () => {
+    const s = new Spacedoc();
+    s.init();
+    expect(s.options).to.not.be.empty;
+  });
 });

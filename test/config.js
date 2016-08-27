@@ -14,6 +14,29 @@ describe('Spacedoc.config()', () => {
     expect(s.options.dest).to.equal('dest');
   });
 
+  it('loads from a specific file', () => {
+    const s = new Spacedoc();
+    s.config('test/fixtures/mock-project/spacedoc.yml');
+
+    expect(s.options.adapters).to.eql(['mock']);
+  });
+
+  describe('automatic config loading', () => {
+    let oldDir;
+    before(() => {
+      oldDir = process.cwd();
+      process.chdir('./test/fixtures/mock-project');
+    });
+    after(() => process.chdir(oldDir));
+
+    it('tries to load a spacedoc.yml in the current directory', () => {
+      const s = new Spacedoc();
+      s.config();
+
+      expect(s.options.adapters).to.eql(['mock']);
+    });
+  });
+
   it('loads adapters', () => {
     const s = new Spacedoc();
     s.config({ adapters: ['test/fixtures/spacedoc-mock'] });

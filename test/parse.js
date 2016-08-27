@@ -51,7 +51,7 @@ describe('Spacedoc.parse()', () => {
     });
 
     s.parse(TEST_FILE).then(data => {
-      expect(data.docs.mock).to.be.an('object');
+      expect(data.docs.mock).to.be.an('array');
       done();
     }).catch(done);
   });

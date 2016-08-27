@@ -9,10 +9,6 @@ module.exports = class MockAdapter {
     return Promise.resolve(Data);
   }
 
-  static group(item) {
-    return item.group;
-  }
-
   static filter(item) {
     return item.private === true;
   }

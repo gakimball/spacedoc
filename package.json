@@ -38,6 +38,7 @@
     "is-empty-object": "^1.1.1",
     "js-yaml": "^3.4.3",
     "jsdoc-api": "^2.0.1",
+    "lodash.filter": "^4.6.0",
     "marked": "^0.3.2",
     "mkdirp": "^0.5.1",
     "pug": "^2.0.0-beta5",

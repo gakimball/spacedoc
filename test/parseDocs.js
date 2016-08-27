@@ -39,17 +39,8 @@ describe('Spacedoc.parseDocs()', () => {
     expect(MockAdapter.parse).to.have.been.calledWithExactly('customValue', { setting: 'hi' });
   });
 
-  it('creates top-level groups for items', () => {
-    expect(output[0].data).to.have.keys(['cat', 'dog']);
-  });
-
-  it('sorts items into groups', () => {
-    expect(output[0].data.cat).to.be.an('array');
-    expect(output[0].data.dog).to.be.an('array');
-  });
-
   it('filters out items', () => {
-    // 1 of the 3 is private
-    expect(output[0].data.cat).to.have.lengthOf(2);
+    // 1 of the 5 is private
+    expect(output[0].data).to.have.lengthOf(4);
   });
 });

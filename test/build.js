@@ -1,4 +1,5 @@
 const { expect } = require('chai');
+const sinon = require('sinon');
 const { Spacedoc } = require('..');
 
 const TEST_FILE = require('./fixtures/test_file');
@@ -26,15 +27,19 @@ describe('Spacedoc.build()', () => {
     expect(output).to.contain('kitty');
   });
 
-  it('catches template errors', () => {
-    const s = new Spacedoc();
-    s.config({
-      template: 'test/fixtures/template-broken.pug'
-    });
+  describe('template errors', () => {
+    before(() => sinon.stub(console, 'warn'));
+    after(() => console.warn.restore());
 
-    expect(() => {
+    it('catches template errors', () => {
+      const s = new Spacedoc();
+      s.config({
+        template: 'test/fixtures/template-broken.pug'
+      });
       s.build()
-    }).to.throw(Error);
+
+      expect(console.warn.calledOnce).to.be.true;
+    });
   });
 
   it('allows Front Matter to be retained on the page', function(done) {

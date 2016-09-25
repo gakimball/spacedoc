@@ -27,8 +27,7 @@ header.top-bar
         p.lead= description
       hr
       != body
-      each data, name in docs
-        h2= name
-        != spacedoc(name)
+      != spacedoc('sass')
+      != spacedoc('js')
   .medium-4.medium-pull-8.columns
     +nav()

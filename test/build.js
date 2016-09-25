@@ -36,7 +36,7 @@ describe('Spacedoc.build()', () => {
       s.config({
         template: 'test/fixtures/template-broken.pug'
       });
-      s.build()
+      s.build();
 
       expect(console.warn.calledOnce).to.be.true;
     });

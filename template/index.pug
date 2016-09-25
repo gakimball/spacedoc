@@ -31,4 +31,5 @@ header.top-bar
   .medium-4.medium-pull-8.columns
     nav.sd-nav
       ul.vertical.menu
-        li: a(href='#') Home
+        each page in site.pages
+          li.menu-item: a(href=page.fileName)= page.title

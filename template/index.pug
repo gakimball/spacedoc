@@ -11,11 +11,24 @@ style.
     font-weight: bold;
   }
 
-article.column.row
-  h1= title
-  if description
-    p= description
-  != body
-  each data, name in docs
-    h2= name
-    != spacedoc(name)
+header.top-bar
+  .column.row
+    .top-bar-left
+      ul.menu
+        li.menu-text Project Title
+
+.row
+  .medium-8.medium-push-4.columns
+    article.column.row
+      h1= title
+      if description
+        p.lead= description
+      hr
+      != body
+      each data, name in docs
+        h2= name
+        != spacedoc(name)
+  .medium-4.medium-pull-8.columns
+    nav.sd-nav
+      ul.vertical.menu
+        li: a(href='#') Home

@@ -1,3 +1,5 @@
+include ./nav
+
 link(rel='stylesheet', href='https://cdn.jsdelivr.net/foundation/6.2.1/foundation.min.css')
 
 style.
@@ -29,7 +31,4 @@ header.top-bar
         h2= name
         != spacedoc(name)
   .medium-4.medium-pull-8.columns
-    nav.sd-nav
-      ul.vertical.menu
-        each page in site.pages
-          li.menu-item: a(href=page.fileName)= page.title
+    +nav()

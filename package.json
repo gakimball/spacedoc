@@ -46,7 +46,7 @@
     "replace-ext": "^1.0.0",
     "rimraf": "^2.2.8",
     "sassdoc": "^2.0.0-rc.17",
-    "spacedoc-helpers": "0.0.1",
+    "spacedoc-helpers": "^0.1.0",
     "through2": "^2.0.1",
     "vinyl": "^1.1.1",
     "vinyl-fs": "^2.4.3"

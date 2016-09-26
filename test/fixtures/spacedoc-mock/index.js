@@ -5,6 +5,14 @@ module.exports = class MockAdapter {
     return 'mock';
   }
 
+  static itemName() {
+    return 'value';
+  }
+
+  static group() {
+    return 'group';
+  }
+
   static parse(value, config) {
     return Promise.resolve(Data);
   }

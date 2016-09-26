@@ -41,7 +41,7 @@ describe('Spacedoc.config()', () => {
     const s = new Spacedoc();
     s.config({ adapters: ['test/fixtures/spacedoc-mock'] });
 
-    expect(s.adapters.mock).to.be.a('function');
+    expect(s.adapters.mock).to.be.an('object');
   });
 
   it('loads the default template', () => {

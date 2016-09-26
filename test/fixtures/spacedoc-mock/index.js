@@ -1,40 +1,27 @@
 const Data = require('./data');
 
-module.exports = class MockAdapter {
-  static name() {
-    return 'mock';
-  }
-
-  static itemName() {
-    return 'value';
-  }
-
-  static group() {
-    return 'group';
-  }
-
-  static parse(value, config) {
+module.exports = {
+  name: 'mock',
+  itemName: 'value',
+  group: 'group',
+  parse: (value, config) => {
     return Promise.resolve(Data);
-  }
-
-  static filter(item) {
+  },
+  filter: item => {
     return item.private === true;
-  }
-
-  static search(item, link) {
+  },
+  search: (item, link) => {
     return {
       name: item.value,
       type: item.group,
       description: item.value,
       link: `${link}#${item.value}`
     }
-  }
-
-  static config() {
+  },
+  config: () => {
     return {}
-  }
-}
-
-module.exports.helpers = {
-  test: () => 'test'
+  },
+  helpers: {
+    test: () => 'test'
+  },
 }

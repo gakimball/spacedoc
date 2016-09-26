@@ -8,7 +8,6 @@ describe('Spacedoc.addAdapter()', () => {
 
     expect(s).to.be.an.instanceOf(Spacedoc);
     expect(s.adapters).to.have.key('mock');
-    expect(s.adapters.mock.config).to.exist;
-    expect(s.adapters.mock.template).to.be.a('function');
+    expect(s.adapters.mock).to.be.a('object');
   });
 });

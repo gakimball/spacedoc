@@ -1,16 +1,12 @@
-const chai = require('chai');
+const { expect } = require('chai');
 const sinon = require('sinon');
-const sinonChai = require('sinon-chai');
 const Spacedoc = require('..').Spacedoc;
 const MockAdapter = require('./fixtures/spacedoc-mock');
-
-chai.use(sinonChai);
-const { expect } = chai;
 
 describe('Spacedoc.parseDocs()', () => {
   let output;
 
-  before(done => {
+  before(() => {
     sinon.spy(MockAdapter, 'parse');
 
     const s = new Spacedoc;
@@ -20,10 +16,10 @@ describe('Spacedoc.parseDocs()', () => {
         mock: { setting: 'hi' }
       }
     });
-    s.parseDocs({ mock: 'customValue' }).then(data => {
+
+    return s.parseDocs({ mock: 'customValue' }).then(data => {
       output = data;
-      done();
-    }).catch(done);
+    });
   });
 
   after(() => {

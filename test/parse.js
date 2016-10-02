@@ -6,44 +6,38 @@ const TEST_FILE = mockVinyl('test/fixtures/example.md');
 const TEST_FILE_HTML = mockVinyl('test/fixtures/example.html');
 
 describe('Spacedoc.parse()', () => {
-  it('converts Markdown into HTML', done => {
+  it('converts Markdown into HTML', () => {
     const s = new Spacedoc();
     s.config({
       template: 'test/fixtures/template.pug'
     });
 
-    s.parse(TEST_FILE, {}).then(data => {
-      expect(data).to.be.an('object');
-      expect(data.body).to.contain('<h2');
-      done();
-    });
+    return expect(s.parse(TEST_FILE))
+      .to.eventually.be.an('object')
+      .with.property('body').that.contain('<h2');
   });
 
-  it('does not touch Markdown if configured to ignore it', done => {
+  it('does not touch Markdown if configured to ignore it', () => {
     const s = new Spacedoc();
     s.config({
       template: 'test/fixtures/template.pug',
       marked: null
     });
 
-    s.parse(TEST_FILE).then(data => {
-      expect(data).to.be.an('object');
-      expect(data.body).to.not.contain('<h2');
-      done();
-    });
+    return expect(s.parse(TEST_FILE))
+      .to.eventually.have.property('body')
+      .that.not.contain('<h2');
   });
 
-  it('only compiles files ending in .md', done => {
+  it('only compiles files ending in .md', () => {
     const s = new Spacedoc();
 
-    s.parse(TEST_FILE_HTML).then(data => {
-      expect(data).to.be.an('object');
-      expect(data.body).to.contain('## Heading');
-      done();
-    }).catch(done);
+    return expect(s.parse(TEST_FILE_HTML))
+      .to.eventually.have.property('body')
+      .that.contain('## Heading');
   });
 
-  it('loads data from adapters', done => {
+  it('loads data from adapters', () => {
     const s = new Spacedoc();
     s.config({
       adapters: ['test/fixtures/spacedoc-mock'],
@@ -51,40 +45,31 @@ describe('Spacedoc.parse()', () => {
       marked: null
     });
 
-    s.parse(TEST_FILE).then(data => {
-      expect(data.docs.mock).to.be.an('array');
-      done();
-    }).catch(done);
+    return expect(s.parse(TEST_FILE))
+      .to.eventually.have.deep.property('docs.mock')
+      .that.is.an('array');
   });
 
-  it('catches Markdown errors', done => {
+  it('catches Markdown errors', () => {
     const s = new Spacedoc();
     s.config({
       template: 'test/fixtures/template.pug',
       marked: require('./fixtures/marked-broken')
     });
 
-    s.parse(TEST_FILE).catch(e => {
-      expect(e).to.be.an.instanceOf(Error);
-      done();
-    });
+    return expect(s.parse(TEST_FILE)).to.be.rejected;
   });
 
-  it('can load files from a string', done => {
+  it('can load files from a string', () => {
     const s = new Spacedoc();
 
-    s.parse('test/fixtures/example.md').then(data => {
-      expect(data.title).to.equal('Test');
-      done();
-    }).catch(done);
+    return expect(s.parse('test/fixtures/example.md'))
+      .to.eventually.have.property('title', 'Test');
   });
 
-  it('throws an error if a file path is not found', done => {
+  it('throws an error if a file path is not found', () => {
     const s = new Spacedoc();
 
-    s.parse('test/fixtures/nope.md').catch(err => {
-      expect(err).to.be.an.instanceOf(Error);
-      done();
-    });
+    return expect(s.parse('test/fixtures/nope.md')).to.be.rejected;
   });
 });

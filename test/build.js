@@ -41,7 +41,7 @@ describe('Spacedoc.build()', () => {
       });
       s.build();
 
-      expect(console.warn.calledOnce).to.be.true;
+      expect(console.warn).to.have.been.calledOnce;
     });
 
     it('catches an undefined layout being set', () => {
@@ -52,7 +52,7 @@ describe('Spacedoc.build()', () => {
 
       return s.parse(TEST_FILE_MISSING).then(data => {
         s.build(data);
-        expect(console.warn.calledOnce).to.be.true;
+        expect(console.warn).to.have.been.calledOnce;
       });
     });
 
@@ -64,23 +64,19 @@ describe('Spacedoc.build()', () => {
 
       return s.parse(TEST_FILE_ALT).then(data => {
         s.build(data);
-        expect(console.warn.calledOnce).to.be.true;
+        expect(console.warn).to.have.been.calledOnce;
       });
     });
   });
 
-  it('allows Front Matter to be retained on the page', function(done) {
+  it('allows Front Matter to be retained on the page', () => {
     const s = new Spacedoc();
     s.config({
       template: 'test/fixtures/template.pug',
       keepFm: true
     });
 
-    s.parse(TEST_FILE).then(data => {
-      const output = s.build(data);
-      expect(output).to.contain('---');
-      done();
-    }).catch(done);
+    return expect(s.parse(TEST_FILE).then(data => s.build(data))).to.eventually.contain('---');
   });
 
   it('allows an alternate layout to be used', () => {
@@ -89,8 +85,6 @@ describe('Spacedoc.build()', () => {
       template: 'test/fixtures/template',
     });
 
-    return s.parse(TEST_FILE_ALT).then(data => s.build(data)).then(output => {
-      expect(output).to.contain('So alt');
-    });
+    return expect(s.parse(TEST_FILE_ALT).then(data => s.build(data))).to.eventually.contain('So alt');
   });
 });

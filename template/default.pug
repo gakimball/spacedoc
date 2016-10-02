@@ -4,10 +4,11 @@ block body
   .row
     .medium-8.medium-push-4.columns
       article.column.row
-        h1= title
-        if description
-          p.lead= description
-        hr
+        if title
+          h1= title
+          if description
+            p.lead= description
+          hr
         != body
         hr
         != spacedoc('sass')

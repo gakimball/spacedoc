@@ -3,8 +3,9 @@ const helper = require('../lib/util/helper');
 const mockAdapter = require('./fixtures/spacedoc-mock');
 const $ = require('cheerio');
 const { Spacedoc } = require('..');
+const mockVinyl = require('./util/mockVinyl');
 
-const TEST_FILE = require('./fixtures/test_file');
+const TEST_FILE = mockVinyl('test/fixtures/example.md');
 
 describe('helper()', () => {
   let fn;

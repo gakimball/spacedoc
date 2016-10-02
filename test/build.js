@@ -1,10 +1,11 @@
 const { expect } = require('chai');
 const sinon = require('sinon');
 const { Spacedoc } = require('..');
+const mockVinyl = require('./util/mockVinyl');
 
-const TEST_FILE = require('./fixtures/test_file');
-const TEST_FILE_ALT = require('./fixtures/test_file_alt');
-const TEST_FILE_MISSING = require('./fixtures/test_file_missing_layout');
+const TEST_FILE = mockVinyl('test/fixtures/example.md');
+const TEST_FILE_ALT = mockVinyl('test/fixtures/example-alt-layout.md');
+const TEST_FILE_MISSING = mockVinyl('test/fixtures/example-missing-layout.md');
 
 describe('Spacedoc.build()', () => {
   it('builds an HTML file from the data of a page', () => {

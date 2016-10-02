@@ -1,8 +1,9 @@
 const { expect } = require('chai');
 const Spacedoc = require('..').Spacedoc;
+const mockVinyl = require('./util/mockVinyl');
 
-const TEST_FILE = require('./fixtures/test_file');
-const TEST_FILE_HTML = require('./fixtures/test_file_html');
+const TEST_FILE = mockVinyl('test/fixtures/example.md');
+const TEST_FILE_HTML = mockVinyl('test/fixtures/example.html');
 
 describe('Spacedoc.parse()', () => {
   it('converts Markdown into HTML', done => {

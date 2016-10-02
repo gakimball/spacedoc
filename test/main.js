@@ -1,6 +1,7 @@
 const chai = require('chai');
 const { expect } = chai;
 const rimraf = require('rimraf');
+const fs = require('fs');
 const spacedoc = require('..');
 const { Spacedoc, _instance } = spacedoc;
 
@@ -13,16 +14,15 @@ describe('spacedoc', () => {
   });
 
   describe('spacedoc()', () => {
-    it('calls Spacedoc.init()', done => {
+    it('calls Spacedoc.init()', () => {
       spacedoc.config({
         adapters: ['test/fixtures/spacedoc-mock'],
         src: 'test/fixtures/example.md',
         silent: true
       });
 
-      spacedoc({ incremental: true }).on('finish', () => {
+      return spacedoc({ incremental: true }).then(() => {
         expect(spacedoc.tree).to.have.length(1);
-        done();
       });
     });
   });
@@ -43,13 +43,12 @@ describe('spacedoc', () => {
         silent: true
       });
 
-      spacedoc({ incremental: true }).on('finish', done => {
-        spacedoc.buildSearch('test/fixtures/_build/search.json').then(() => {
+      return spacedoc({ incremental: true }).then(() => {
+        return spacedoc.buildSearch('test/fixtures/_build/search.json').then(() => {
           const page = fs.readFileSync('test/fixtures/_build/search.json').toString();
           const data = JSON.parse(page);
 
           expect(data).to.be.an('array');
-          done();
         });
       });
     });

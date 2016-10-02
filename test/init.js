@@ -5,7 +5,7 @@ const { Spacedoc } = require('..');
 const vfs = require('vinyl-fs');
 
 describe('Spacedoc.init()', () => {
-  it('parses and builds a documentation page', done => {
+  it('parses and builds a documentation page', () => {
     const s = new Spacedoc();
     s.config({
       src: 'test/fixtures/example.md',
@@ -14,12 +14,8 @@ describe('Spacedoc.init()', () => {
       silent: true
     });
 
-    const stream = s.init();
-
-    expect(stream).to.have.property('on');
-    stream.on('finish', () => {
+    return s.init().then(() => {
       expect(fs.existsSync('test/fixtures/_build/example.html')).to.be.ok;
-      done();
     });
   });
 
@@ -39,7 +35,7 @@ describe('Spacedoc.init()', () => {
       });
   });
 
-  it('resets the internal data tree on each build', done => {
+  it('resets the internal data tree on each build', () => {
     const s = new Spacedoc();
     s.config({
       src: 'test/fixtures/example.md',
@@ -47,17 +43,12 @@ describe('Spacedoc.init()', () => {
       silent: true
     });
 
-    s.init().on('finish', () => {
+    return s.init().then(() => s.init()).then(() => {
       expect(s.tree).to.have.length(1);
-
-      s.init().on('finish', () => {
-        expect(s.tree).to.have.length(1);
-        done();
-      });
     });
   });
 
-  it('allows for incremental builds', done => {
+  it('allows for incremental builds', () => {
     const s = new Spacedoc();
     s.config({
       src: 'test/fixtures/example.md',
@@ -65,19 +56,13 @@ describe('Spacedoc.init()', () => {
       silent: true
     });
 
-    s.init().on('finish', () => {
+    return s.init().then(() => s.init()).then(() => {
       expect(s.tree).to.have.length(1);
-
-      s.init({ incremental: true }).on('finish', () => {
-        expect(s.tree).to.have.length(1);
-        done();
-      });
     });
   });
 
   it('can be run without first calling Spacedoc.config()', () => {
     const s = new Spacedoc();
-    s.init();
-    expect(s.options).to.not.be.empty;
+    expect(() => s.init()).to.not.throw(Error);
   });
 });

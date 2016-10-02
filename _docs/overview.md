@@ -1,4 +1,4 @@
-## Overview
+# Overview
 
 Spacedoc parses a glob of Markdown files, pulls in relevant documentation from Sass and JavaScript files, and combines it all into one JSON object, which is passed to a Pug template that renders the final HTML page.
 

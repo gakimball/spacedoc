@@ -1,4 +1,4 @@
-## Search
+# Search
 
 Spacedoc can generate a list of search results from the pages and documentation items it processes. This list is output as a JSON file, which can be fed to a search library like [Bloodhound](https://github.com/twitter/typeahead.js/blob/master/doc/bloodhound.md).
 

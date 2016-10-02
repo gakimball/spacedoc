@@ -4,14 +4,14 @@ A fancy documentation generator that can mash up documentation from multiple sou
 
 ## Features
 
-- Combines [Markdown, SassDoc data, and JSDoc data](overview.md) into compiled HTML pages.
-- Supports [custom Markdown and Pug](api.md) instances.
-- Can generate a [search result list](search.md) out of documentation items.
-- Can be [extended](adapters.md) to support other documentation generators.
+- Combines [Markdown, SassDoc data, and JSDoc data](_docs/overview.md) into compiled HTML pages.
+- Supports [custom Markdown and Pug](_docs/api.md) instances.
+- Can generate a [search result list](_docs/search.md) out of documentation items.
+- Can be [extended](_docs/adapters.md) to support other documentation generators.
 
 ## Documentation
 
-Read the [overview section](docs/overview.md) of the documentation to get an overview of how Spacedoc works. Then check out the [full documentation](docs).
+Read the [overview section](_docs/overview.md) of the documentation to get an overview of how Spacedoc works. Then check out the [full documentation](_docs).
 
 ## Local Development
 

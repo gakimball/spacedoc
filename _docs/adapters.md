@@ -1,4 +1,4 @@
-## Adapters
+# Adapters
 
 An *adapter* is a module that pulls information from a documentation generator and adds it to the data of a page. When a page references an adapter in its Front Matter, the adapter goes and gets the right documentation data for the page. That data is then used in the template that renders the final docs page.
 

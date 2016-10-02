@@ -1,13 +1,13 @@
 # API Reference
 
-### Spacedoc(options)
+## Spacedoc(options)
 
 Parses and builds documentation. Returns a Node stream of Vinyl files.
 
 - **options** (Object):
   - **incremental** (Boolean): enable incremental compiling. `false` by default.
 
-### Spacedoc.config(options)
+## Spacedoc.config(options)
 
 Sets configuration settings.
 
@@ -31,7 +31,7 @@ Sets configuration settings.
     - **sort** (Array): an array of strings representing sort criteria. The results list can be sorted by the `type` property on each result.
     - **pageTypes** (Object): custom tags for search result items.
 
-### Spacedoc.buildSearch(outFile, cb)
+## Spacedoc.buildSearch(outFile, cb)
 
 Generates a JSON file of search results using the current set of parsed data.
 
@@ -39,7 +39,7 @@ Generates a JSON file of search results using the current set of parsed data.
 
 Returns a promise.
 
-### Spacedoc.tree
+## Spacedoc.tree
 
 An array containing all of the processed data from the last time Spacedoc ran. Each item in the array is a page that was processed.
 

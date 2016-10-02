@@ -4,7 +4,7 @@ Spacedoc can generate a list of search results from the pages and documentation 
 
 To create the result list, Spacedoc gives each *page* its own result item, and also every documented *item* within each page a result as well. So, for example, given a page `button.md` with two documented Sass variables, you'll get three total results: one for the button page itself, and two for each of the button's variables.
 
-### Usage
+## Usage
 
 Search result generation should only happen when Spacedoc is done processing. You can listen to the `finish` event on the stream the plugin creates to know when it's ready.
 
@@ -21,7 +21,7 @@ Spacedoc().on('finish', function() {
 
 The `.buildSearch()` function takes two parameters: a path to the file to write, and an optional callback to run when the file is written to disk.
 
-### Configuration
+## Configuration
 
 Search-specific settings are set with the `.config()` method, on the `search` key of the configuration object. These search settings are available:
 
@@ -40,7 +40,7 @@ Spacedoc.config({
 })
 ```
 
-### Result Format
+## Result Format
 
 The final search result file is an array of objects with this format:
 

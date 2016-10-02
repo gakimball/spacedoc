@@ -16,7 +16,11 @@ const cli = meow(`
 });
 
 Spacedoc.config(cli.flags.config).init()
-  .then(() => process.exit(0))
+  .then(() => {
+    if (Spacedoc._instance.options.search.dest) {
+      return Spacedoc.buildSearch();
+    }
+  })
   .catch(err => {
     throw new Error(err);
   });

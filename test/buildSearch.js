@@ -123,4 +123,31 @@ describe('Spacedoc.buildSearch()', () => {
       });
     });
   });
+
+  it('can be called without an outFile if one is defined in the config', () => {
+    const s = new Spacedoc().config({
+      src: 'test/fixtures/example.md',
+      template: 'test/fixtures/template.pug',
+      silent: true,
+      search: {
+        dest: 'test/fixtures/_build/search.json',
+      }
+    });
+
+    return s.init().then(() => {
+      return s.buildSearch().then(() => {
+        expect(fs.existsSync('./test/fixtures/_build/search.json')).to.be.true;
+      });
+    });
+  });
+
+  it('throws an error if called without an outFile, but one is not defined in config', () => {
+    const s = new Spacedoc().config({
+      src: 'test/fixtures/example.md',
+      template: 'test/fixtures/template.pug',
+      silent: true,
+    });
+
+    return expect(s.init().then(() => s.buildSearch())).to.be.rejected;
+  });
 });

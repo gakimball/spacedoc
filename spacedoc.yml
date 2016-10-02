@@ -1,3 +1,5 @@
 src: _docs/**/*.md
 dest: docs
 pageRoot: _docs
+search:
+  dest: docs/assets/search.json

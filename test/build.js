@@ -4,6 +4,7 @@ const { Spacedoc } = require('..');
 
 const TEST_FILE = require('./fixtures/test_file');
 const TEST_FILE_ALT = require('./fixtures/test_file_alt');
+const TEST_FILE_MISSING = require('./fixtures/test_file_missing_layout');
 
 describe('Spacedoc.build()', () => {
   it('builds an HTML file from the data of a page', () => {
@@ -29,8 +30,8 @@ describe('Spacedoc.build()', () => {
   });
 
   describe('template errors', () => {
-    before(() => sinon.stub(console, 'warn'));
-    after(() => console.warn.restore());
+    beforeEach(() => sinon.stub(console, 'warn'));
+    afterEach(() => console.warn.restore());
 
     it('catches template errors', () => {
       const s = new Spacedoc();
@@ -40,6 +41,30 @@ describe('Spacedoc.build()', () => {
       s.build();
 
       expect(console.warn.calledOnce).to.be.true;
+    });
+
+    it('catches an undefined layout being set', () => {
+      const s = new Spacedoc();
+      s.config({
+        template: 'test/fixtures/template',
+      });
+
+      return s.parse(TEST_FILE_MISSING).then(data => {
+        s.build(data);
+        expect(console.warn.calledOnce).to.be.true;
+      });
+    });
+
+    it('catches alternate layouts being defined in a single-template setup', () => {
+      const s = new Spacedoc();
+      s.config({
+        template: () => '',
+      });
+
+      return s.parse(TEST_FILE_ALT).then(data => {
+        s.build(data);
+        expect(console.warn.calledOnce).to.be.true;
+      });
     });
   });
 

@@ -60,9 +60,4 @@ describe('Spacedoc.init()', () => {
       expect(s.tree).to.have.length(1);
     });
   });
-
-  it('can be run without first calling Spacedoc.config()', () => {
-    const s = new Spacedoc();
-    expect(() => s.init()).to.not.throw(Error);
-  });
 });

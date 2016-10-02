@@ -72,4 +72,26 @@ describe('Spacedoc.parse()', () => {
 
     return expect(s.parse('test/fixtures/nope.md')).to.be.rejected;
   });
+
+  it('renames readme.md to index.md', () => {
+    const s = new Spacedoc();
+
+    return expect(s.parse('test/fixtures/readme/readme.md'))
+      .to.eventually.have.property('fileName', 'test/fixtures/readme/index.md');
+  });
+
+  it('pulls the title of the page from the Markdown h1', () => {
+    const s = new Spacedoc();
+
+    return expect(s.parse('test/fixtures/example-no-title.md'))
+      .to.eventually.have.property('title', 'Title');
+  });
+
+  it('removes the h1 from Markdown if transferred to page attributes', () => {
+    const s = new Spacedoc();
+
+    return expect(s.parse('test/fixtures/example-no-title.md'))
+      .to.eventually.have.property('body')
+      .that.not.contain('<h1');
+  });
 });

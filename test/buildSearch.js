@@ -28,7 +28,7 @@ describe('Spacedoc.buildSearch()', () => {
     });
 
     return s.init().then(() => {
-      s.buildSearch('test/fixtures/_build/search.json').then(() => {
+      return s.buildSearch('test/fixtures/_build/search.json').then(() => {
         var data = fs.readFileSync('./test/fixtures/_build/search.json').toString();
         page = JSON.parse(data)[0];
 
@@ -46,7 +46,7 @@ describe('Spacedoc.buildSearch()', () => {
     });
 
     return s.init().then(() => {
-      s.buildSearch('test/fixtures/_build/search.json').then(() => {
+      return s.buildSearch('test/fixtures/_build/search.json').then(() => {
         var data = fs.readFileSync('./test/fixtures/_build/search.json').toString();
         data = JSON.parse(data);
 
@@ -92,7 +92,7 @@ describe('Spacedoc.buildSearch()', () => {
     });
 
     return s.init().then(() => {
-      s.buildSearch('test/fixtures/_build/search.json').then(() => {
+      return s.buildSearch('test/fixtures/_build/search.json').then(() => {
         var data = fs.readFileSync('./test/fixtures/_build/search.json').toString();
         data = JSON.parse(data);
 
@@ -114,7 +114,7 @@ describe('Spacedoc.buildSearch()', () => {
     });
 
     return s.init().then(() => {
-      s.buildSearch('test/fixtures/_build/search.json').then(() => {
+      return s.buildSearch('test/fixtures/_build/search.json').then(() => {
         var data = fs.readFileSync('./test/fixtures/_build/search.json').toString();
         data = JSON.parse(data);
 

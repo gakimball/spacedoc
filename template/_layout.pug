@@ -1,144 +1,151 @@
-link(rel='stylesheet', href='https://cdn.jsdelivr.net/foundation/6.2.1/foundation.min.css')
+doctype html
 
-style.
-  body {
-    background: #f9f9f9;
-    font-size: 18px;
-    font-family: Soleil, Helvetica, sans-serif;
-    color: #333;
-  }
+head
+  title= title
 
-  .top-bar {
-    margin-bottom: 2rem;
-  }
+  link(rel='stylesheet', href='https://cdn.jsdelivr.net/foundation/6.2.1/foundation.min.css')
+  link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/atom-one-dark.min.css')
 
-  .top-bar,
-  .top-bar ul {
-    background: #333;
-  }
+  style.
+    body {
+      background: #f9f9f9;
+      font-size: 18px;
+      font-family: Soleil, Helvetica, sans-serif;
+      color: #333;
+    }
 
-  .top-bar .menu-text, .top-bar .menu a {
-    color: #fff;
-  }
+    .top-bar {
+      margin-bottom: 2rem;
+    }
 
-  .sd-doclet {
-    margin-bottom: 2rem;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 1rem;
-  }
+    .top-bar,
+    .top-bar ul {
+      background: #333;
+    }
 
-  .sd-doclet .sd-doclet {
-    padding-left: 1.5rem;
-    border-left: 1px solid #ccc;
-  }
+    .top-bar .menu-text, .top-bar .menu a {
+      color: #fff;
+    }
 
-  .sd-codeblock code {
-    display: block;
-    padding: 1.5rem;
-    margin-bottom: 1rem;
-    background: #333;
-    color: #fff;
-  }
+    .sd-doclet {
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 1rem;
+    }
 
-  .sd-nav {
-    font-size: 16px;
-  }
+    .sd-doclet .sd-doclet {
+      padding-left: 1.5rem;
+      border-left: 1px solid #ccc;
+    }
 
-  .sd-nav .menu-item a, .sd-nav .menu-text {
-    padding: 0;
-    line-height: 34px;
-  }
+    .sd-codeblock code,
+    pre > code {
+      display: block;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      background: #333;
+      color: #fff;
+    }
 
-  .sd-nav .menu-item a {
-    color: #333;
-  }
+    .sd-nav {
+      font-size: 16px;
+    }
 
-  .sd-nav .menu-item a:hover {
-    color: #810606;
-  }
+    .sd-nav .menu-item a, .sd-nav .menu-text {
+      padding: 0;
+      line-height: 34px;
+    }
 
-  .sd-nav .menu-text {
-    color: #999;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
+    .sd-nav .menu-item a {
+      color: #333;
+    }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: Soleil, Helvetica, sans-serif;
-    text-transform: lowercase;
-    color: #333;
-  }
+    .sd-nav .menu-item a:hover {
+      color: #810606;
+    }
 
-  h1 {
-    font-size: 60px;
-  }
+    .sd-nav .menu-text {
+      color: #999;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
 
-  h2 {
-    font-size: 40px;
-  }
+    h1, h2, h3, h4, h5, h6 {
+      font-family: Soleil, Helvetica, sans-serif;
+      text-transform: lowercase;
+      color: #333;
+    }
 
-  h3 {
-    font-size: 28px;
-  }
+    h1 {
+      font-size: 60px;
+    }
 
-  h4 {
-    font-size: 22px;
-  }
+    h2 {
+      font-size: 40px;
+    }
 
-  h5 {
-    font-size: 20px;
-  }
+    h3 {
+      font-size: 28px;
+    }
 
-  h6 {
-    font-size: 18px;
-    font-weight: bold;
-  }
+    h4 {
+      font-size: 22px;
+    }
 
-  code {
-    font-family: 'Space Mono', monospace;
-    padding: 0;
-    border: 0;
-    background: transparent;
-  }
+    h5 {
+      font-size: 20px;
+    }
 
-  .lead {
-    font-size: 25px;
-  }
+    h6 {
+      font-size: 18px;
+      font-weight: bold;
+    }
 
-  table {
-    font-size: 16px;
-  }
+    code {
+      font-family: 'Space Mono', monospace;
+      padding: 0;
+      border: 0;
+      background: transparent;
+    }
 
-  table thead {
-    background: transparent;
-    border-bottom: 2px solid #333;
-  }
+    .lead {
+      font-size: 25px;
+    }
 
-  tr {
-    background: transparent !important;
-  }
+    table {
+      font-size: 16px;
+    }
 
-  table tbody {
-    background: transparent;
-  }
+    table thead {
+      background: transparent;
+      border-bottom: 2px solid #333;
+    }
 
-  table tbody td {
-    line-height: 1.6;
-    padding-top: 0.7rem;
-  }
+    tr {
+      background: transparent !important;
+    }
 
-  tbody tr {
-    border-bottom: 1px solid #333;
-  }
+    table tbody {
+      background: transparent;
+    }
 
-  td p {
-    margin-bottom: 0;
-  }
+    table tbody td {
+      line-height: 1.6;
+      padding-top: 0.7rem;
+    }
 
-  .callout {
-    border: 0;
-    border-left: 10px solid rgba(0, 0, 0, 0.3);
-  }
+    tbody tr {
+      border-bottom: 1px solid #333;
+    }
+
+    td p {
+      margin-bottom: 0;
+    }
+
+    .callout {
+      border: 0;
+      border-left: 10px solid rgba(0, 0, 0, 0.3);
+    }
 
 header.top-bar
   .column.row

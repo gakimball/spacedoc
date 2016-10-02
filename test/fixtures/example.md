@@ -8,6 +8,6 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti voluptatum in
 
 ## Heading
 
-```html_example
+```html
 <a href="#" class="button">Button</a>
 ```

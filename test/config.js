@@ -48,10 +48,10 @@ describe('Spacedoc.config()', () => {
     let s = new Spacedoc();
     s = s.config();
 
-    expect(s.template).to.be.a('function');
+    expect(s.templates.default).to.be.a('function');
   });
 
-  it('loads an HTML template', () => {
+  it('loads a Pug template', () => {
     let s = new Spacedoc();
     s = s.config({
       src: 'src',
@@ -59,7 +59,26 @@ describe('Spacedoc.config()', () => {
       template: 'test/fixtures/template.pug'
     });
 
-    expect(s.template).to.be.a('function');
+    expect(s.templates.default).to.be.a('function');
+  });
+
+  it('loads a pug template folder', () => {
+    const s = new Spacedoc();
+    s.config({
+      template: 'test/fixtures/template',
+    });
+
+    expect(s.templates.default).to.be.a('function');
+  });
+
+  it('throws an error if a template folder has no default file', () => {
+    const s = new Spacedoc();
+
+    expect(() => {
+      s.config({
+        template: 'test/fixtures/spacedoc-mock',
+      });
+    }).to.throw(Error);
   });
 
   it('allows a pre-made template function to be used', () => {
@@ -68,7 +87,7 @@ describe('Spacedoc.config()', () => {
       template: () => 'test'
     });
 
-    expect(s.template()).to.equal('test');
+    expect(s.templates.default()).to.equal('test');
   });
 
   it('loads JSON data from search config', () => {

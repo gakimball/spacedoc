@@ -1,5 +1,3 @@
-include ./nav
-
 link(rel='stylesheet', href='https://cdn.jsdelivr.net/foundation/6.2.1/foundation.min.css')
 
 style.
@@ -148,16 +146,4 @@ header.top-bar
       ul.menu
         li.menu-text Project Title
 
-.row
-  .medium-8.medium-push-4.columns
-    article.column.row
-      h1= title
-      if description
-        p.lead= description
-      hr
-      != body
-      hr
-      != spacedoc('sass')
-      != spacedoc('js')
-  .medium-4.medium-pull-8.columns
-    +nav()
+block body

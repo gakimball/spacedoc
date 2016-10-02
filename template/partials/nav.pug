@@ -1,0 +1,7 @@
+nav.sd-nav
+  each group in helpers.groupPages(site.pages)
+    ul.menu.vertical
+      if group.name !== '$default'
+        li.menu-text= group.name
+      each page in group.pages
+        li.menu-item: a(href=page.fileName)= page.title

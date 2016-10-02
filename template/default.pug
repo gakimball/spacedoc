@@ -1,0 +1,16 @@
+extends ./_layout.pug
+
+block body
+  .row
+    .medium-8.medium-push-4.columns
+      article.column.row
+        h1= title
+        if description
+          p.lead= description
+        hr
+        != body
+        hr
+        != spacedoc('sass')
+        != spacedoc('js')
+    .medium-4.medium-pull-8.columns
+      include ./partials/nav.pug

@@ -2,7 +2,8 @@ function Spacedoc() {
   this.options = {};
   this.adapters = {};
   this.tree = [];
-  this.template = null;
+  this.templates = {};
+  this.mutliTemplate = false;
 }
 
 Spacedoc.prototype.init = require('./lib/init');

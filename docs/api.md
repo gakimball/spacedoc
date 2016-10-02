@@ -13,9 +13,13 @@ Sets configuration settings.
 
 - **options** (Object):
   - **adapters** (Array of Strings): adapters to load. See [Adapters](adapters.md) to see how they're loaded.
-  - **template** (String or Function): path to the Pug template to use for each component, or any function that takes an object of data and returns a string. If you want to use another templating language, you can pass in a pre-compiled template function.
-  - **src** (String or Array): a glob of files to process. Each file is a component, and can be attached to zero or more adapters to documentation generators.
-  - **dest** (String): file path to write the finished HTML to.
+  - **template** (String or Function): template(s) to use when rendering pages. This option has a number of possible values:
+    - Omit to use the built-in template, which has two layouts: `default` and `blank`.
+    - Set a path to a folder to load all `.pug` files in that folder. At least one file must be named `default.pug`.
+    - Set a path to a `.pug` file, and all pages will use that same template to render.
+    - Set a function that returns a string given an object of data. This allows you to use another templating language if you wish.
+  - **src** (String or Array): a glob of files to process. Each file is a component, and can be attached to zero or more adapters to documentation generators. *Omit this when using Spacedoc with Gulp.*
+  - **dest** (String): file path to write the finished HTML to. *Omit this when using Spacedoc with Gulp.*
   - **marked** (Object): a custom instance of Marked to use when parsing the markdown of your documentation pages. This allows you to pass in custom rendering methods.
     - This value can also be `false`, which disables Markdown parsing on the page body altogether. Use this to create Markdown-based documentation instead of HTML-based.
   - **extension** (String): extension to change files to after processing. The default is `html`.

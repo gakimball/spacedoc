@@ -13,6 +13,6 @@ describe('Spacedoc constructor', () => {
     expect(s.options).to.be.an('object');
     expect(s.adapters).to.be.an('object');
     expect(s.tree).to.be.an('array');
-    expect(s.template).to.be.null;
+    expect(s.templates).to.eql({});
   });
 });

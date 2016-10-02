@@ -7,8 +7,7 @@ const TEST_FILE_HTML = mockVinyl('test/fixtures/example.html');
 
 describe('Spacedoc.parse()', () => {
   it('converts Markdown into HTML', () => {
-    const s = new Spacedoc();
-    s.config({
+    const s = new Spacedoc().config({
       template: 'test/fixtures/template.pug'
     });
 
@@ -18,8 +17,7 @@ describe('Spacedoc.parse()', () => {
   });
 
   it('does not touch Markdown if configured to ignore it', () => {
-    const s = new Spacedoc();
-    s.config({
+    const s = new Spacedoc().config({
       template: 'test/fixtures/template.pug',
       marked: null
     });
@@ -30,7 +28,7 @@ describe('Spacedoc.parse()', () => {
   });
 
   it('only compiles files ending in .md', () => {
-    const s = new Spacedoc();
+    const s = new Spacedoc().config();
 
     return expect(s.parse(TEST_FILE_HTML))
       .to.eventually.have.property('body')
@@ -38,8 +36,7 @@ describe('Spacedoc.parse()', () => {
   });
 
   it('loads data from adapters', () => {
-    const s = new Spacedoc();
-    s.config({
+    const s = new Spacedoc().config({
       adapters: ['test/fixtures/spacedoc-mock'],
       template: 'test/fixtures/template.pug',
       marked: null
@@ -51,8 +48,7 @@ describe('Spacedoc.parse()', () => {
   });
 
   it('catches Markdown errors', () => {
-    const s = new Spacedoc();
-    s.config({
+    const s = new Spacedoc().config({
       template: 'test/fixtures/template.pug',
       marked: require('./fixtures/marked-broken')
     });
@@ -61,37 +57,46 @@ describe('Spacedoc.parse()', () => {
   });
 
   it('can load files from a string', () => {
-    const s = new Spacedoc();
+    const s = new Spacedoc().config();
 
     return expect(s.parse('test/fixtures/example.md'))
       .to.eventually.have.property('title', 'Test');
   });
 
   it('throws an error if a file path is not found', () => {
-    const s = new Spacedoc();
+    const s = new Spacedoc().config();
 
     return expect(s.parse('test/fixtures/nope.md')).to.be.rejected;
   });
 
   it('renames readme.md to index.md', () => {
-    const s = new Spacedoc();
+    const s = new Spacedoc().config();
 
     return expect(s.parse('test/fixtures/readme/readme.md'))
-      .to.eventually.have.property('fileName', 'test/fixtures/readme/index.md');
+      .to.eventually.have.property('fileName')
+      .that.contain('index.html');
   });
 
   it('pulls the title of the page from the Markdown h1', () => {
-    const s = new Spacedoc();
+    const s = new Spacedoc().config();
 
     return expect(s.parse('test/fixtures/example-no-title.md'))
       .to.eventually.have.property('title', 'Title');
   });
 
   it('removes the h1 from Markdown if transferred to page attributes', () => {
-    const s = new Spacedoc();
+    const s = new Spacedoc().config();
 
     return expect(s.parse('test/fixtures/example-no-title.md'))
       .to.eventually.have.property('body')
       .that.not.contain('<h1');
+  });
+
+  it('converts links to .md files to .html', () => {
+    const s = new Spacedoc().config();
+
+    return expect(s.parse('test/fixtures/example-link.md'))
+      .to.eventually.have.property('body')
+      .that.contain('href="filename.html"');
   });
 });

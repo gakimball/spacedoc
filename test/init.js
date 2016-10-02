@@ -8,7 +8,7 @@ describe('Spacedoc.init()', () => {
   it('parses and builds a documentation page', done => {
     const s = new Spacedoc();
     s.config({
-      src: 'test/fixtures/*.md',
+      src: 'test/fixtures/example.md',
       dest: 'test/fixtures/_build',
       template: 'test/fixtures/template.pug',
       silent: true
@@ -30,7 +30,7 @@ describe('Spacedoc.init()', () => {
       silent: true
     });
 
-    vfs.src('test/fixtures/*.md')
+    vfs.src('test/fixtures/example.md')
       .pipe(s.init())
       .on('data', function(file) {
         expect(file.path).to.contain('.html');
@@ -42,7 +42,7 @@ describe('Spacedoc.init()', () => {
   it('resets the internal data tree on each build', done => {
     const s = new Spacedoc();
     s.config({
-      src: 'test/fixtures/*.md',
+      src: 'test/fixtures/example.md',
       template: 'test/fixtures/template.pug',
       silent: true
     });
@@ -60,7 +60,7 @@ describe('Spacedoc.init()', () => {
   it('allows for incremental builds', done => {
     const s = new Spacedoc();
     s.config({
-      src: 'test/fixtures/*.md',
+      src: 'test/fixtures/example.md',
       template: 'test/fixtures/template.pug',
       silent: true
     });

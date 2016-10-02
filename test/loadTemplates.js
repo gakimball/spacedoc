@@ -6,6 +6,7 @@ describe('loadTemplates', () => {
     const templates = loadTemplates('test/fixtures/template');
     expect(templates).to.be.an('object');
     expect(templates.default).to.be.a('function')
+    expect(templates.alt).to.be.a('function')
   });
 
   it('throws an error if any template fails to compile', () => {

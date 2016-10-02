@@ -12,7 +12,7 @@ describe('Spacedoc.buildSearch()', () => {
 
   it('works even if search was not configured', done => {
     const s = new Spacedoc().config({
-      src: 'test/fixtures/*.md',
+      src: 'test/fixtures/example.md',
       template: 'test/fixtures/template.pug',
       silent: true
     });
@@ -24,7 +24,7 @@ describe('Spacedoc.buildSearch()', () => {
 
   it('flags generic pages as "page"', done => {
     const s = new Spacedoc().config({
-      src: 'test/fixtures/*.md',
+      src: 'test/fixtures/example.md',
       template: 'test/fixtures/template.pug',
       silent: true
     });
@@ -43,7 +43,7 @@ describe('Spacedoc.buildSearch()', () => {
   it('flags pages with code hooks as "component"', done => {
     const s = new Spacedoc().config({
       adapters: Adapters,
-      src: 'test/fixtures/*.md',
+      src: 'test/fixtures/example.md',
       template: 'test/fixtures/template.pug',
       silent: true
     });
@@ -65,7 +65,7 @@ describe('Spacedoc.buildSearch()', () => {
 
   it('allows for custom page types', done => {
     const s = new Spacedoc().config({
-      src: 'test/fixtures/*.md',
+      src: 'test/fixtures/example.md',
       template: 'test/fixtures/template.pug',
       silent: true,
       search: {
@@ -92,7 +92,7 @@ describe('Spacedoc.buildSearch()', () => {
   it('creates a JSON file of search results', done => {
     const s = new Spacedoc().config({
       adapters: Adapters,
-      src: 'test/fixtures/*.md',
+      src: 'test/fixtures/example.md',
       template: 'test/fixtures/template.pug',
       silent: true
     });
@@ -112,7 +112,7 @@ describe('Spacedoc.buildSearch()', () => {
   it('allows extra external results to be added', done => {
     const s = new Spacedoc().config({
       adapters: Adapters,
-      src: 'test/fixtures/*.md',
+      src: 'test/fixtures/example.md',
       template: 'test/fixtures/template.pug',
       silent: true,
       search: {

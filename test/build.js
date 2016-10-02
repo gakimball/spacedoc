@@ -3,6 +3,7 @@ const sinon = require('sinon');
 const { Spacedoc } = require('..');
 
 const TEST_FILE = require('./fixtures/test_file');
+const TEST_FILE_ALT = require('./fixtures/test_file_alt');
 
 describe('Spacedoc.build()', () => {
   it('builds an HTML file from the data of a page', () => {
@@ -54,5 +55,16 @@ describe('Spacedoc.build()', () => {
       expect(output).to.contain('---');
       done();
     }).catch(done);
+  });
+
+  it('allows an alternate layout to be used', () => {
+    const s = new Spacedoc();
+    s.config({
+      template: 'test/fixtures/template',
+    });
+
+    return s.parse(TEST_FILE_ALT).then(data => s.build(data)).then(output => {
+      expect(output).to.contain('So alt');
+    });
   });
 });

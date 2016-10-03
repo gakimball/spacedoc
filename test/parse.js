@@ -99,4 +99,11 @@ describe('Spacedoc.parse()', () => {
       .to.eventually.have.property('body')
       .that.contain('href="filename.html"');
   });
+
+  it('uses the filename as a title if necessary', () => {
+    const s = new Spacedoc().config();
+
+    return expect(s.parse('test/fixtures/example-no-title.html'))
+      .to.eventually.have.property('title', 'example-no-title');
+  });
 });

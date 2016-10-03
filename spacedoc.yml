@@ -1,5 +1,12 @@
-src: _docs/**/*.md
+src: _docs/**/*
 dest: docs
 pageRoot: _docs
 search:
   dest: docs/assets/search.json
+data:
+  site:
+    title: Spacedoc
+    nav:
+      docs: Docs
+      plugins.html: Plugins
+      'https://github.com/spacedoc/spacedoc': GitHub

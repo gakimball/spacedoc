@@ -50,6 +50,7 @@
     "rimraf": "^2.2.8",
     "sassdoc": "^2.0.0-rc.17",
     "spacedoc-helpers": "^0.1.0",
+    "strip-indent": "^2.0.0",
     "through2": "^2.0.1",
     "transform-markdown-links": "^1.0.0",
     "vinyl": "^1.1.1",

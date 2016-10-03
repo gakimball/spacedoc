@@ -114,4 +114,18 @@ describe('Spacedoc.parse()', () => {
     return expect(s.parse('test/fixtures/example-no-title.html'))
       .to.eventually.have.property('title', 'example-no-title');
   });
+
+  it('processes Front Matter in HTML comments', () => {
+    const s = new Spacedoc().config();
+
+    return expect(s.parse('test/fixtures/example-front-matter.html'))
+      .to.eventually.have.property('title', 'Page Title');
+  });
+
+  it('processes Front Matter in Pug comments', () => {
+    const s = new Spacedoc().config();
+
+    return expect(s.parse('test/fixtures/example-front-matter.pug'))
+      .to.eventually.have.property('title', 'Page Title');
+  });
 });

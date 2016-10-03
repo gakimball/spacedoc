@@ -1,6 +1,5 @@
 src: _docs/**/*
 dest: docs
-pageRoot: _docs
 search:
   dest: docs/assets/search.json
 site:

@@ -1,7 +1,7 @@
 doctype html
 
 head
-  title= title
+  title #{title} | #{site.title}
 
   link(rel='stylesheet', href='https://cdn.jsdelivr.net/foundation/6.2.1/foundation.min.css')
   link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/atom-one-dark.min.css')
@@ -25,6 +25,7 @@ head
 
     .top-bar .menu-text, .top-bar .menu a {
       color: #fff;
+      padding: 0.8rem 1rem 0.6rem 1rem;
     }
 
     .sd-doclet {
@@ -151,6 +152,8 @@ header.top-bar
   .column.row
     .top-bar-left
       ul.menu
-        li.menu-text Project Title
+        li.menu-text= site.title
+        each title, url in site.nav
+          li.menu-item: a(href=url)= title
 
 block body

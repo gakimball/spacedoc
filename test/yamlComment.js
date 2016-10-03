@@ -4,6 +4,7 @@ const yamlComment = require('../lib/util/yamlComment');
 const pugInput =
 `//-
   attr: value
+  ---
 
 h1 Hello world
 `

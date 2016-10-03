@@ -35,6 +35,14 @@ describe('Spacedoc.parse()', () => {
       .that.contain('## Heading');
   });
 
+  it('converts Pug files to HTML', () => {
+    const s = new Spacedoc().config();
+
+    return expect(s.parse('test/fixtures/example.pug'))
+      .to.eventually.have.property('body')
+      .that.contain('<p>This');
+  });
+
   it('loads data from adapters', () => {
     const s = new Spacedoc().config({
       adapters: ['test/fixtures/spacedoc-mock'],

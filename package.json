@@ -19,6 +19,8 @@
     "clean": "rm -rf docs",
     "docs": "node ./bin/spacedoc.js",
     "predocs": "npm run clean",
+    "server": "lite-server",
+    "start": "npm run docs & npm run server",
     "test": "mocha"
   },
   "author": "Geoff Kimball <geoff@geoffkimball.com> (http://geoffkimball.com)",
@@ -62,6 +64,7 @@
     "chai-as-promised": "^6.0.0",
     "cheerio": "^0.22.0",
     "jstransformer-marked": "^1.0.1",
+    "lite-server": "^2.2.2",
     "mocha": "^3.0.2",
     "sinon": "^1.17.5",
     "sinon-chai": "^2.8.0"

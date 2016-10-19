@@ -1,0 +1,7 @@
+mixin returns(returns)
+  if returns
+    section
+      h6 Returns
+      each rtn in returns
+        p: code= helpers.type(rtn.type)
+        p!= helpers.markdown(rtn.description)

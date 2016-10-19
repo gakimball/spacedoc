@@ -1,0 +1,7 @@
+/// This mixin has output.
+/// @output Some CSS.
+@mixin output {
+  * {
+    display: none !important;
+  }
+}

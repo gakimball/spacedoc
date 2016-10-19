@@ -1,0 +1,24 @@
+CLI
+  - I: File changed (watch mode)
+  - E: Generic error
+
+config
+  - E: In CLI, no spacedoc.yml found
+  - E: Calling config(), no spacedoc.yml found
+  - E: Calling conifg(path), path not found
+  - E: Template folder must have a file called default.pug
+  - E: Error when loading/compiling template file
+
+init
+  - I: Page written
+
+build
+  - W: Trying to set an alternate layout when not in multi-template mode
+    - Layout is ignored
+  - W: Layout does not exist
+    - Layout is ignored
+  - E: Pug render error
+
+buildSearch
+  - I: Search file written
+  - E: Calling buildSearch(), no outFile specified in config

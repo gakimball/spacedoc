@@ -1,0 +1,29 @@
+{
+  "name": "spacedoc-js",
+  "version": "0.2.0",
+  "description": "JavaScript adapter for Spacedoc.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"No tests yet.\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spacedoc/spacedoc-js.git"
+  },
+  "keywords": [
+    "spacedoc",
+    "javascript",
+    "jsdoc",
+    "documentation"
+  ],
+  "author": "Geoff Kimball <geoff@geoffkimball.com> (http://geoffkimball.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/spacedoc/spacedoc-js/issues"
+  },
+  "homepage": "https://github.com/spacedoc/spacedoc-js#readme",
+  "dependencies": {
+    "escape-html": "^1.0.3",
+    "jsdoc-api": "^2.0.1"
+  }
+}

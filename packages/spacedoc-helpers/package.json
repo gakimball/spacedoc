@@ -1,0 +1,37 @@
+{
+  "name": "spacedoc-helpers",
+  "version": "0.2.0",
+  "description": "Pug helper functions for Spacedoc",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "prepublish": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spacedoc/helpers.git"
+  },
+  "keywords": [
+    "spacedoc",
+    "pug",
+    "helpers",
+    "documentation"
+  ],
+  "author": "Geoff Kimball <geoff@geoffkimball.com> (http://geoffkimball.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/spacedoc/helpers/issues"
+  },
+  "homepage": "https://github.com/spacedoc/helpers#readme",
+  "dependencies": {
+    "highlight.js": "^9.6.0",
+    "lodash.groupby": "^4.6.0",
+    "marked": "^0.3.6"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^3.4.0",
+    "eslint-config-airbnb": "^10.0.1",
+    "mocha": "^3.0.2"
+  }
+}

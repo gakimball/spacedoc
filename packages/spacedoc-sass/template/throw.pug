@@ -1,0 +1,6 @@
+mixin throws(throws)
+  if throws
+    section
+      h6 Throws
+      each thr in throws
+        != helpers.markdown(thr)

@@ -1,0 +1,5 @@
+/// This function throws an error.
+/// @throws Throw description
+@function throws() {
+  @error 'This is an error';
+}

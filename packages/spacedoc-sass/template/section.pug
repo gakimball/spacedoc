@@ -1,0 +1,5 @@
+include ./item.pug
+
+mixin section(name, items)
+  each item in items
+    +item(item)

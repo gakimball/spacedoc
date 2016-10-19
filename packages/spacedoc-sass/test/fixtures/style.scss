@@ -1,0 +1,188 @@
+/// This is a variable.
+$basic-variable: 'Hello.';
+
+/// This is a typed variable.
+/// @type Number
+$typed-variable: 10;
+
+/// This is a variable with multiple types.
+/// @type Number | String
+$multi-typed-variable: 'Maybe a number?';
+
+/// This is a private variable.
+/// @access private
+$private-variable: 'ssh bby is ok';
+
+/// This is a deprecated variable.
+/// @deprecated Don't you dare reference this variable.
+$deprecated-variable: 'nuh uh';
+
+/// This is a variable with an example.
+/// @example scss - How to use this variable.
+///   warn($example-variable);
+$example-variable: 'Warning!';
+
+/// This is an ignored variable.
+/// @ignore
+$ignored-variable: 'Lonely';
+
+/// This is a variable with a link.
+/// @link http://zombo.com
+$linked-variable: 'http://zombo.com';
+
+/// This is a variable with a link and text.
+/// @link http://zombo.com Zombo.com
+$linked-variable-text: 'http://zombo.com';
+
+/// This variable has a reference.
+/// @see $linked-variable
+$see-variable: 'zombocom';
+
+/// This variable has a changelog.
+/// @since 1.3 Changed to `stronger`.
+/// @since 1.2 Changed to `faster`
+/// @since 1.1 Changed to `better`
+$changelog-variable: 'stronger';
+
+/// This is a map.
+/// @type Map
+/// @prop {String} map-variable.typed
+/// @prop {Number|String} map-variable.multi
+/// @prop {String} map-variable.description - This property has a description.
+/// @prop {Boolean} map-variable.defaults [false]
+$map-variable: (
+  typed: 'one',
+  multi: 2,
+  description: 'goodbye',
+  defaults: false
+);
+
+/// This is a function.
+@function function-basic() {
+  @return 'meow';
+}
+
+/// This function is an alias to another function.
+/// @alias function-basic
+@function function-alias() {
+  @return function-basic();
+}
+
+/// This is a deprecated function.
+/// @deprecated Don't use this no more.
+@function function-deprecated() {
+  @warn 'This function has been deprecated!';
+}
+
+/// This is a function with an example.
+/// @example scss - Example usage
+///   function-example(2); // => 4
+@function function-example($n) {
+  @return $n * 2;
+}
+
+/// This is an ignored function.
+/// @ignore
+@function function-ignored() {
+  @return 'nyan';
+}
+
+/// This function requires another function.
+/// @requires {Function} function-basic
+@function function-requires() {
+  @return function-basic();
+}
+
+/// This function has a documented return value.
+/// @returns {String} A string.
+@function function-returns() {
+  @return 'mew';
+}
+
+/// This function throws an error.
+/// @throws An error.
+@function function-throws() {
+  @error 'What have you done?!';
+}
+
+/// This function has all the things.
+///
+/// @param {String} $typed
+/// @param {String|Number} $typed-multi
+/// @param {Number} $description - This parameter has a description.
+/// @param {String} $default ['bark']
+///
+/// @requires {Function} function-basic
+/// @throws An error.
+///
+/// @example scss - Example usage.
+///   function-kitchensink();
+///
+/// @returns {String} The word "hello".
+@function function-kitchensink($typed, $typed-multi, $description, $default: 'bark') {
+  @return 'hello';
+}
+
+/// This is a mixin with @content
+/// @content Adds a `content` property that says woof.
+@mixin mixin-basic() {
+  content: 'woof';
+  @content;
+}
+
+/// This is a deprecated mixin.
+/// @deprecated Don't use this no more.
+@mixin mixin-deprecated() {
+  @warn 'This function has been deprecated!';
+}
+
+/// This is a mixin with an example.
+/// @example scss - Example usage
+///   .example {
+///     @include mixin-example(blue);
+///   }
+@mixin mixin-example($color) {
+  color: $color
+}
+
+/// This is an ignored mixin.
+/// @ignore
+@mixin mixin-ignored() {
+  @return 'wap';
+}
+
+/// This is a mixin with documented output
+/// @output A blue color property.
+@mixin mixin-output() {
+  color: dodgerblue;
+}
+
+/// This is a mixin with parameters.
+/// @param {String} $typed
+/// @param {String|Number} $typed-multi
+/// @param {Number} $description - This parameter has a description.
+/// @param {String} $default ['bark']
+@mixin mixin-parameters($typed, $typed-multi, $description, $default: 'bark') {
+  color: red;
+}
+
+/// This is a deprecated placeholder.
+/// @deprecated Can't touch this.
+%deprecated-placeholder {
+  content: 'ribbit';
+}
+
+/// This is a placeholder with an example.
+/// @example
+///   .button {
+///     @extend %example-placeholder
+///   }
+%example-placeholder {
+  content: 'ribbit';
+}
+
+/// This is an ignored placeholder.
+/// @ignore
+%ignored-placeholder {
+  content: 'ribbit';
+}

@@ -1,0 +1,7 @@
+/// This function has parameters.
+/// @param {String} $typed
+/// @param {String|Number} $typed-multi
+/// @param {Number} $description - This parameter has a description.
+/// @param {String} $default ['bark']
+@function parameters($typed, $typed-multi, $description, $default: 'bark') {
+}

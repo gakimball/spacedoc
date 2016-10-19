@@ -1,72 +1,9 @@
 {
-  "name": "spacedoc",
-  "version": "0.0.1",
-  "description": "Documentation generator that can combine data from multiple parsers, such as SassDoc and JSDoc.",
-  "keywords": [
-    "documentation",
-    "generator",
-    "sassdoc",
-    "jsdoc"
-  ],
-  "main": "index.js",
-  "bin": {
-    "spacedoc": "./bin/spacedoc.js"
-  },
-  "directories": {
-    "test": "test"
-  },
   "scripts": {
-    "clean": "rm -rf docs",
-    "docs": "node ./bin/spacedoc.js",
-    "predocs": "npm run clean",
-    "server": "lite-server",
-    "start": "npm run docs & npm run server",
-    "test": "mocha"
-  },
-  "author": "Geoff Kimball <geoff@geoffkimball.com> (http://geoffkimball.com)",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/spacedoc/spacedoc.git"
-  },
-  "bugs": {
-    "url": "https://github.com/spacedoc/spacedoc/issues"
-  },
-  "dependencies": {
-    "chalk": "^1.1.1",
-    "escape-html": "^1.0.3",
-    "front-matter": "^2.1.0",
-    "glob": "^7.0.5",
-    "glob-parent": "^3.0.0",
-    "gulp-util": "^3.0.7",
-    "highlight.js": "^9.6.0",
-    "is-empty-object": "^1.1.1",
-    "js-yaml": "^3.4.3",
-    "jsdoc-api": "^2.0.1",
-    "lodash.filter": "^4.6.0",
-    "lodash.findindex": "^4.6.0",
-    "marked": "^0.3.2",
-    "mkdirp": "^0.5.1",
-    "pug": "^2.0.0-beta5",
-    "replace-basename": "^1.0.0",
-    "replace-ext": "^1.0.0",
-    "rimraf": "^2.2.8",
-    "sassdoc": "^2.0.0-rc.17",
-    "spacedoc-helpers": "^0.1.0",
-    "strip-indent": "^2.0.0",
-    "through2": "^2.0.1",
-    "transform-markdown-links": "^1.0.0",
-    "vinyl": "^1.1.1",
-    "vinyl-fs": "^2.4.3"
+    "bootstrap": "lerna bootstrap",
+    "test": "lerna run test"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
-    "chai-as-promised": "^6.0.0",
-    "cheerio": "^0.22.0",
-    "jstransformer-marked": "^1.0.1",
-    "lite-server": "^2.2.2",
-    "mocha": "^3.0.2",
-    "sinon": "^1.17.5",
-    "sinon-chai": "^2.8.0"
+    "lerna": "2.0.0-beta.30"
   }
 }

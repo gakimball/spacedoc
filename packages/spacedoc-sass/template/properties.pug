@@ -1,0 +1,19 @@
+mixin properties(props)
+  if props
+    section
+      h6= Properties
+      table
+        thead: tr
+          td Name
+          td Type
+          td Default
+          td Description
+        tbody
+          each prop in props
+            tr
+              td= prop.name
+              td!= helpers.type(prop.type)
+              td
+                if prop.default
+                  code= prop.default
+              td!= helpers.markdown(prop.description)

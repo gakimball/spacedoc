@@ -1,0 +1,10 @@
+include ./code.pug
+
+mixin examples(examples)
+  if examples
+    section
+      h6 Examples
+      each example in examples
+        section
+          p!= helpers.markdown(example.description)
+          +code(example.code)

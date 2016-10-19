@@ -1,0 +1,6 @@
+mixin throws(throws)
+  if throws
+    h6 Throws
+    ul
+      each thr in throws
+        li <code>#{helpers.type(thr.type)}</code> !{helpers.markdown(thr.description)}

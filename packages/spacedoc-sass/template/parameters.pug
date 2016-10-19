@@ -1,0 +1,19 @@
+mixin parameters(params)
+  if params
+    section
+      h6= Parameters
+      table
+        thead: tr
+          td Name
+          td Type
+          td Default
+          td Description
+        tbody
+          each param in params
+            tr
+              td= param.name
+              td!= helpers.type(param.type)
+              td
+                if param.default
+                  code= param.default
+              td!= helpers.markdown(param.description)

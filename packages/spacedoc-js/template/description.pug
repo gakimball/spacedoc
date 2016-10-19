@@ -1,0 +1,6 @@
+mixin description(item)
+  section
+    if item.kind === 'class'
+      != helpers.markdown(item.classdesc)
+    else
+      != helpers.markdown(item.description)

@@ -1,0 +1,6 @@
+include ./code
+
+mixin sample(item)
+  - var sampleText = helpers.sample(item)
+  if sampleText
+    +code(sampleText)

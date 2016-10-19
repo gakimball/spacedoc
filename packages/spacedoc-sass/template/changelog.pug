@@ -1,0 +1,7 @@
+mixin changelog(since)
+  if since
+    section
+      h6 Changelog
+      ul
+        each snc in since
+          li <strong>#{snc.version}</strong> !{helpers.markdown(snc.description)}

@@ -1,0 +1,23 @@
+/// This function has it all.
+///
+/// @param {String} $typed
+/// @param {String|Number} $typed-multi
+/// @param {Number} $description - This parameter has a description.
+/// @param {String} $default ['bark']
+///
+/// @requires {Function} function-basic
+/// @throws An error.
+///
+/// @example scss - Example usage.
+///   function-kitchensink();
+///
+/// @since 2.0 Deprecated.
+/// @since 1.0 Added.
+///
+/// @deprecated Don't use this.
+///
+/// @throws Some kind of error.
+/// @returns {String} The word "hello".
+@function function-kitchensink($typed, $typed-multi, $description, $default: 'bark') {
+  @return 'hello';
+}

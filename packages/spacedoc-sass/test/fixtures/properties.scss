@@ -1,0 +1,12 @@
+/// This variable has properties.
+/// @type Map
+/// @prop {String} typed
+/// @prop {String|Number} typed-multi
+/// @prop {Number} description - This property has a description.
+/// @prop {String} default ['bark']
+$properties: (
+  typed: 'woof',
+  typed-multi: 0,
+  description: 'yap',
+  default: 'bark',
+);

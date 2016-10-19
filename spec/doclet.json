@@ -1,0 +1,346 @@
+{
+  "type": "object",
+  "properties": {
+    "meta": {
+      "description": "General info on the doclet.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Standalone name.",
+          "type": "string"
+        },
+        "longname": {
+          "description": "Namepath.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Doclet category.",
+          "type": "string"
+        },
+        "description": {
+          "description": "General description.",
+          "type": "string"
+        },
+        "code": {
+          "description": "Code metadata.",
+          "type": "object",
+          "properties": {
+            "contents": {
+              "description": "Body of doclet's code, without the comments.",
+              "type": "string"
+            },
+            "comment": {
+              "description": "Doclet code being parsed.",
+              "type": "string"
+            },
+            "start": {
+              "description": "Line the code starts on.",
+              "type": "number"
+            },
+            "end": {
+              "description": "Line the code ends on.",
+              "type": "number"
+            },
+            "commentStart": {
+              "description": "Line the comment block starts on.",
+              "type": "number"
+            },
+            "commentEnd": {
+              "description": "Line the comment block ends on.",
+              "type": "number"
+            }
+          }
+        },
+        "file": {
+          "description": "File info.",
+          "type": "object",
+          "properties": {
+            "path": {
+              "description": "Full path to file.",
+              "type": "string"
+            },
+            "name": {
+              "description": "Basename and extension of file.",
+              "type": "string"
+            }
+          }
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "types": {
+      "description": "Types of doclet.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "value": {
+      "description": "Value of doclet.",
+      "type": "string"
+    },
+    "memberof": {
+      "description": "Parent of doclet.",
+      "type": "string"
+    },
+    "alias": {
+      "description": "Item for which this doclet is an alias.",
+      "type": "string"
+    },
+    "aliased": {
+      "description": "Items which are aliases for this doclet.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "ignore": {
+      "description": "Doclet should be ignored by the parser.",
+      "type": "boolean",
+      "default": false
+    },
+    "access": {
+      "description": "Visibility of doclet.",
+      "type": "string"
+    },
+    "deprecated": {
+      "description": "Message explaining deprecation of doclet.",
+      "type": "string"
+    },
+    "this": {
+      "description": "The value of the \"this\" keyword within the doclet.",
+      "type": "string"
+    },
+    "parameters": {
+      "description": "Parameters accepted by a function.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "Parameter name.",
+            "type": "string"
+          },
+          "types": {
+            "description": "Valid types for parameter.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "description": {
+            "description": "Explanation of parameter.",
+            "type": "string"
+          },
+          "default": {
+            "description": "Default value.",
+            "type": "string"
+          },
+          "nullable": {
+            "description": "Parameter value can be null.",
+            "type": "boolean",
+            "default": false
+          },
+          "variable": {
+            "description": "Parameter can consist of multiple trailing values.",
+            "type": "boolean",
+            "default": false
+          },
+          "optional": {
+            "description": "Parameter is optional",
+            "type": "boolean",
+            "default": false
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "properties": {
+        "description": "Properties of an object or map.",
+        "properties": {
+          "name": {
+            "description": "Parameter name.",
+            "type": "string"
+          },
+          "types": {
+            "description": "Valid types for parameter.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "description": {
+            "description": "Explanation of parameter.",
+            "type": "string"
+          },
+          "default": {
+            "description": "Default value.",
+            "type": "string"
+          },
+          "nullable": {
+            "description": "Parameter value can be null.",
+            "type": "boolean",
+            "default": false
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "requires": {
+        "description": "Dependencies of doclet.",
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "requiredBy": {
+        "description": "Items doclet is a dependency of.",
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "throws": {
+        "description": "Errors or exceptions doclet can throw.",
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "description": "Type of error.",
+              "type": "string"
+            },
+            "description": {
+              "description": "Explanation of error.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "description"
+          ]
+        }
+      },
+      "examples": {
+        "description": "Code samples of doclet in use.",
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "language": {
+              "description": "Language of code sample.",
+              "type": "string"
+            },
+            "code": {
+              "description": "Body of code sample.",
+              "type": "string"
+            },
+            "description": {
+              "description": "Explanation of code sample.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "code"
+          ]
+        }
+      },
+      "returns": {
+        "description": "Return value of doclet.",
+        "type": "object",
+        "properties": {
+          "types": {
+            "description": "Possible return value types.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "description": {
+            "description": "Explanation of return value.",
+            "type": "string"
+          }
+        }
+      },
+      "links": {
+        "description": "External links related to doclet.",
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "description": "Link destination.",
+              "type": "string"
+            },
+            "description": {
+              "description": "Link text.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "url"
+          ]
+        }
+      },
+      "changelog": {
+        "description": "Changes to doclet.",
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "version": {
+              "description": "Version number of change.",
+              "type": "string"
+            },
+            "description": {
+              "description": "Explanation of change.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "version",
+            "description"
+          ]
+        }
+      },
+      "fires": {
+        "description": "Events this doclet fires.",
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "listens": {
+        "description": "Events this doclet listens for.",
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "extends": {
+        "description": "Items this doclet extends or augments.",
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "groups": {
+        "description": "Groups the doclet is a member of.",
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "outputs": {
+        "description": "Doclet outputs specific content.",
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "meta"
+  ]
+}

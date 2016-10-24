@@ -24,15 +24,12 @@ module.exports = function addAdapter(name) {
     }
 
     catch (e) {
-      return;
+      throw new Error(`Couldn\'t load an adapter named "${name}". Make sure you have a module called "spacedoc-${name}" installed.`);
     }
   }
 
   const adapter = require(adapterPath);
-  const template = path.join(path.dirname(adapterPath), 'template/index.pug');
-
-  this.adapters[adapter.name] = adapter;
-  this.adapters[adapter.name].template = pug.compileFile(template);
+  this.adapters[adapter.adapterName] = adapter;
 
   return this;
 }

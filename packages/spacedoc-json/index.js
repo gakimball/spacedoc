@@ -24,6 +24,8 @@ module.exports = (value, config = {}) => {
   });
 }
 
+module.exports.adapterName = 'json';
+
 /**
  * Parse an item within a JSON Schema, transferring its common properties to Spacdoc's doclet standard. If the item is an array of object, and defines sub-properties, those sub-properties will be recursively parsed.
  * @param {Object} item - JSON Schema.

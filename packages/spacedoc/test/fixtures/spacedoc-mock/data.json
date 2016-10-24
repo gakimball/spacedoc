@@ -1,7 +1,0 @@
-[
-  { "group": "cat", "value": "Maru" },
-  { "group": "cat", "value": "Lil BUB" },
-  { "group": "cat", "value": "Grumpy Cat", "private": true },
-  { "group": "dog", "value": "Marnie" },
-  { "group": "dog", "value": "Mikki" }
-]

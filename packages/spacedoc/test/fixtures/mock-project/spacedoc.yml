@@ -1,5 +1,3 @@
-adapters:
-  - mock
 src: ./*.md
 dest: ../_build
 silent: true

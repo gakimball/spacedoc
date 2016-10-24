@@ -97,7 +97,7 @@ describe('Spacedoc.buildSearch()', () => {
         data = JSON.parse(data);
 
         expect(data).to.be.an('array');
-        expect(data).to.have.length(5);
+        expect(data).to.have.length(2); // 1 page + 1 doclet
       });
     });
   });
@@ -119,7 +119,7 @@ describe('Spacedoc.buildSearch()', () => {
         data = JSON.parse(data);
 
         expect(data).to.be.an('array');
-        expect(data).to.have.length(5 + 2); // 2 extra results in the YML file
+        expect(data).to.have.length(2 + 2); // 2 extra results in the YML file
       });
     });
   });

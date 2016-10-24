@@ -28,6 +28,3 @@ module.exports._instance = sd;
 
 // Standalone class
 module.exports.Spacedoc = Spacedoc;
-
-// Template helper
-module.exports.helper = require('./lib/util/helper');

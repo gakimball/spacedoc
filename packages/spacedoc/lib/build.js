@@ -1,4 +1,5 @@
-const createHelper = require('./util/helper');
+const filter = require('lodash.filter');
+const fromPairs = require('lodash.fromPairs');
 const path = require('path');
 const yaml = require('js-yaml');
 const helpers = require('spacedoc-helpers');
@@ -18,17 +19,20 @@ module.exports = function build(data = {}) {
     console.warn(`Spacedoc: alternate layouts cannot be used if only a single template was passed to Spacedoc.config(). (Layout set by ${data.fileName})`);
   }
 
-  // Create a function to access documentation data for a specific adapter.
-  // It's used in the Pug template like this: `spacedoc('adapterName')`
-  const helper = createHelper.call(this, data);
-
   // Use a page-defined layout or the default one
   const layout = this.multiTemplate ? (data.layout || 'default') : 'default';
 
   // Extend file data with global data and template locals
   data = Object.assign({}, this.options.data, data, {
-    spacedoc: helper,
-    helpers,
+    helpers: Object.assign({
+      find: (scope, predicate = {}) => {
+        if (scope in data.docs) {
+          return filter(data.docs[scope], predicate);
+        }
+        return []
+      }
+    }, helpers),
+    categories: fromPairs(Object.keys(this.adapters).map(a => [a, this.adapters[a].order])),
     site: Object.assign({}, this.options.site, {
       pages: this.tree,
     }),

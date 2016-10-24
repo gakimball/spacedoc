@@ -1,0 +1,10 @@
+mixin throws(throws)
+  if throws && throws.length
+    section
+      h6 Throws
+      ul
+        each thr in throws
+          if thr.types
+            li <code>#{thr.types.join(', ')}</code> #{helpers.markdown(thr.description)}
+          else
+            li!= helpers.markdown(thr.description, true)

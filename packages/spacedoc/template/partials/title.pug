@@ -1,0 +1,6 @@
+mixin title(item, sub)
+  - const tag = sub ? 'h4': 'h3';
+  if item.meta.type
+    #{tag} #{item.meta.type}: #{item.meta.name}
+  else
+    #{tag} item.meta.name

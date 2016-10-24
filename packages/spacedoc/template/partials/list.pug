@@ -1,0 +1,10 @@
+include ./item
+
+mixin list(items, type, categories)
+  if categories
+    each cat in categories
+      each itm in helpers.find(type, ['meta.type', cat])
+        +item(itm)
+  else
+    each itm in items
+      +item(itm)

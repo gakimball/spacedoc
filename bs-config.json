@@ -1,6 +1,6 @@
 {
   "port": 3000,
-  "files": "_docs/**/*",
+  "files": "test/*.md",
   "server": {
     "baseDir": "./docs"
   }

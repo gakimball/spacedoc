@@ -1,5 +1,5 @@
 mixin properties(props)
-  if props
+  if props && props.length
     section
       h6= Properties
       table
@@ -12,8 +12,8 @@ mixin properties(props)
           each prop in props
             tr
               td= prop.name
-              td!= helpers.type(prop.type)
+              td!= prop.types.join(', ')
               td
                 if prop.default
                   code= prop.default
-              td!= helpers.markdown(prop.description)
+              td!= helpers.markdown(prop.description, true)

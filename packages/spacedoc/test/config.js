@@ -3,8 +3,7 @@ const { Spacedoc } = require('..');
 
 describe('Spacedoc.config()', () => {
   it('sets configuration settings', () => {
-    let s = new Spacedoc();
-    s = s.config({
+    let s = new Spacedoc().config({
       src: 'src',
       dest: 'dest'
     });
@@ -15,10 +14,9 @@ describe('Spacedoc.config()', () => {
   });
 
   it('loads from a specific file', () => {
-    const s = new Spacedoc();
-    s.config('test/fixtures/mock-project/spacedoc.yml');
+    const s = new Spacedoc().config('test/fixtures/mock-project/spacedoc.yml');
 
-    expect(s.options.adapters).to.eql(['mock']);
+    expect(s.options.src).to.equal('./*.md');
   });
 
   describe('automatic config loading', () => {
@@ -30,30 +28,26 @@ describe('Spacedoc.config()', () => {
     after(() => process.chdir(oldDir));
 
     it('tries to load a spacedoc.yml in the current directory', () => {
-      const s = new Spacedoc();
-      s.config();
+      const s = new Spacedoc().config();
 
-      expect(s.options.adapters).to.eql(['mock']);
+      expect(s.options.src).to.equal('./*.md');
     });
   });
 
   it('loads adapters', () => {
-    const s = new Spacedoc();
-    s.config({ adapters: ['test/fixtures/spacedoc-mock'] });
+    const s = new Spacedoc().config({ adapters: ['test/fixtures/spacedoc-mock'] });
 
-    expect(s.adapters.mock).to.be.an('object');
+    expect(s.adapters.mock).to.be.a('function');
   });
 
   it('loads the default template', () => {
-    let s = new Spacedoc();
-    s = s.config();
+    let s = new Spacedoc().config();
 
     expect(s.templates.default).to.be.a('function');
   });
 
   it('loads a Pug template', () => {
-    let s = new Spacedoc();
-    s = s.config({
+    let s = new Spacedoc().config({
       src: 'src',
       dest: 'dest',
       template: 'test/fixtures/template.pug'
@@ -63,8 +57,7 @@ describe('Spacedoc.config()', () => {
   });
 
   it('loads a pug template folder', () => {
-    const s = new Spacedoc();
-    s.config({
+    const s = new Spacedoc().config({
       template: 'test/fixtures/template',
     });
 
@@ -82,8 +75,7 @@ describe('Spacedoc.config()', () => {
   });
 
   it('allows a pre-made template function to be used', () => {
-    const s = new Spacedoc();
-    s.config({
+    const s = new Spacedoc().config({
       template: () => 'test'
     });
 
@@ -91,8 +83,7 @@ describe('Spacedoc.config()', () => {
   });
 
   it('loads JSON data from search config', () => {
-    const s = new Spacedoc();
-    s.config({
+    const s = new Spacedoc().config({
       search: { extra: 'test/fixtures/search.json' }
     });
 
@@ -101,8 +92,7 @@ describe('Spacedoc.config()', () => {
   });
 
   it('loads YAML data from search config', () => {
-    const s = new Spacedoc();
-    s.config({
+    const s = new Spacedoc().config({
       search: { extra: 'test/fixtures/search.yml' }
     });
 

@@ -28,8 +28,13 @@ function highlight(code = '') {
  * @param {String=} text - Markdown text.
  * @returns {String} Converted HTML.
  */
-function markdown(text = '') {
-  return marked(text);
+function markdown(text = '', inline = false) {
+  const output = marked(text);
+
+  if (inline) {
+    return output.replace(/^<p>/, '').replace(/<\/p>$/, '');
+  }
+  return output;
 }
 
 /**

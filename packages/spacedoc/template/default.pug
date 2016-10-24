@@ -1,4 +1,5 @@
 extends ./_layout.pug
+include ./partials/list.pug
 
 block body
   .row
@@ -11,7 +12,14 @@ block body
         hr
         != body
         hr
-        != spacedoc('sass')
-        != spacedoc('js')
+        if docs.sass
+          h2 Sass Reference
+          +list(docs.sass, 'sass', categories.sass)
+        if docs.js
+          h2 JavaScript Reference
+          +list(docs.js, 'js', categories.js)
+        if docs.json
+          h2 JSON Reference
+          +list(docs.json, 'json', categories.json)
     .medium-4.medium-pull-8.columns
       include ./partials/nav.pug

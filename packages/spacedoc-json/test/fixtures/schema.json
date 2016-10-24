@@ -1,0 +1,33 @@
+{
+  "title": "Root",
+  "description": "This is the root of the schema.",
+  "type": "object",
+  "properties": {
+    "title": {
+      "title": "Title",
+      "type": "string"
+    },
+    "descrip": {
+      "description": "This schema has a description."
+    },
+    "multitype": {
+      "type": ["string", "number"]
+    },
+    "default": {
+      "type": "string",
+      "default": "Default"
+    },
+    "kitchensink": {
+      "title": "Kitchen Sink",
+      "description": "This schema has everything.",
+      "type": "string",
+      "default": "Hello"
+    },
+    "array": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

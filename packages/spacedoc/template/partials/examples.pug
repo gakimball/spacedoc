@@ -1,7 +1,7 @@
 include ./code.pug
 
 mixin examples(examples)
-  if examples
+  if examples && examples.length
     section
       h6 Examples
       each example in examples

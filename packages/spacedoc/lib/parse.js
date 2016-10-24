@@ -146,5 +146,7 @@ module.exports = function parse(file, opts = {}) {
     }
 
     return page;
+  }).catch(err => {
+    console.log(err);
   });
 }

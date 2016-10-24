@@ -57,10 +57,18 @@ module.exports = function buildSearch(outFile = this.options.search.dest) {
       tags: item.tags || []
     });
 
-    // Run search builders for each adapter
+    // Generate search results for each doclet
     for (let a in this.adapters) {
-      if (this.adapters[a].search && item.docs[a]) {
-        results = results.concat(flatten(item.docs[a]).map(v => this.adapters[a].search(v, link)));
+      const doclets = item.docs[a];
+
+      if (Array.isArray(doclets)) {
+        results.push.apply(results, flatten(doclets).map(v => ({
+          type: `${a} ${v.meta.type}`,
+          name: v.meta.name,
+          description: v.meta.description,
+          link: link,
+          tags: item.tags || [],
+        })));
       }
     }
   }

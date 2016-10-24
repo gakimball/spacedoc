@@ -22,24 +22,11 @@ module.exports = function parseDocs(adapters = {}) {
     );
 
     return new Promise((resolve, reject) => {
-      parseDataFromAdapter(Adapter, adapters[lib], config)
+      Adapter(adapters[lib], config)
         .then(data => resolve({ adapter: lib, data: data }))
         .catch(e => reject(e));
     });
   });
 
   return Promise.all(parsers);
-}
-
-/**
- * Given an adapter class and the raw data from that adapter, filter and group the items.
- * @private
- * @param {Class} adapter - Adapter class.
- * @param {Object[]} items - Items to process.
- * @returns {Object.<String, Object>} Sorted and filtered documentation data.
- */
-function parseDataFromAdapter(Adapter, value, config) {
-  return Adapter.parse(value, config).then(items => {
-    return items.filter(item => !Adapter.filter(item));
-  });
 }

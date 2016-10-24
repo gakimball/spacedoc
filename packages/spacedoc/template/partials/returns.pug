@@ -1,0 +1,5 @@
+mixin returns(ret)
+  if ret
+    section
+      h6 Returns
+      p <code>#{ret.types.join(', ')}</code> !{helpers.markdown(ret.description, true)}

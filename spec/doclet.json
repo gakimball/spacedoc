@@ -77,6 +77,10 @@
         "type": "string"
       }
     },
+    "preview": {
+      "description": "Code snippet.",
+      "type": "string"
+    },
     "value": {
       "description": "Value of doclet.",
       "type": "string"

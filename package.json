@@ -1,10 +1,12 @@
 {
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "test": "lerna run test"
+    "test": "lerna run test",
+    "test:template": "./packages/spacedoc/bin/spacedoc.js --config test/spacedoc.yml & lite-server"
   },
   "devDependencies": {
     "lerna": "2.0.0-beta.30",
+    "lite-server": "^2.2.2",
     "mocha": "^3.1.2"
   }
 }

@@ -1,0 +1,26 @@
+include ./title.pug
+include ./types.pug
+include ./deprecated.pug
+include ./parameters.pug
+include ./properties.pug
+include ./returns.pug
+include ./throw.pug
+include ./outputs.pug
+include ./examples.pug
+include ./changelog.pug
+
+mixin item(item, sub)
+  section.sd-doclet
+    +title(item, sub)
+    +types(item.types)
+    if item.preview
+      +code(item.preview)
+    +deprecated(item.deprecated)
+    != helpers.markdown(item.meta.description)
+    +parameters(item.parameters)
+    +properties(item.properties)
+    +returns(item.returns)
+    +throws(item.throws)
+    +outputs(item.outputs)
+    +examples(item.examples)
+    +changelog(item.changelog)

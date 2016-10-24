@@ -1,0 +1,26 @@
+Error in configuring Spacedoc:
+  No file called spacedoc.yml was found in the current folder.
+  If you'd like to use a different file to configure Spacedoc,
+  pass the --config flag to the CLI like so:
+  spacedoc --config kittens.yml
+
+  No file called %s was found in the current folder. Make
+  sure the file you're passing to spacedoc --config is spelled
+  right. Or, you can remove the --config flag and Spacedoc
+  will try to load a file called spacedoc.yml instead.
+
+  config() was called without any parameters, so Spacedoc tried
+  to load a file called spacedoc.yml, but couldn't find it. Make
+  sure your configuration file is named spacedoc.yml.
+  Alternatively, you can:
+    - Pass in the path to your custom config file.
+      spacedoc.config('kittens.yml')
+    - Pass in a JavaScript object of config settings.
+      spacedoc.config({ src: 'docs/*.md', ... })
+
+  config() was called with the file path %s, but that file couldn't
+  be loaded. Make sure the path is spelled correctly. You can also
+  name your config file spacedoc.yml and call config() with no
+  parameters.
+
+  You loaded the template 

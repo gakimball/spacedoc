@@ -1,5 +1,5 @@
 mixin parameters(params)
-  if params
+  if params && params.length
     section
       h6= Parameters
       table
@@ -12,8 +12,8 @@ mixin parameters(params)
           each param in params
             tr
               td= param.name
-              td!= helpers.type(param.type)
+              td!= param.types.join(', ')
               td
                 if param.default
                   code= param.default
-              td!= helpers.markdown(param.description)
+              td!= helpers.markdown(param.description, true)

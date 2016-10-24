@@ -45,6 +45,7 @@
     "jsdoc-api": "^2.0.1",
     "lodash.filter": "^4.6.0",
     "lodash.findindex": "^4.6.0",
+    "lodash.frompairs": "^4.0.1",
     "marked": "^0.3.2",
     "mkdirp": "^0.5.1",
     "pug": "^2.0.0-beta5",

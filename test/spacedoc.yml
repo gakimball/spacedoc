@@ -1,5 +1,5 @@
 src: test/index.md
-dest: docs
+dest: _build
 adapters:
   - ./packages/spacedoc-json
   - ./packages/spacedoc-sass

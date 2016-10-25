@@ -1,6 +1,7 @@
 ---
 title: Spacedoc Test
 docs:
+  js: packages/spacedoc-js/test/fixtures/*.js
   json: packages/spacedoc-json/test/fixtures/schema.json
   sass: packages/spacedoc-sass/test/fixtures/*.scss
 ---

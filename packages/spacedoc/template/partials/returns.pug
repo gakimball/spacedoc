@@ -4,4 +4,7 @@ mixin returns(ret)
   if ret
     section
       h6 Returns
-      p <code>#{ret.types.join(', ')}</code> !{spacedoc.markdown(ret.description, true)}
+      if ret.types && ret.types.length
+        p <code>#{ret.types.join(', ')}</code> !{spacedoc.markdown(ret.description, true)}
+      else
+        p!= spacedoc.markdown(ret.description, true)

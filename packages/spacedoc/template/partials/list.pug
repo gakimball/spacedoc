@@ -2,14 +2,27 @@ include ./item
 
 //- Render a list of doclets. If the doclets came from an adapter that defines types for doclets, then they will be arranged in the order of those types.
 //- @param {String} adapter - Adapter doclets to render.
-mixin list(adapter)
+//- @param {String} parent - Parent doclet. Setting this will only render doclets with the parent set.
+mixin list(adapter, parent)
+  - const sub = !!parent
   - const order = spacedoc.adapters[adapter].order
-  - const items = page.docs[adapter]
+  - const items = parent ? spacedoc.find(adapter, ['parent', parent]) : page.docs[adapter]
 
   if order
     each cat in order
-      each itm in spacedoc.find(adapter, ['meta.type', cat])
-        +item(itm)
+      if parent
+        each itm in spacedoc.find(adapter, { meta: { type: cat }, parent: parent })
+          +item(itm, sub)
+            +list(adapter, itm.meta.longname)
+      else
+        each itm in spacedoc.find(adapter, ['meta.type', cat])
+          +item(itm, sub)
+            +list(adapter, itm.meta.longname)
+
   else
-    each itm in page.docs[adapter]
-      +item(itm)
+    if parent
+      each itm in spacedoc.find(adapter, ['parent', parent])
+        +item(itm, sub)
+    else
+      each itm in page.docs[adapter]
+        +item(itm, sub)

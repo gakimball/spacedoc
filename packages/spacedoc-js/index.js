@@ -8,7 +8,8 @@ const path = require('path');
  * @returns {SpacedocDoclet[]} Spacedoc doclets.
  */
 module.exports = function(value) {
-  return jsdoc.explain({ files: value }).then(items => items.map(parseItem));
+  return jsdoc.explain({ files: value })
+    .then(items => items.filter(item => item.kind !== 'package').map(parseItem));
 }
 
 module.exports.adapterName = 'js';

@@ -1,3 +1,5 @@
+//- Render the allowed types of a doclet.
+//- @param {String[]} types - Types.
 mixin types(types)
   if types && types.length
     p <strong>Type:</strong> #{types.join(', ')}

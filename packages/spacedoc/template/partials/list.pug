@@ -1,5 +1,10 @@
 include ./item
 
+//- Render a list of doclets. If the doclets came from an adapter that defines types for doclets, then they will be arranged in the order of those types.
+//- @param {Object[]} items - Doclets to render.
+//- @param {String} type - Adapter the doclets came from.
+//- @param {?String[]} categories - Groups to list doclets by.
+//- @todo Find a way to simplify this call. Perhaps allow the adapter to define the signature of the mixin call?
 mixin list(items, type, categories)
   if categories
     each cat in categories

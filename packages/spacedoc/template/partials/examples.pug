@@ -1,5 +1,7 @@
 include ./code.pug
 
+//- Render a series of code examples related to an item.
+//- @param {Object[]} examples - Code examples.
 mixin examples(examples)
   if examples && examples.length
     section

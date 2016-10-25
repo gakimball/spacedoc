@@ -1,3 +1,8 @@
+//- Render the title of a doclet.
+//- For doclets rendered as a child of another one (e.g., a method within a class), the heading level is lowered from 3 to 4.
+//- If the item has a type (e.g., "function", "variable", "class"), the type is displayed before the name of the item.
+//- @param {SpacedocDoclet} item - Full doclet definition.
+//- @param {?Boolean} sub - If doclet is a child of another.
 mixin title(item, sub)
   - const tag = sub ? 'h4': 'h3';
   if item.meta.type

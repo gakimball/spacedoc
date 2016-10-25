@@ -9,6 +9,9 @@ include ./outputs.pug
 include ./examples.pug
 include ./changelog.pug
 
+//- Render the contents of a single doclet.
+//- @param {Object} item - Doclet.
+//- @param {?Boolean} sub - If doclet is nested inside of another doclet. This changes the heading tag used for the doclet title.
 mixin item(item, sub)
   section.sd-doclet
     +title(item, sub)

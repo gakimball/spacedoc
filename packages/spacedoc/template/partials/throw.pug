@@ -7,6 +7,6 @@ mixin throws(throws)
       ul
         each thr in throws
           if thr.types
-            li <code>#{thr.types.join(', ')}</code> #{helpers.markdown(thr.description)}
+            li <code>#{thr.types.join(', ')}</code> #{spacedoc.markdown(thr.description)}
           else
-            li!= helpers.markdown(thr.description, true)
+            li!= spacedoc.markdown(thr.description, true)

@@ -28,6 +28,7 @@ describe('Spacedoc.init()', () => {
 
     vfs.src('test/fixtures/example.md')
       .pipe(s.init())
+      .on('error', done)
       .on('data', function(file) {
         expect(file.path).to.contain('.html');
         expect(file.contents.toString()).to.contain('<h2');

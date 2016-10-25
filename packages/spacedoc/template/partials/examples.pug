@@ -8,5 +8,5 @@ mixin examples(examples)
       h6 Examples
       each example in examples
         section
-          p!= helpers.markdown(example.description)
+          p!= spacedoc.markdown(example.description)
           +code(example.code)

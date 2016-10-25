@@ -18,4 +18,4 @@ mixin properties(props)
               td
                 if prop.default
                   code= prop.default
-              td!= helpers.markdown(prop.description, true)
+              td!= spacedoc.markdown(prop.description, true)

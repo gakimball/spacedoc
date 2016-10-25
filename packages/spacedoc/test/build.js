@@ -22,7 +22,7 @@ describe('Spacedoc.build()', () => {
   it('adds global data to the template context', () => {
     const s = new Spacedoc();
     s.config({
-      template: 'test/fixtures/template-simple.pug',
+      template: 'test/fixtures/template-global.pug',
       data: { kitty: 'kitty' }
     });
 

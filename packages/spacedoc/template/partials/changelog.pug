@@ -6,4 +6,4 @@ mixin changelog(since)
       h6 Changelog
       ul
         each snc in since
-          li <strong>#{snc.version}</strong> !{helpers.markdown(snc.description, true)}
+          li <strong>#{snc.version}</strong> !{spacedoc.markdown(snc.description, true)}

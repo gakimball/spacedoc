@@ -22,27 +22,37 @@ module.exports = function build(data = {}) {
   // Use a page-defined layout or the default one
   const layout = this.multiTemplate ? (data.layout || 'default') : 'default';
 
-  // Extend file data with global data and template locals
-  data = Object.assign({}, this.options.data, data, {
-    helpers: Object.assign({
+  // Construct object of locals to drop into Pug template
+  const locals = Object.assign({}, this.options.data, {
+    // Page-specific data (includes doclets, page title, page body, etc.)
+    page: data,
+    // Site-wide data, includes list of pages and template-defined globals
+    site: Object.assign({}, this.options.site, {
+      pages: this.tree,
+    }),
+    // Spacedoc helpers, includes Lodash's filter function, the list of adapters, and the contents of the spacedoc-helpers package
+    spacedoc: Object.assign({
+      /**
+       * Find a doclet within a specific adapter's data set.
+       * @param {String} scope - Adapter data to search in.
+       * @param {*} predicate - Argument to pass to `lodash.filter`.
+       * @returns {?Object[]} List of doclets, or `undefined` if none were found.
+       */
       find: (scope, predicate = {}) => {
         if (scope in data.docs) {
           return filter(data.docs[scope], predicate);
         }
-        return []
-      }
+        return [];
+      },
+      adapters: this.adapters,
     }, helpers),
-    categories: fromPairs(Object.keys(this.adapters).map(a => [a, this.adapters[a].order])),
-    site: Object.assign({}, this.options.site, {
-      pages: this.tree,
-    }),
   });
 
   // Render the set layout
   if (layout in this.templates) {
     // Manually catch template errors, because Gulp won't display them
     try {
-      output = this.templates[layout](data);
+      output = this.templates[layout](locals);
     }
     catch (e) {
       console.warn('Spacedoc.build(): ', e);

@@ -1,14 +1,14 @@
-h1= title
-.lead= description
+h1= page.title
+.lead= page.description
 
-!= body
+!= page.body
 
 hr
 
-if sass
+if page.docs.sass
   section
     h2 Using Sass
-    if sass.variable
+    if page.docs.sass.variable
       section
         h3 Variables
         table
@@ -17,7 +17,7 @@ if sass
             th Type
             th Default Value
             th Description
-          each variable in sass.variable
+          each variable in page.docs.sass.variable
             tr
               td: code $#{variable.context.name}
               td= variable.type
@@ -26,10 +26,10 @@ if sass
 
     hr
 
-    if sass.mixin
+    if page.docs.sass.mixin
       section
         h3 Mixins
-        each mixin in sass.mixin
+        each mixin in page.docs.sass.mixin
           section
             h4= mixin.context.name
             p= mixin.description
@@ -49,10 +49,10 @@ if sass
 
     hr
 
-    if sass.mixin
+    if page.docs.sass.mixin
       section
         h3 Mixins
-        each mixin in sass.mixin
+        each mixin in page.docs.sass.mixin
           section
             h4= mixin.context.name
             p= mixin.description

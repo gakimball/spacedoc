@@ -8,20 +8,20 @@ block body
     .medium-8.medium-push-4.columns
       article.column.row
         header
-          h1= title
-          if description
-            p.lead= description
+          h1= page.title
+          if page.description
+            p.lead= page.description
         hr
-        != body
+        != page.body
         hr
-        if docs.sass
+        if page.docs.sass
           h2 Sass Reference
-          +list(docs.sass, 'sass', categories.sass)
-        if docs.js
+          +list(page.docs.sass, 'sass', spacedoc.adapters.sass.order)
+        if page.docs.js
           h2 JavaScript Reference
-          +list(docs.js, 'js', categories.js)
-        if docs.json
+          +list(page.docs.js, 'js', spacedoc.adapters.js.order)
+        if page.docs.json
           h2 JSON Reference
-          +list(docs.json, 'json', categories.json)
+          +list(page.docs.json, 'json', spacedoc.adapters.json.order)
     .medium-4.medium-pull-8.columns
       include ./partials/nav.pug

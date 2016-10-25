@@ -19,7 +19,7 @@ mixin item(item, sub)
     if item.preview
       +code(item.preview)
     +deprecated(item.deprecated)
-    != helpers.markdown(item.meta.description)
+    != spacedoc.markdown(item.meta.description)
     +parameters(item.parameters)
     +properties(item.properties)
     +returns(item.returns)

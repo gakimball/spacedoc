@@ -16,12 +16,12 @@ block body
         hr
         if page.docs.sass
           h2 Sass Reference
-          +list(page.docs.sass, 'sass', spacedoc.adapters.sass.order)
+          +list('sass')
         if page.docs.js
           h2 JavaScript Reference
-          +list(page.docs.js, 'js', spacedoc.adapters.js.order)
+          +list('js')
         if page.docs.json
           h2 JSON Reference
-          +list(page.docs.json, 'json', spacedoc.adapters.json.order)
+          +list('json')
     .medium-4.medium-pull-8.columns
       include ./partials/nav.pug

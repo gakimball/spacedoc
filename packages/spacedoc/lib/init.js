@@ -25,8 +25,8 @@ const vfs = require('vinyl-fs');
  *
  * @example <caption>Use standalone:</caption>
  *   Spacedoc.init({
- *     src: 'docs/*.md',
- *     dest: 'dist'
+ *     input: 'docs/*.md',
+ *     output: 'dist'
  *   })
  *     .on('finish', () => {)
  *       // Parsing finished
@@ -50,15 +50,15 @@ module.exports = function init(opts = {}) {
   }
 
   // Make the destination folder
-  if (this.options.dest) {
-    mkdirp(this.options.dest);
+  if (this.options.output) {
+    mkdirp(this.options.output);
   }
 
   // If `src` was passed, make an ad-hoc stream for processing
-  if (this.options.src) {
+  if (this.options.input) {
     return new Promise((resolve, reject) => {
       vfs
-        .src(this.options.src, { base: this.options.pageRoot })
+        .src(this.options.input, { base: this.options.pageRoot })
         .pipe(transform.apply(this))
         .on('finish', resolve)
         .on('error', reject);
@@ -101,8 +101,8 @@ module.exports = function init(opts = {}) {
           });
 
           // Write new file to disk if necessary
-          if (_this.options.dest) {
-            const filePath = path.join(_this.options.dest, file.path);
+          if (_this.options.output) {
+            const filePath = path.join(_this.options.output, file.path);
 
             // Create parent directory
             mkdirp(path.dirname(filePath));

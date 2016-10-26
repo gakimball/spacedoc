@@ -64,15 +64,15 @@ module.exports = function config(opts = {}) {
 
   // Extend search defaults
   this.options.search = Object.assign({
-    dest: null,
+    output: null,
     extra: [],
     sort: [],
     pageTypes: {}
   }, opts.search || {});
 
   // Try to infer the root directory of pages
-  if (!this.options.pageRoot && this.options.src) {
-    this.options.pageRoot = globParent(this.options.src);
+  if (!this.options.pageRoot && this.options.input) {
+    this.options.pageRoot = globParent(this.options.input);
   }
   else {
     this.options.pageRoot = process.cwd();

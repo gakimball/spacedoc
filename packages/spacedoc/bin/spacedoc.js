@@ -17,7 +17,7 @@ const cli = meow(`
 
 Spacedoc.config(cli.flags.config).init()
   .then(() => {
-    if (Spacedoc._instance.options.search.dest) {
+    if (Spacedoc._instance.options.search.output) {
       return Spacedoc.buildSearch();
     }
   })

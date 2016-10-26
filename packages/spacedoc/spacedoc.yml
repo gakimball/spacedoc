@@ -1,7 +1,7 @@
-src: _docs/**/*
-dest: docs
+input: _docs/**/*
+output: docs
 search:
-  dest: docs/assets/search.json
+  output: docs/assets/search.json
 site:
   title: Spacedoc
   nav:

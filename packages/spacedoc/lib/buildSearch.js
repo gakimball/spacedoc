@@ -18,7 +18,7 @@ const path = require('path');
  * @returns {Promise} Promise which resolves when the search file has been written to disk.
  * @todo Make hashes for search result types configurable
  */
-module.exports = function buildSearch(outFile = this.options.search.dest) {
+module.exports = function buildSearch(outFile = this.options.search.output) {
   if (!outFile) {
     return Promise.reject(new Error('Spacedoc.buildSearch(): must specify a destination file'));
   }

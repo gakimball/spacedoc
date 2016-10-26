@@ -12,7 +12,7 @@ describe('Spacedoc.buildSearch()', () => {
 
   it('works even if search was not configured', () => {
     const s = new Spacedoc().config({
-      src: 'test/fixtures/example.md',
+      input: 'test/fixtures/example.md',
       template: 'test/fixtures/template.pug',
       silent: true
     });
@@ -22,7 +22,7 @@ describe('Spacedoc.buildSearch()', () => {
 
   it('flags generic pages as "page"', () => {
     const s = new Spacedoc().config({
-      src: 'test/fixtures/example.md',
+      input: 'test/fixtures/example.md',
       template: 'test/fixtures/template.pug',
       silent: true
     });
@@ -40,7 +40,7 @@ describe('Spacedoc.buildSearch()', () => {
   it('flags pages with code hooks as "component"', () => {
     const s = new Spacedoc().config({
       adapters: Adapters,
-      src: 'test/fixtures/example.md',
+      input: 'test/fixtures/example.md',
       template: 'test/fixtures/template.pug',
       silent: true
     });
@@ -60,7 +60,7 @@ describe('Spacedoc.buildSearch()', () => {
 
   it('allows for custom page types', () => {
     const s = new Spacedoc().config({
-      src: 'test/fixtures/example.md',
+      input: 'test/fixtures/example.md',
       template: 'test/fixtures/template.pug',
       silent: true,
       search: {
@@ -86,7 +86,7 @@ describe('Spacedoc.buildSearch()', () => {
   it('creates a JSON file of search results', () => {
     const s = new Spacedoc().config({
       adapters: Adapters,
-      src: 'test/fixtures/example.md',
+      input: 'test/fixtures/example.md',
       template: 'test/fixtures/template.pug',
       silent: true
     });
@@ -105,7 +105,7 @@ describe('Spacedoc.buildSearch()', () => {
   it('allows extra external results to be added', () => {
     const s = new Spacedoc().config({
       adapters: Adapters,
-      src: 'test/fixtures/example.md',
+      input: 'test/fixtures/example.md',
       template: 'test/fixtures/template.pug',
       silent: true,
       search: {
@@ -126,11 +126,11 @@ describe('Spacedoc.buildSearch()', () => {
 
   it('can be called without an outFile if one is defined in the config', () => {
     const s = new Spacedoc().config({
-      src: 'test/fixtures/example.md',
+      input: 'test/fixtures/example.md',
       template: 'test/fixtures/template.pug',
       silent: true,
       search: {
-        dest: 'test/fixtures/_build/search.json',
+        output: 'test/fixtures/_build/search.json',
       }
     });
 
@@ -143,7 +143,7 @@ describe('Spacedoc.buildSearch()', () => {
 
   it('throws an error if called without an outFile, but one is not defined in config', () => {
     const s = new Spacedoc().config({
-      src: 'test/fixtures/example.md',
+      input: 'test/fixtures/example.md',
       template: 'test/fixtures/template.pug',
       silent: true,
     });

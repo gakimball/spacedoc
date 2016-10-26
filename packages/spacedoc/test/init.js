@@ -8,9 +8,8 @@ describe('Spacedoc.init()', () => {
   it('parses and builds a documentation page', () => {
     const s = new Spacedoc();
     s.config({
-      src: 'test/fixtures/example.md',
-      dest: 'test/fixtures/_build',
-      template: 'test/fixtures/template.pug',
+      input: 'test/fixtures/example.md',
+      output: 'test/fixtures/_build',
       silent: true
     });
 
@@ -39,7 +38,7 @@ describe('Spacedoc.init()', () => {
   it('resets the internal data tree on each build', () => {
     const s = new Spacedoc();
     s.config({
-      src: 'test/fixtures/example.md',
+      input: 'test/fixtures/example.md',
       template: 'test/fixtures/template.pug',
       silent: true
     });
@@ -52,7 +51,7 @@ describe('Spacedoc.init()', () => {
   it('allows for incremental builds', () => {
     const s = new Spacedoc();
     s.config({
-      src: 'test/fixtures/example.md',
+      input: 'test/fixtures/example.md',
       template: 'test/fixtures/template.pug',
       silent: true
     });

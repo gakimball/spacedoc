@@ -4,19 +4,19 @@ const { Spacedoc } = require('..');
 describe('Spacedoc.config()', () => {
   it('sets configuration settings', () => {
     let s = new Spacedoc().config({
-      src: 'src',
-      dest: 'dest'
+      input: 'src',
+      output: 'dest'
     });
 
     expect(s).to.be.an.instanceOf(Spacedoc);
-    expect(s.options.src).to.equal('src');
-    expect(s.options.dest).to.equal('dest');
+    expect(s.options.input).to.equal('src');
+    expect(s.options.output).to.equal('dest');
   });
 
   it('loads from a specific file', () => {
     const s = new Spacedoc().config('test/fixtures/mock-project/spacedoc.yml');
 
-    expect(s.options.src).to.equal('./*.md');
+    expect(s.options.input).to.equal('./*.md');
   });
 
   describe('automatic config loading', () => {
@@ -30,7 +30,7 @@ describe('Spacedoc.config()', () => {
     it('tries to load a spacedoc.yml in the current directory', () => {
       const s = new Spacedoc().config();
 
-      expect(s.options.src).to.equal('./*.md');
+      expect(s.options.input).to.equal('./*.md');
     });
   });
 
@@ -48,8 +48,8 @@ describe('Spacedoc.config()', () => {
 
   it('loads a Pug template', () => {
     let s = new Spacedoc().config({
-      src: 'src',
-      dest: 'dest',
+      input: 'src',
+      output: 'dest',
       template: 'test/fixtures/template.pug'
     });
 

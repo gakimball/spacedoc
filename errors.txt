@@ -16,7 +16,7 @@ Error in configuring Spacedoc:
     - Pass in the path to your custom config file.
       spacedoc.config('kittens.yml')
     - Pass in a JavaScript object of config settings.
-      spacedoc.config({ src: 'docs/*.md', ... })
+      spacedoc.config({ input: 'docs/*.md', ... })
 
   config() was called with the file path %s, but that file couldn't
   be loaded. Make sure the path is spelled correctly. You can also

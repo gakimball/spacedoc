@@ -15,8 +15,8 @@ const Spacedoc = require('spacedoc');
 
 Spacedoc.config({
   adapters: ['sass', 'js'],
-  src: './pages/*.md',
-  dest: './build',
+  input: './pages/*.md',
+  output: './build',
   template: './template.pug'
 });
 ```
@@ -29,8 +29,8 @@ To use the library standalone, call `Spacedoc()` with the option `src` being a g
 
 ```js
 Spacedoc({
-  src: 'docs/*.md',
-  dest: 'dist'
+  input: 'docs/*.md',
+  output: 'dist'
 });
 ```
 
@@ -38,8 +38,8 @@ The `Spacedoc()` function returns a stream. You can listen to the `finish` event
 
 ```js
 const stream = Spacedoc({
-  src: 'docs/*.md',
-  dest: 'dist'
+  input: 'docs/*.md',
+  output: 'dist'
 });
 stream.on('finish', function() {
   // ...

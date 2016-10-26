@@ -17,7 +17,7 @@ describe('spacedoc', () => {
     it('calls Spacedoc.init()', () => {
       spacedoc.config({
         adapters: ['test/fixtures/spacedoc-mock'],
-        src: 'test/fixtures/example.md',
+        input: 'test/fixtures/example.md',
         silent: true
       });
 
@@ -39,7 +39,7 @@ describe('spacedoc', () => {
     it('calls Spacedoc.buildSearch()', () => {
       spacedoc.config({
         adapters: ['test/fixtures/spacedoc-mock'],
-        src: 'test/fixtures/example.md',
+        input: 'test/fixtures/example.md',
         silent: true
       });
 

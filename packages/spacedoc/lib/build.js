@@ -1,5 +1,5 @@
 const filter = require('lodash.filter');
-const fromPairs = require('lodash.fromPairs');
+const fromPairs = require('lodash.frompairs');
 const path = require('path');
 const yaml = require('js-yaml');
 const helpers = require('spacedoc-helpers');

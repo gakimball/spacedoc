@@ -1,7 +1,7 @@
 //- Render a code sample using highlight.js.
 //- @param {String} code - Code sample.
 //- @todo Allow language to be specified.
-mixin code(code)
+mixin code(code, lang)
   pre.sd-codeblock
-    code
-      != spacedoc.highlight(code)
+    code(class=lang)
+      != spacedoc.highlight(code, lang)

@@ -19,8 +19,13 @@ module.exports = {
  * @param {String=} code - Code to highlight.
  * @returns {String} Highlighted code as HTML.
  */
-function highlight(code = '') {
-  return hljs.highlightAuto(code, ['html', 'css', 'sass', 'javascript']).value;
+function highlight(code = '', lang = null) {
+  if (lang) {
+    return hljs.highlight(lang, code).value;
+  }
+  else {
+    return hljs.highlightAuto(code, ['html', 'css', 'scss', 'javascript', 'json']).value;
+  }
 }
 
 /**

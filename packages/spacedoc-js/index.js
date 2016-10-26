@@ -91,16 +91,27 @@ function parseItem(item) {
  * @returns {String} Code preview.
  */
 function getPreview(item) {
+  let preview;
+
   switch (item.kind) {
-    case 'class': {
-      return `new ${item.longname}();`;
-    }
-    case 'function': {
-      return `${item.longname.replace(/#/g, '.')}();`;
-    }
-    default: {
-      return false;
-    }
+    case 'class':
+      preview = `new ${item.longname}();`;
+      break;
+    case 'function':
+      preview = `${item.longname.replace(/#/g, '.')}();`;
+      break;
+    default:
+      preview = null;
+  }
+
+  if (preview) {
+    return {
+      code: preview,
+      language: 'js',
+    };
+  }
+  else {
+    return false;
   }
 }
 

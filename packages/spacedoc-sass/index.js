@@ -117,16 +117,24 @@ function getTypes(type = '') {
  * @extend %placeholder;
  */
 function getPreview(item) {
+  let preview;
+
   switch (item.context.type) {
     case 'variable':
-      return `$${item.context.name}: ${item.context.value};`;
+      preview = `$${item.context.name}: ${item.context.value};`;
+      break;
     case 'function':
-      return `${item.context.name}();`;
+      preview = `${item.context.name}();`;
+      break;
     case 'mixin':
-      return `@include ${item.context.name}();`;
+      preview = `@include ${item.context.name}();`;
+      break;
     case 'placeholder':
-      return `@extend %${item.context.name};`;
-    default:
-      return item.context.name;
+      preview = `@extend %${item.context.name};`;
   }
+
+  return {
+    code: preview,
+    language: 'scss',
+  };
 }

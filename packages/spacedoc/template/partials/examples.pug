@@ -9,4 +9,4 @@ mixin examples(examples)
       each example in examples
         section
           p!= spacedoc.markdown(example.description)
-          +code(example.code)
+          +code(example.code, example.language)

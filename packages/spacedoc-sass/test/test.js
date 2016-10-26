@@ -6,28 +6,28 @@ describe('SassDoc Adapter', () => {
   describe('getPreview()', () => {
     it('renders a variable sample', done => {
       parseSassDoc('variable-basic').then(item => {
-        expect(adapter.getPreview(item)).to.equal('$variable-basic: \'Hello.\';');
+        expect(adapter.getPreview(item)).to.have.property('code', '$variable-basic: \'Hello.\';');
         done();
       }).catch(done);
     });
 
     it('renders a function sample', done => {
       parseSassDoc('function-basic').then(item => {
-        expect(adapter.getPreview(item)).to.equal('function-basic();');
+        expect(adapter.getPreview(item)).to.have.property('code', 'function-basic();');
         done();
       }).catch(done);
     });
 
     it('renders a mixin sample', done => {
       parseSassDoc('mixin-basic').then(item => {
-        expect(adapter.getPreview(item)).to.equal('@include mixin-basic();');
+        expect(adapter.getPreview(item)).to.have.property('code', '@include mixin-basic();');
         done();
       }).catch(done);
     });
 
     it('renders a placeholder sample', done => {
       parseSassDoc('placeholder-basic').then(item => {
-        expect(adapter.getPreview(item)).to.equal('@extend %placeholder-basic;');
+        expect(adapter.getPreview(item)).to.have.property('code', '@extend %placeholder-basic;');
         done();
       }).catch(done);
     });

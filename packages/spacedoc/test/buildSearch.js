@@ -27,13 +27,11 @@ describe('Spacedoc.buildSearch()', () => {
       silent: true
     });
 
-    return s.init().then(() => {
-      return s.buildSearch('test/fixtures/_build/search.json').then(() => {
-        var data = fs.readFileSync('./test/fixtures/_build/search.json').toString();
-        page = JSON.parse(data)[0];
+    return s.init().then(() => s.buildSearch('test/fixtures/_build/search.json')).then(() => {
+      var data = fs.readFileSync('./test/fixtures/_build/search.json').toString();
+      page = JSON.parse(data)[0];
 
-        expect(page.type).to.equal('page');
-      });
+      expect(page.type).to.equal('page');
     });
   });
 
@@ -45,16 +43,14 @@ describe('Spacedoc.buildSearch()', () => {
       silent: true
     });
 
-    return s.init().then(() => {
-      return s.buildSearch('test/fixtures/_build/search.json').then(() => {
-        var data = fs.readFileSync('./test/fixtures/_build/search.json').toString();
-        data = JSON.parse(data);
+    return s.init().then(() => s.buildSearch('test/fixtures/_build/search.json')).then(() => {
+      var data = fs.readFileSync('./test/fixtures/_build/search.json').toString();
+      data = JSON.parse(data);
 
-        for (var i in data) {
-          if (data[i].name === 'Button')
-            expect(data[i].type).to.equal('component')
-        }
-      });
+      for (var i in data) {
+        if (data[i].name === 'Button')
+          expect(data[i].type).to.equal('component')
+      }
     });
   });
 
@@ -73,13 +69,11 @@ describe('Spacedoc.buildSearch()', () => {
       }
     });
 
-    return s.init().then(() => {
-      s.buildSearch('test/fixtures/_build/search.json').then(() => {
-        var data = fs.readFileSync('./test/fixtures/_build/search.json').toString();
-        page = JSON.parse(data)[0];
+    return s.init().then(() => s.buildSearch('test/fixtures/_build/search.json')).then(() => {
+      var data = fs.readFileSync('./test/fixtures/_build/search.json').toString();
+      page = JSON.parse(data)[0];
 
-        expect(page.type).to.equal('custom');
-      });
+      expect(page.type).to.equal('custom');
     });
   });
 
@@ -91,14 +85,12 @@ describe('Spacedoc.buildSearch()', () => {
       silent: true
     });
 
-    return s.init().then(() => {
-      return s.buildSearch('test/fixtures/_build/search.json').then(() => {
-        var data = fs.readFileSync('./test/fixtures/_build/search.json').toString();
-        data = JSON.parse(data);
+    return s.init().then(() => s.buildSearch('test/fixtures/_build/search.json')).then(() => {
+      var data = fs.readFileSync('./test/fixtures/_build/search.json').toString();
+      data = JSON.parse(data);
 
-        expect(data).to.be.an('array');
-        expect(data).to.have.length(2); // 1 page + 1 doclet
-      });
+      expect(data).to.be.an('array');
+      expect(data).to.have.length(2); // 1 page + 1 doclet
     });
   });
 
@@ -113,14 +105,12 @@ describe('Spacedoc.buildSearch()', () => {
       }
     });
 
-    return s.init().then(() => {
-      return s.buildSearch('test/fixtures/_build/search.json').then(() => {
-        var data = fs.readFileSync('./test/fixtures/_build/search.json').toString();
-        data = JSON.parse(data);
+    return s.init().then(() => s.buildSearch('test/fixtures/_build/search.json')).then(() => {
+      var data = fs.readFileSync('./test/fixtures/_build/search.json').toString();
+      data = JSON.parse(data);
 
-        expect(data).to.be.an('array');
-        expect(data).to.have.length(2 + 2); // 2 extra results in the YML file
-      });
+      expect(data).to.be.an('array');
+      expect(data).to.have.length(2 + 2); // 2 extra results in the YML file
     });
   });
 
@@ -134,10 +124,8 @@ describe('Spacedoc.buildSearch()', () => {
       }
     });
 
-    return s.init().then(() => {
-      return s.buildSearch().then(() => {
-        expect(fs.existsSync('./test/fixtures/_build/search.json')).to.be.true;
-      });
+    return s.init().then(() => s.buildSearch('test/fixtures/_build/search.json')).then(() => {
+      expect(fs.existsSync('./test/fixtures/_build/search.json')).to.be.true;
     });
   });
 

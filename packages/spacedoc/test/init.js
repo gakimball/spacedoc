@@ -6,8 +6,7 @@ const vfs = require('vinyl-fs');
 
 describe('Spacedoc.init()', () => {
   it('parses and builds a documentation page', () => {
-    const s = new Spacedoc();
-    s.config({
+    const s = new Spacedoc().config({
       input: 'test/fixtures/example.md',
       output: 'test/fixtures/_build',
       silent: true
@@ -19,8 +18,7 @@ describe('Spacedoc.init()', () => {
   });
 
   it('works within a stream of Vinyl files if src and dest are omitted', done => {
-    const s = new Spacedoc();
-    s.config({
+    const s = new Spacedoc().config({
       template: 'test/fixtures/template.pug',
       silent: true
     });
@@ -36,8 +34,7 @@ describe('Spacedoc.init()', () => {
   });
 
   it('resets the internal data tree on each build', () => {
-    const s = new Spacedoc();
-    s.config({
+    const s = new Spacedoc().config({
       input: 'test/fixtures/example.md',
       template: 'test/fixtures/template.pug',
       silent: true
@@ -49,8 +46,7 @@ describe('Spacedoc.init()', () => {
   });
 
   it('allows for incremental builds', () => {
-    const s = new Spacedoc();
-    s.config({
+    const s = new Spacedoc().config({
       input: 'test/fixtures/example.md',
       template: 'test/fixtures/template.pug',
       silent: true

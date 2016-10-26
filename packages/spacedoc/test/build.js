@@ -9,8 +9,7 @@ const TEST_FILE_MISSING = mockVinyl('test/fixtures/example-missing-layout.md');
 
 describe('Spacedoc.build()', () => {
   it('builds an HTML file from the data of a page', () => {
-    const s = new Spacedoc();
-    s.config({
+    const s = new Spacedoc().config({
       template: 'test/fixtures/template-simple.pug'
     });
 
@@ -20,8 +19,7 @@ describe('Spacedoc.build()', () => {
   });
 
   it('adds global data to the template context', () => {
-    const s = new Spacedoc();
-    s.config({
+    const s = new Spacedoc().config({
       template: 'test/fixtures/template-global.pug',
       data: { kitty: 'kitty' }
     });
@@ -35,18 +33,15 @@ describe('Spacedoc.build()', () => {
     afterEach(() => console.warn.restore());
 
     it('catches template errors', () => {
-      const s = new Spacedoc();
-      s.config({
+      const s = new Spacedoc().config({
         template: 'test/fixtures/template-broken.pug'
-      });
-      s.build();
+      }).build();
 
       expect(console.warn).to.have.been.calledOnce;
     });
 
     it('catches an undefined layout being set', () => {
-      const s = new Spacedoc();
-      s.config({
+      const s = new Spacedoc().config({
         template: 'test/fixtures/template',
       });
 
@@ -57,8 +52,7 @@ describe('Spacedoc.build()', () => {
     });
 
     it('catches alternate layouts being defined in a single-template setup', () => {
-      const s = new Spacedoc();
-      s.config({
+      const s = new Spacedoc().config({
         template: () => '',
       });
 
@@ -70,8 +64,7 @@ describe('Spacedoc.build()', () => {
   });
 
   it('allows Front Matter to be retained on the page', () => {
-    const s = new Spacedoc();
-    s.config({
+    const s = new Spacedoc().config({
       template: 'test/fixtures/template.pug',
       keepFm: true
     });
@@ -80,8 +73,7 @@ describe('Spacedoc.build()', () => {
   });
 
   it('allows an alternate layout to be used', () => {
-    const s = new Spacedoc();
-    s.config({
+    const s = new Spacedoc().config({
       template: 'test/fixtures/template',
     });
 

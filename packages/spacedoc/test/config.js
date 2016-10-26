@@ -35,7 +35,9 @@ describe('Spacedoc.config()', () => {
   });
 
   it('loads adapters', () => {
-    const s = new Spacedoc().config({ adapters: ['test/fixtures/spacedoc-mock'] });
+    const s = new Spacedoc().config({
+      adapters: ['test/fixtures/spacedoc-mock']
+    });
 
     expect(s.adapters.mock).to.be.a('function');
   });

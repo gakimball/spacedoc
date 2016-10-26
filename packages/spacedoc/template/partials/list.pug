@@ -6,23 +6,15 @@ include ./item
 mixin list(adapter, parent)
   - const sub = !!parent
   - const order = spacedoc.adapters[adapter].order
-  - const items = parent ? spacedoc.find(adapter, ['parent', parent]) : page.docs[adapter]
 
   if order
     each cat in order
-      if parent
-        each itm in spacedoc.find(adapter, { meta: { type: cat }, parent: parent })
-          +item(itm, sub)
-            +list(adapter, itm.meta.longname)
-      else
-        each itm in spacedoc.find(adapter, ['meta.type', cat])
-          +item(itm, sub)
-            +list(adapter, itm.meta.longname)
+      - const items = parent ? spacedoc.find(adapter, { meta: { type: cat }, parent: parent }) : spacedoc.find(adapter, ['meta.type', cat])
+      each itm in items
+        +item(itm, sub)
+          +list(adapter, itm.meta.longname)
 
   else
-    if parent
-      each itm in spacedoc.find(adapter, ['parent', parent])
-        +item(itm, sub)
-    else
-      each itm in page.docs[adapter]
-        +item(itm, sub)
+    - const items = parent ? spacedoc.find(adapter, ['parent', parent]) : page.docs[adapter]
+    each itm in items
+      +item(itm, itm.meta.longname)

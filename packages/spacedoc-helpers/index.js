@@ -1,6 +1,6 @@
 const groupBy = require('lodash.groupby');
 const hljs = require('highlight.js');
-const marked = require('marked');
+const md = require('markdown-it')();
 
 /**
  * Global helpers available to all templates and adapters.
@@ -30,16 +30,17 @@ function highlight(code = '', lang = null) {
 
 /**
  * Convert Markdown to HTML.
- * @param {String=} text - Markdown text.
+ * @param {String} [text=''] - Markdown text.
+ * @param {Boolean} [inline=false] - Render text inline.
  * @returns {String} Converted HTML.
  */
 function markdown(text = '', inline = false) {
-  const output = marked(text);
-
   if (inline) {
-    return output.replace(/^<p>/, '').replace(/<\/p>$/, '');
+    return md.renderInline(text);
   }
-  return output;
+  else {
+    return md.render(text);
+  }
 }
 
 /**

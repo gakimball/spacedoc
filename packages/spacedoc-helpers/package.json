@@ -26,7 +26,7 @@
   "dependencies": {
     "highlight.js": "^9.6.0",
     "lodash.groupby": "^4.6.0",
-    "marked": "^0.3.6"
+    "markdown-it": "^8.0.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",

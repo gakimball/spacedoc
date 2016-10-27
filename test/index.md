@@ -7,3 +7,7 @@ docs:
 ---
 
 This page pulls test fixtures from every Spacedoc adapter, so we can see how they look in the default template.
+
+```html
+<button type="button" class="button">Button</button>
+```

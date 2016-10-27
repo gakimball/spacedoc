@@ -3,7 +3,6 @@ const findIndex = require('lodash.findindex');
 const frontMatter = require('front-matter');
 const fs = require('fs');
 const hljs = require('highlight.js');
-const marked = require('marked');
 const path = require('path');
 const pug = require('pug');
 const replaceBase = require('replace-basename');
@@ -92,7 +91,7 @@ module.exports = function parse(file, opts = {}) {
   }
 
   // Render as Markdown for .md files
-  if (this.options.marked && path.extname(page.fileName) === '.md') {
+  if (this.options.markdown && path.extname(page.fileName) === '.md') {
     try {
       // Replace links to `.md` files with `.html`
       const markdown = transformLinks(pageData.body, link => {
@@ -100,14 +99,11 @@ module.exports = function parse(file, opts = {}) {
           return replaceExt(link, '.html');
         }
       });
-      page.body = marked(markdown, {
-        highlight: (code, lang) => (lang ? hljs.highlight(lang, code) : hljs.highlightAuto(code)).value,
-        renderer: this.options.marked,
-      });
+      page.body = this.options.markdown.render(markdown);
       page.fileName = replaceExt(page.fileName, '.html');
     }
     catch (e) {
-      return Promise.reject(new Error(`Marked error: ${e.message}`));
+      return Promise.reject(new Error(`Markdown error: ${e.message}`));
     }
   }
   // Render as Pug for .pug files

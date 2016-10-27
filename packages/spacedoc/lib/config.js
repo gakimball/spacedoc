@@ -2,9 +2,9 @@ const isEmptyObject = require('is-empty-object');
 const fs = require('fs');
 const globParent = require('glob-parent');
 const loadTemplates = require('./util/loadTemplates');
+const markdown = require('./util/markdown');
 const path = require('path');
 const pug = require('pug');
-const Renderer = require('marked').Renderer;
 const yml = require('js-yaml');
 
 /**
@@ -14,7 +14,7 @@ const yml = require('js-yaml');
  * @prop {Object.<String, Object>} [config={}] - Options to pass to adapters. Each key is an adapter name, such as `sass` or `js`, and each value is an object of settings.
  * @prop {Object} [data={}] - Extra data to pass to the template, which will be merged with the page's data.
  * @prop {String} [extension='html'] - Extension for use for output files.
- * @prop {Marked=} marked - Instance of [Marked](https://www.npmjs.com/package/marked) to use when converting Markdown to HTML.
+ * @prop {Marked=} markdown - Instance of [markdown-it](https://www.npmjs.com/package/markdown-it) to use when converting Markdown to HTML.
  * @prop {Boolean} [silent=false] - Disable console output while processing pages.
  * @prop {?(Function|String)} [template=null] - Path to a Pug template to use when rendering, or a pre-compiled template function.
  * @prop {Object} [search={}] - Search-specific options.
@@ -55,7 +55,7 @@ module.exports = function config(opts = {}) {
     config: {},
     data: {},
     extension: 'html',
-    marked: new Renderer(),
+    markdown: markdown,
     pageRoot: null,
     silent: false,
     site: {},

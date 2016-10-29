@@ -72,6 +72,37 @@ head
       text-transform: uppercase;
     }
 
+    .sd-multisample {
+      font-family: inherit;
+      white-space: normal;
+    }
+
+      .sd-multisample .tabs {
+        border: 0;
+        background: transparent;
+        margin-bottom: 0.5rem;
+      }
+
+      .sd-multisample .tabs-title a {
+        color: black;
+        font-size: 1rem;
+        padding: 0.75rem 1.5rem;
+      }
+
+      .sd-multisample .tabs-title a[aria-selected="true"] {
+        color: white;
+        background: #333;
+      }
+
+      .sd-multisample .tabs-content {
+        border: 0;
+        background: transparent;
+      }
+
+      .sd-multisample .tabs-panel {
+        padding: 0;
+      }
+
     h1, h2, h3, h4, h5, h6 {
       font-family: Soleil, Helvetica, sans-serif;
       text-transform: lowercase;
@@ -149,12 +180,18 @@ head
       border-left: 10px solid rgba(0, 0, 0, 0.3);
     }
 
-header.top-bar
-  .column.row
-    .top-bar-left
-      ul.menu
-        li.menu-text= site.title
-        each title, url in site.nav
-          li.menu-item: a(href=url)= title
+body
+  header.top-bar
+    .column.row
+      .top-bar-left
+        ul.menu
+          li.menu-text= site.title
+          each title, url in site.nav
+            li.menu-item: a(href=url)= title
 
-block body
+  block body
+
+  script(src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js')
+  script(src='//cdnjs.cloudflare.com/ajax/libs/foundation/6.2.4/foundation.min.js')
+  script.
+    $(document).foundation();

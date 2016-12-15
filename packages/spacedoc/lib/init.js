@@ -2,7 +2,9 @@ const File = require('vinyl');
 const fs = require('fs');
 const isEmptyObject = require('is-empty-object');
 const mkdirp = require('mkdirp').sync;
+const organizePages = require('./util/organizePages');
 const path = require('path');
+const replaceBase = require('replace-basename');
 const replaceExt = require('replace-ext');
 const statusLog = require('./util/statusLog');
 const through = require('through2');
@@ -93,7 +95,7 @@ module.exports = function init(opts = {}) {
        * @param {Function} cb - Callback that signals the function is finished.
        */
       function(cb) {
-        _this.tree.map(page => {
+        _this.tree.sort(organizePages).map(page => {
           const file = new File({
             path: replaceExt(page.fileName, `.${_this.options.extension}`),
             base: _this.options.pageRoot || process.cwd(),

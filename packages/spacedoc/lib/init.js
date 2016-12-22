@@ -4,8 +4,6 @@ const isEmptyObject = require('is-empty-object');
 const mkdirp = require('mkdirp').sync;
 const organizePages = require('./util/organizePages');
 const path = require('path');
-const replaceBase = require('replace-basename');
-const replaceExt = require('replace-ext');
 const statusLog = require('./util/statusLog');
 const through = require('through2');
 const vfs = require('vinyl-fs');
@@ -93,11 +91,12 @@ module.exports = function init(opts = {}) {
        * @private
        * @this stream.Transform
        * @param {Function} cb - Callback that signals the function is finished.
+       * @todo Make file I/O asynchronous.
        */
       function(cb) {
         _this.tree.sort(organizePages).map(page => {
           const file = new File({
-            path: replaceExt(page.fileName, `.${_this.options.extension}`),
+            path: page.fileName,
             base: _this.options.pageRoot || process.cwd(),
             contents: new Buffer(_this.build(page)),
           });

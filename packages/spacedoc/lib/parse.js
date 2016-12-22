@@ -4,6 +4,7 @@ const frontMatter = require('front-matter');
 const fs = require('fs');
 const hljs = require('highlight.js');
 const path = require('path');
+const processFilePath = require('./util/processFilePath');
 const pug = require('pug');
 const replaceBase = require('replace-basename');
 const replaceExt = require('replace-ext');
@@ -38,6 +39,7 @@ const yamlComment = require('./util/yamlComment');
  * @param {(Vinyl|String)} file - File to parse, or a path to a file to parse.
  * @param {InitOptions} opts - Extra parsing options.
  * @returns {Promise.<PageData>} Promise containing raw page data.
+ * @todo Make definition of page object more clear.
  */
 module.exports = function parse(file, opts = {}) {
   // If a string path is passed instead of a Vinyl file, create a new file from the string
@@ -64,20 +66,20 @@ module.exports = function parse(file, opts = {}) {
   const page = pageData.attributes;
   page._frontMatter = Object.assign({}, pageData.attributes);
   page.body = '';
-  page.fileName = path.relative(this.options.pageRoot, file.path);
+  page.fileName = path.relative(this.options.pageRoot, processFilePath(file.path, this.options.extension));
   page.originalName = file.path;
   if (!page.docs) page.docs = {};
   if (!page.group) page.group = null;
 
   // If the name of the file is "readme.md", it's renamed to "index"
-  if (path.basename(page.fileName).toLowerCase() === 'readme.md') {
+  if (path.basename(page.originalName).toLowerCase() === 'readme.md') {
     page.fileName = replaceBase(page.fileName, 'index');
   }
 
   // If there's no title...
   if (!page.title) {
     // ...try to pull it from an `<h1>` in the Markdown...
-    if (path.extname(page.fileName) === '.md') {
+    if (path.extname(page.originalName) === '.md') {
       const h1RegExp = /^# (.+)$/m;
       page.title = pageData.body.match(h1RegExp)[1];
       // And remove it from the original Markdown so we don't get two titles
@@ -91,7 +93,7 @@ module.exports = function parse(file, opts = {}) {
   }
 
   // Render as Markdown for .md files
-  if (this.options.markdown && path.extname(page.fileName) === '.md') {
+  if (this.options.markdown && path.extname(page.originalName) === '.md') {
     try {
       // Replace links to `.md` files with `.html`
       const markdown = transformLinks(pageData.body, link => {
@@ -107,7 +109,7 @@ module.exports = function parse(file, opts = {}) {
     }
   }
   // Render as Pug for .pug files
-  else if (path.extname(page.fileName) === '.pug') {
+  else if (path.extname(page.originalName) === '.pug') {
     page.body = pug.render(pageData.body);
     page.fileName = replaceExt(page.fileName, '.html');
   }

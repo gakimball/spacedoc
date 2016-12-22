@@ -12,16 +12,6 @@ const transformLinks = require('transform-markdown-links');
 const yamlComment = require('./util/yamlComment');
 
 /**
- * Data representation of a page. This object can be passed to `Spacedoc.build()` to render a full documentation page.
- * @typedef {Object} PageData
- * @prop {String} body - The main body of the page. This includes everything other than the Front Matter at the top. It's usually Markdown or HTML.
- * @prop {String} fileName - Path to the page, relative to the root page, which is defined by `options.pageRoot`.
- * @prop {Object.<String, Object>} docs - Documentation data. Each key is the name of an adapter, such as `sass` or `js`, and each value is the data that adapter found.
- * @prop {Object} _frontMatter - Original Front Matter included in the page.
- * @prop {?String} layout - Template layout to use. `default` is set if a page doesn't define this.
- */
-
-/**
  * Parses a single documentation page, collecting the needed documentation data based on the settings in the page's Front Matter. The file is not modified in the process.
  *
  * @example <caption>Use without Gulp. A Vinyl file must be created manually.</caption>
@@ -40,6 +30,8 @@ const yamlComment = require('./util/yamlComment');
  * @param {InitOptions} opts - Extra parsing options.
  * @returns {Promise.<PageData>} Promise containing raw page data.
  * @todo Make definition of page object more clear.
+ * @todo Make file I/O asynchronous.
+ * @todo Consider not putting the entire contents of the page Front Matter in the top-level page metadata. (Risk of property conflicts.)
  */
 module.exports = function parse(file, opts = {}) {
   // If a string path is passed instead of a Vinyl file, create a new file from the string
@@ -62,14 +54,26 @@ module.exports = function parse(file, opts = {}) {
   const contents = yamlComment(file.contents.toString(), extension);
   const pageData = frontMatter(contents, extension);
 
-  // Global attributes
-  const page = pageData.attributes;
-  page._frontMatter = Object.assign({}, pageData.attributes);
-  page.body = '';
-  page.fileName = path.relative(this.options.pageRoot, processFilePath(file.path, this.options.extension));
-  page.originalName = file.path;
-  if (!page.docs) page.docs = {};
-  if (!page.group) page.group = null;
+  /**
+   * Data representation of a page. This object can be passed to `Spacedoc.build()` to render a full documentation page.
+   * @typedef {Object} PageData
+   * @prop {Object} _frontMatter - Original Front Matter included in the page.
+   * @prop {String} body - The main body of the page. This includes everything other than the Front Matter at the top. It's usually Markdown or HTML.
+   * @prop {Object.<String, Object>} docs - Documentation data. Each key is the name of an adapter, such as `sass` or `js`, and each value is the data that adapter found.
+   * @prop {String} fileName - Final path to the page, relative to the root page, which is defined by `options.pageRoot`.
+   * @prop {String} group - Group the page is in.
+   * @prop {?String} layout - Template layout to use. `default` is set if a page doesn't define this.
+   * @prop {String} originalName - Path to the page as originally given to the parser.
+   * @prop {String} title - Page title.
+   */
+  const page = Object.assign({}, pageData.attributes, {
+    _frontMatter: Object.assign({}, pageData.attributes),
+    body: '',
+    docs: pageData.attributes.docs || {},
+    fileName: path.relative(this.options.pageRoot, processFilePath(file.path, this.options.extension)),
+    group: pageData.attributes.group || null,
+    originalName: file.path,
+  });
 
   // If the name of the file is "readme.md", it's renamed to "index"
   if (path.basename(page.originalName).toLowerCase() === 'readme.md') {

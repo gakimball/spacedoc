@@ -6,7 +6,7 @@ const TEST_FILE = mockVinyl('test/fixtures/example.md');
 const TEST_FILE_HTML = mockVinyl('test/fixtures/example.html');
 
 describe('Spacedoc.parse()', () => {
-  it('converts Markdown into HTML', () => {
+  it.only('converts Markdown into HTML', () => {
     const s = new Spacedoc().config({
       template: 'test/fixtures/template.pug'
     });

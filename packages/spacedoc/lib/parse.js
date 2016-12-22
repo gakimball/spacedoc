@@ -32,6 +32,7 @@ const yamlComment = require('./util/yamlComment');
  * @todo Make definition of page object more clear.
  * @todo Make file I/O asynchronous.
  * @todo Consider not putting the entire contents of the page Front Matter in the top-level page metadata. (Risk of property conflicts.)
+ * @todo Make into a pure function.
  */
 module.exports = function parse(file, opts = {}) {
   // If a string path is passed instead of a Vinyl file, create a new file from the string
@@ -70,15 +71,10 @@ module.exports = function parse(file, opts = {}) {
     _frontMatter: Object.assign({}, pageData.attributes),
     body: '',
     docs: pageData.attributes.docs || {},
-    fileName: path.relative(this.options.pageRoot, processFilePath(file.path, this.options.extension)),
+    fileName: processFilePath(file.path, this.options.pageRoot, this.options.extension),
     group: pageData.attributes.group || null,
     originalName: file.path,
   });
-
-  // If the name of the file is "readme.md", it's renamed to "index"
-  if (path.basename(page.originalName).toLowerCase() === 'readme.md') {
-    page.fileName = replaceBase(page.fileName, 'index');
-  }
 
   // If there's no title...
   if (!page.title) {

@@ -1,5 +1,4 @@
 const File = require('vinyl');
-const findIndex = require('lodash.findindex');
 const frontMatter = require('front-matter');
 const fs = require('fs');
 const hljs = require('highlight.js');
@@ -13,34 +12,18 @@ const yamlComment = require('./util/yamlComment');
 
 /**
  * Parses a single documentation page, collecting the needed documentation data based on the settings in the page's Front Matter. The file is not modified in the process.
- *
- * @example <caption>Use without Gulp. A Vinyl file must be created manually.</caption>
- * const File = require('vinyl');
- * fs.readFile('page.html', (err, contents) => {
- *   const page = new File({
- *     path: 'page.html',
- *     contents: contents
- *   });
- *   Spacedoc.parse(page).then(data => {
- *     // data is an object
- *   })
- * })
- *
  * @param {(Vinyl|String)} file - File to parse, or a path to a file to parse.
- * @param {InitOptions} opts - Extra parsing options.
- * @returns {Promise.<PageData>} Promise containing raw page data.
- * @todo Make definition of page object more clear.
+ * @returns {Promise.<PageData>} Promise containing a page object.
  * @todo Make file I/O asynchronous.
  * @todo Consider not putting the entire contents of the page Front Matter in the top-level page metadata. (Risk of property conflicts.)
- * @todo Make into a pure function.
  */
-module.exports = function parse(file, opts = {}) {
+module.exports = function parse(file) {
   // If a string path is passed instead of a Vinyl file, create a new file from the string
   if (typeof file === 'string') {
     try {
       file = new File({
         path: file,
-        contents: fs.readFileSync(file)
+        contents: fs.readFileSync(file),
       });
     }
     catch (e) {
@@ -87,8 +70,7 @@ module.exports = function parse(file, opts = {}) {
     }
     // ...or just use the page's filename
     else {
-      const ext = path.extname(page.fileName);
-      page.title = path.basename(page.fileName, ext);
+      page.title = path.basename(page.fileName, path.extname(page.fileName));
     }
   }
 
@@ -122,25 +104,6 @@ module.exports = function parse(file, opts = {}) {
   return this.parseDocs(page.docs).then(results => {
     for (let res of results) {
       page.docs[res.adapter] = res.data;
-    }
-
-    // For complete builds, push all pages to the tree
-    if (!opts.incremental) {
-      this.tree.push(page);
-    }
-    // For incremental builds, we have to figure out if the page already exists in the tree or not
-    else {
-      // Look for a page in the tree with a matching filename
-      const key = findIndex(this.tree, { fileName: page.fileName });
-
-      // If that page exists, we replace the existing page with the revised one
-      if (key > -1) {
-        this.tree[key] = page;
-      }
-      // Otherwise, we add the new page to the end of the tree
-      else {
-        this.tree.push(page);
-      }
     }
 
     return page;

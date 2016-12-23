@@ -92,7 +92,7 @@ describe('Spacedoc.parse()', () => {
       .to.eventually.have.property('title', 'Title');
   });
 
-  it('removes the h1 from Markdown if transferred to page attributes', () => {
+  it('removes the <h1> from Markdown if transferred to page attributes', () => {
     const s = new Spacedoc().config();
 
     return expect(s.parse('test/fixtures/example-no-title.md'))

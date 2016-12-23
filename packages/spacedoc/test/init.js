@@ -33,6 +33,18 @@ describe('Spacedoc.init()', () => {
       });
   });
 
+  it('adds a generated page to the tree', () => {
+    const s = new Spacedoc().config({
+      input: 'test/fixtures/example.md',
+      template: 'test/fixtures/template.pug',
+      silent: true,
+    });
+
+    return s.init().then(() => {
+      expect(s.tree).to.have.lengthOf(1);
+    });
+  });
+
   it('resets the internal data tree on each build', () => {
     const s = new Spacedoc().config({
       input: 'test/fixtures/example.md',

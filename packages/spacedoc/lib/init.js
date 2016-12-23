@@ -1,4 +1,5 @@
 const File = require('vinyl');
+const findIndex = require('lodash.findindex');
 const fs = require('fs');
 const isEmptyObject = require('is-empty-object');
 const mkdirp = require('mkdirp').sync;
@@ -84,7 +85,28 @@ module.exports = function init(opts = {}) {
        * @param {Function} cb - Callback to return the modified file.
        */
       (file, enc, cb) => {
-        this.parse(file, opts).then(() => cb());
+        this.parse(file).then(page => {
+          // For complete builds, push all pages to the tree
+          if (!opts.incremental) {
+            this.tree.push(page);
+          }
+          // For incremental builds, we have to figure out if the page already exists in the tree or not
+          else {
+            // Look for a page in the tree with a matching filename
+            const key = findIndex(this.tree, { fileName: page.fileName });
+
+            // If that page exists, we replace the existing page with the revised one
+            if (key > -1) {
+              this.tree[key] = page;
+            }
+            // Otherwise, we add the new page to the end of the tree
+            else {
+              this.tree.push(page);
+            }
+          }
+
+          cb();
+        }).catch(err => console.log(err));
       },
       /**
        * Stream flush function. Iterates through the created page data and renders HTML files for each one.

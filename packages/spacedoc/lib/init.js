@@ -10,12 +10,6 @@ const through = require('through2');
 const vfs = require('vinyl-fs');
 
 /**
- * Options that can be passed to `Spacedoc.init()`.
- * @typedef {Object} InitOptions
- * @prop {Boolean} [incremental=false] Enable incremental compiling. On subsequent runs of `Spacedoc.init()` (such as in a Gulp task, after a file has been saved), the plugin will not reset the cached list of pages.
- */
-
-/**
  * Initialize Spacedoc, parsing a set of documentation pages and outputting HTML files. To call this function, `Spacedoc.config()` must have been called previously with the `template` parameter set.
  * This function can be called standalone, with the `src` and `dest` options having been set in `Spacedoc.config()`, or it can be called in a Gulp stream, and `src` and `dest` can be omitted.
  *
@@ -33,8 +27,10 @@ const vfs = require('vinyl-fs');
  *       // Parsing finished
  *     });
  *
- * @param {InitOptions} opts - Options for initialization.
+ * @param {Object} opts - Options for initialization.
+ * @param {Boolean} [opts.incremental=false] Enable incremental compiling. On subsequent runs of `Spacedoc.init()` (such as in a Gulp task, after a file has been saved), the plugin will not reset the cached list of pages.
  * @returns {Stream.Writable.<Vinyl>} A stream containing the modified files. You can add `on('finish')` after `Spacedoc.init()` to listen for when processing is done.
+ * @todo Remove synchronous file I/O
  */
 module.exports = function init(opts = {}) {
   // Initialize options if Spacedoc.config() was not called

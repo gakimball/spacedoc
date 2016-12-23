@@ -108,18 +108,18 @@ module.exports = function init(opts = {}) {
           cb();
         }).catch(err => console.log(err));
       },
+
       /**
        * Stream flush function. Iterates through the created page data and renders HTML files for each one.
        * @private
        * @this stream.Transform
        * @param {Function} cb - Callback that signals the function is finished.
-       * @todo Make file I/O asynchronous.
        */
       function(cb) {
-        _this.tree.sort(organizePages).map(page => {
+        const tasks = _this.tree.sort(organizePages).map(page => new Promise((resolve, reject) => {
           const file = new File({
             path: page.fileName,
-            base: _this.options.pageRoot || process.cwd(),
+            base: _this.options.pageRoot,
             contents: new Buffer(_this.build(page)),
           });
 
@@ -131,19 +131,35 @@ module.exports = function init(opts = {}) {
             mkdirp(path.dirname(filePath));
 
             // Then write file
-            fs.writeFileSync(filePath, file.contents.toString());
+            fs.writeFile(filePath, file.contents.toString(), (err, res) => {
+              if (err) {
+                reject(err);
+              }
+              else {
+                finish.apply(this);
+              }
+            });
+          }
+          else {
+            finish.apply(this);
           }
 
-          // Push finished file through stream
-          this.push(file);
+          function finish() {
+            // Push finished file through stream
+            this.push(file);
 
-          // Log page name, processing time, and adapters used to console
-          if (!_this.options.silent) {
-            statusLog(path.relative(_this.options.pageRoot, page.originalName), page);
+            // Log page name, processing time, and adapters used to console
+            if (!_this.options.silent) {
+              statusLog(path.relative(_this.options.pageRoot, page.originalName), page);
+            }
+
+            resolve();
           }
-        });
+        }));
 
-        cb();
+        Promise.all(tasks)
+          .then(() => cb())
+          .catch(err => console.log(err));
       }
     );
   }

@@ -8,23 +8,6 @@ const pug = require('pug');
 const yml = require('js-yaml');
 
 /**
- * Options that can be passed to `Spacedoc.config()`.
- * @typedef {Object} ConfigOptions
- * @prop {String[]} [adapters=[]] - Adapters to load.
- * @prop {Object.<String, Object>} [config={}] - Options to pass to adapters. Each key is an adapter name, such as `sass` or `js`, and each value is an object of settings.
- * @prop {Object} [data={}] - Extra data to pass to the template, which will be merged with the page's data.
- * @prop {String} [extension='html'] - Extension for use for output files.
- * @prop {Marked=} markdown - Instance of [markdown-it](https://www.npmjs.com/package/markdown-it) to use when converting Markdown to HTML.
- * @prop {Boolean} [silent=false] - Disable console output while processing pages.
- * @prop {?(Function|String)} [template=null] - Path to a Pug template to use when rendering, or a pre-compiled template function.
- * @prop {Object} [search={}] - Search-specific options.
- * @prop {String} [search.outFile=''] - Filename to write search JSON to.
- * @prop {SearchResult[]} [search.extra=[]] - Hardcoded items to add to a search result list when calling `Spacedoc.buildSearch()`.
- * @prop {String[]} [search.sort=[]] - Sorting criteria for search results. The `type` property of each result is used for comparison.
- * @prop {Object.<String, String>} [pageTypes={}] - Custom page types to reference when generating search results.
- */
-
-/**
  * Set Spacedoc options. Call this before `Spacedoc.init()` is run.
  * @param {?(ConfigOptions|String)} [opts={}] - Plugin options, or a path to a YML config file with options.
  * @returns {Spacedoc} Spacedoc instance. This method can be chained to other Spacedoc methods.
@@ -49,7 +32,22 @@ module.exports = function config(opts = {}) {
     catch (e) {}
   }
 
-  // Extend defaults
+  /**
+   * Options that can be passed to `Spacedoc.config()`.
+   * @typedef {Object} ConfigOptions
+   * @prop {String[]} [adapters=[]] - Adapters to load.
+   * @prop {Object.<String, Object>} [config={}] - Options to pass to adapters. Each key is an adapter name, such as `sass` or `js`, and each value is an object of settings.
+   * @prop {Object} [data={}] - Extra data to pass to the template, which will be merged with the page's data.
+   * @prop {String} [extension='html'] - Extension for use for output files.
+   * @prop {Marked=} markdown - Instance of [markdown-it](https://www.npmjs.com/package/markdown-it) to use when converting Markdown to HTML.
+   * @prop {Boolean} [silent=false] - Disable console output while processing pages.
+   * @prop {?(Function|String)} [template=null] - Path to a Pug template to use when rendering, or a pre-compiled template function.
+   * @prop {Object} [search={}] - Search-specific options.
+   * @prop {String} [search.outFile=''] - Filename to write search JSON to.
+   * @prop {SearchResult[]} [search.extra=[]] - Hardcoded items to add to a search result list when calling `Spacedoc.buildSearch()`.
+   * @prop {String[]} [search.sort=[]] - Sorting criteria for search results. The `type` property of each result is used for comparison.
+   * @prop {Object.<String, String>} [pageTypes={}] - Custom page types to reference when generating search results.
+   */
   this.options = Object.assign({
     adapters: [],
     config: {},

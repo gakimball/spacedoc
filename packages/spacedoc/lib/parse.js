@@ -4,6 +4,7 @@ const fs = require('fs');
 const hljs = require('highlight.js');
 const path = require('path');
 const getPageFileName = require('./util/getPageFileName');
+const getPageOrder = require('./util/getPageOrder');
 const pug = require('pug');
 const replaceBase = require('replace-basename');
 const replaceExt = require('replace-ext');
@@ -47,6 +48,7 @@ module.exports = function parse(file) {
    * @prop {String} fileName - Final path to the page, relative to the root page, which is defined by `options.pageRoot`.
    * @prop {String} group - Group the page is in.
    * @prop {?String} layout - Template layout to use. `default` is set if a page doesn't define this.
+   * @prop {?Number} order - Order of page within navigation.
    * @prop {String} originalName - Path to the page as originally given to the parser.
    * @prop {String} title - Page title.
    */
@@ -56,6 +58,7 @@ module.exports = function parse(file) {
     docs: pageData.attributes.docs || {},
     fileName: getPageFileName(file.path, this.options.pageRoot, this.options.extension),
     group: pageData.attributes.group || null,
+    order: getPageOrder(file.path),
     originalName: file.path,
   });
 
@@ -63,10 +66,13 @@ module.exports = function parse(file) {
   if (!page.title) {
     // ...try to pull it from an `<h1>` in the Markdown...
     if (path.extname(page.originalName) === '.md') {
-      const h1RegExp = /^# (.+)$/m;
-      page.title = pageData.body.match(h1RegExp)[1];
-      // And remove it from the original Markdown so we don't get two titles
-      pageData.body = pageData.body.replace(h1RegExp, '');
+      const match = pageData.body.match(/^# (.+)$/m);
+
+      if (match) {
+        page.title = match[1];
+        // And remove it from the original Markdown so we don't get two titles
+        pageData.body = pageData.body.replace(match[0], '');
+      }
     }
     // ...or just use the page's filename
     else {

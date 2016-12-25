@@ -128,4 +128,18 @@ describe('Spacedoc.parse()', () => {
     return expect(s.parse('test/fixtures/example-front-matter.pug'))
       .to.eventually.have.property('title', 'Page Title');
   });
+
+  it('assigns an order to a page', () => {
+    const s = new Spacedoc().config();
+
+    return expect(s.parse('test/fixtures/01-example.md'))
+      .to.eventually.have.property('order', 1);
+  });
+
+  it('sets order to null for normal pages', () => {
+    const s = new Spacedoc().config();
+
+    return expect(s.parse('test/fixtures/example.md'))
+      .to.eventually.have.property('order', null);
+  });
 });

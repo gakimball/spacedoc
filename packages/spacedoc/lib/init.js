@@ -3,7 +3,6 @@ const findIndex = require('lodash.findindex');
 const fs = require('fs');
 const isEmptyObject = require('is-empty-object');
 const mkdirp = require('mkdirp').sync;
-const organizePages = require('./util/organizePages');
 const path = require('path');
 const statusLog = require('./util/statusLog');
 const through = require('through2');
@@ -31,6 +30,7 @@ const vfs = require('vinyl-fs');
  * @param {Boolean} [opts.incremental=false] Enable incremental compiling. On subsequent runs of `Spacedoc.init()` (such as in a Gulp task, after a file has been saved), the plugin will not reset the cached list of pages.
  * @returns {Stream.Writable.<Vinyl>} A stream containing the modified files. You can add `on('finish')` after `Spacedoc.init()` to listen for when processing is done.
  * @todo Remove synchronous file I/O
+ * @todo Remove incremental builds
  */
 module.exports = function init(opts = {}) {
   // Initialize options if Spacedoc.config() was not called
@@ -116,7 +116,7 @@ module.exports = function init(opts = {}) {
        * @param {Function} cb - Callback that signals the function is finished.
        */
       function(cb) {
-        const tasks = _this.tree.sort(organizePages).map(page => new Promise((resolve, reject) => {
+        const tasks = _this.tree.map(page => new Promise((resolve, reject) => {
           const file = new File({
             path: page.fileName,
             base: _this.options.pageRoot,

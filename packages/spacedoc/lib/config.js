@@ -11,6 +11,7 @@ const yml = require('js-yaml');
  * Set Spacedoc options. Call this before `Spacedoc.init()` is run.
  * @param {?(ConfigOptions|String)} [opts={}] - Plugin options, or a path to a YML config file with options.
  * @returns {Spacedoc} Spacedoc instance. This method can be chained to other Spacedoc methods.
+ * @todo Combine options.config into options.adapters
  */
 module.exports = function config(opts = {}) {
   // Load config from a file

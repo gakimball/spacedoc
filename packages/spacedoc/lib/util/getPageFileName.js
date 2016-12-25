@@ -12,7 +12,7 @@ const replaceExt = require('replace-ext');
  * @param {String} [newExtension] - New extension to use.
  * @returns {String} Modified file path.
  */
-module.exports = function processFilePath(filePath, pageRoot, newExtension) {
+module.exports = function getPageFileName(filePath, pageRoot, newExtension) {
   // Generate a path relative to the page root
   let newPath = path.relative(pageRoot || '', filePath);
 

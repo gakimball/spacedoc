@@ -3,7 +3,7 @@ const frontMatter = require('front-matter');
 const fs = require('fs');
 const hljs = require('highlight.js');
 const path = require('path');
-const processFilePath = require('./util/processFilePath');
+const getPageFileName = require('./util/getPageFileName');
 const pug = require('pug');
 const replaceBase = require('replace-basename');
 const replaceExt = require('replace-ext');
@@ -54,7 +54,7 @@ module.exports = function parse(file) {
     _frontMatter: Object.assign({}, pageData.attributes),
     body: '',
     docs: pageData.attributes.docs || {},
-    fileName: processFilePath(file.path, this.options.pageRoot, this.options.extension),
+    fileName: getPageFileName(file.path, this.options.pageRoot, this.options.extension),
     group: pageData.attributes.group || null,
     originalName: file.path,
   });

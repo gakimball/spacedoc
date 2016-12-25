@@ -1,3 +1,5 @@
+const globWatcher = require('glob-watcher');
+
 /**
  * Spacedoc class.
  * @class
@@ -40,7 +42,15 @@ Spacedoc.prototype.buildSearch = require('./lib/buildSearch');
 const sd = new Spacedoc();
 
 // Public API
-module.exports = sd.init.bind(sd);
+module.exports = ({ watch = false }) => {
+  if (watch && sd.options.input) {
+    globWatcher(sd.options.input, done => {
+      sd.init().then(done);
+    });
+  }
+
+  return sd.init();
+};
 module.exports.config = sd.config.bind(sd);
 module.exports.build = ({ watch = false }) => {
   if (watch) {

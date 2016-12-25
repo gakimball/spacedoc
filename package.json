@@ -1,6 +1,7 @@
 {
   "scripts": {
     "bootstrap": "lerna bootstrap",
+    "start": "cd packages/spacedoc && npm start",
     "test": "lerna run test",
     "test:template": "./packages/spacedoc/bin/spacedoc.js --config test/spacedoc.yml & lite-server"
   },

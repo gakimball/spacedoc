@@ -17,14 +17,16 @@ const cli = meow(`
   },
 });
 
-Spacedoc.config(cli.flags.config).init()
+Spacedoc.config(cli.flags.config);
+
+Spacedoc({ watch: cli.flags.watch })
   .then(() => {
     if (Spacedoc._instance.options.search.output) {
       return Spacedoc.buildSearch();
     }
   })
   .catch(err => {
-    throw new Error(err);
+    console.log(err);
   });
 
 Spacedoc.build({ watch: cli.flags.watch }).catch(err => {

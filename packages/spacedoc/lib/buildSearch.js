@@ -1,6 +1,7 @@
-const fs = require('fs');
-const mkdirp = require('mkdirp');
+const pify = require('pify');
+const mkdirp = pify(require('mkdirp'));
 const path = require('path');
+const writeFile = pify(require('fs').writeFile);
 
 /**
  * Search result item.
@@ -17,6 +18,7 @@ const path = require('path');
  * @param {string} outFile - Path to write to.
  * @returns {Promise} Promise which resolves when the search file has been written to disk.
  * @todo Make hashes for search result types configurable
+ * @todo Remove the page/component distinction, which is too specific
  */
 module.exports = function buildSearch(outFile = this.options.search.output) {
   if (!outFile) {
@@ -24,29 +26,29 @@ module.exports = function buildSearch(outFile = this.options.search.output) {
   }
 
   const tree = this.tree;
-  let results = [];
-
-  results = results.concat(this.options.search.extra);
+  const results = [].concat(this.options.search.extra);
 
   // Each item in the tree is a page
   for (let i in tree) {
     const item = tree[i];
     const link = path.relative(this.options.pageRoot, item.fileName).replace('md', this.options.extension);
-    let type = 'page';
-
-    // By default pages are classified as a "page"
-    // If it has code associated with it, then it's a "component" instead.
-    if (keysInObject(item.docs, Object.keys(this.adapters))) {
-      type = 'component';
-    }
-
-    // Check for special page types
-    for (let t in this.options.search.pageTypes) {
-      const func = this.options.search.pageTypes[t];
-      if (func(item)) {
-        type = t;
+    const type = (() => {
+      // By default pages are classified as a "page"
+      // If it has code associated with it, then it's a "component" instead.
+      if (keysInObject(item.docs, Object.keys(this.adapters))) {
+        return 'component';
       }
-    }
+
+      // Check for special page types
+      for (let t in this.options.search.pageTypes) {
+        const func = this.options.search.pageTypes[t];
+        if (func(item)) {
+          return t;
+        }
+      }
+
+      return 'page';
+    })();
 
     // Add the page itself as a search result
     results.push({
@@ -74,20 +76,13 @@ module.exports = function buildSearch(outFile = this.options.search.output) {
   }
 
   // Re-order search results based on search config
-  results = results.sort((a, b) => {
+  results.sort((a, b) => {
     return this.options.search.sort.indexOf(a.type) - this.options.search.sort.indexOf(b.type);
   });
 
   // Write the finished results to disk
-  return new Promise((resolve, reject) => {
-    mkdirp(path.dirname(outFile), err => {
-      if (err) reject(err);
-      fs.writeFile(outFile, JSON.stringify(results, null, '  '), err => {
-        if (err) reject(err);
-        else resolve();
-      });
-    });
-  })
+  return mkdirp(path.dirname(outFile))
+    .then(() => writeFile(outFile, JSON.stringify(results, null, '  ')));
 }
 
 /**

@@ -48,6 +48,8 @@
     "lodash.frompairs": "^4.0.1",
     "markdown-it": "^8.0.1",
     "mkdirp": "^0.5.1",
+    "pify": "^2.3.0",
+    "portatheme": "^0.2.0",
     "pug": "^2.0.0-beta5",
     "random-id": "0.0.2",
     "replace-basename": "^1.1.0",

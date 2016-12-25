@@ -17,7 +17,7 @@
   },
   "scripts": {
     "clean": "rm -rf docs",
-    "docs": "node ./bin/spacedoc.js",
+    "docs": "node ./bin/spacedoc.js --watch",
     "predocs": "npm run clean",
     "server": "lite-server",
     "start": "npm run docs & npm run server",

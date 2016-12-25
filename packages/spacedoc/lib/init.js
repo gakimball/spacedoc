@@ -82,6 +82,10 @@ module.exports = function init(opts = {}) {
        */
       (file, enc, cb) => {
         this.parse(file).then(page => {
+          if (!page) {
+            return cb();
+          }
+
           // For complete builds, push all pages to the tree
           if (!opts.incremental) {
             this.tree.push(page);

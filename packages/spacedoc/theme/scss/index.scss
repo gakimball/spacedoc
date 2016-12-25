@@ -1,0 +1,173 @@
+body {
+  background: #f9f9f9;
+  font-size: 18px;
+  font-family: Soleil, Helvetica, sans-serif;
+  color: #333;
+}
+
+.top-bar {
+  margin-bottom: 2rem;
+
+  &,
+  ul {
+    background: #333;
+  }
+
+  .menu-text,
+  .menu a {
+    color: #fff;
+    padding: 0.8rem 1rem 0.6rem 1rem;
+  }
+}
+
+.sd-doclet {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 1rem;
+
+  & & {
+    padding-left: 1.5rem;
+    border-left: 1px solid #ccc;
+  }
+}
+
+.sd-codeblock code,
+pre > code {
+  display: block;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  background: #333;
+  color: #fff;
+}
+
+.sd-nav {
+  font-size: 16px;
+
+  .menu-item a,
+  .menu-text {
+    padding: 0;
+    line-height: 34px;
+  }
+
+  .menu-item a {
+    color: #333;
+
+    &:hover {
+      color: #810606;
+    }
+  }
+
+  .menu-text {
+    color: #999;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+}
+
+.sd-multisample {
+  font-family: inherit;
+  white-space: normal;
+
+  .tabs {
+    border: 0;
+    background: transparent;
+    margin-bottom: 0.5rem;
+  }
+
+  .tabs-title a {
+    color: black;
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+  }
+
+  .tabs-title a[aria-selected="true"] {
+    color: white;
+    background: #333;
+  }
+
+  .tabs-content {
+    border: 0;
+    background: transparent;
+  }
+
+  .tabs-panel {
+    padding: 0;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Soleil, Helvetica, sans-serif;
+  text-transform: lowercase;
+  color: #333;
+}
+
+h1 {
+  font-size: 60px;
+}
+
+h2 {
+  font-size: 40px;
+}
+
+h3 {
+  font-size: 28px;
+}
+
+h4 {
+  font-size: 22px;
+}
+
+h5 {
+  font-size: 20px;
+}
+
+h6 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+code {
+  font-family: 'Space Mono', monospace;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.lead {
+  font-size: 25px;
+}
+
+table {
+  font-size: 16px;
+
+  thead {
+    background: transparent;
+    border-bottom: 2px solid #333;
+  }
+
+  tbody {
+    background: transparent;
+
+    tr {
+      border-bottom: 1px solid #333;
+    }
+
+    td {
+      line-height: 1.6;
+      padding-top: 0.7rem;
+    }
+  }
+}
+
+tr {
+  background: transparent !important;
+}
+
+td p {
+  margin-bottom: 0;
+}
+
+.callout {
+  border: 0;
+  border-left: 10px solid rgba(0, 0, 0, 0.3);
+}

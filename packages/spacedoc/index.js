@@ -21,18 +21,6 @@ function Spacedoc() {
    * @type PageData[]
    */
   this.tree = [];
-
-  /**
-   * List of layouts pages can reference. Provided by the loaded template.
-   * @type Object.<Function>
-   */
-  this.templates = {};
-
-  /**
-   * Indicates that the loaded template has multiple layouts.
-   * @type Boolean
-   */
-  this.mutliTemplate = false;
 }
 
 // Spacedoc class methods
@@ -54,6 +42,14 @@ const sd = new Spacedoc();
 // Public API
 module.exports = sd.init.bind(sd);
 module.exports.config = sd.config.bind(sd);
+module.exports.build = ({ watch = false }) => {
+  if (watch) {
+    return sd.theme.buildAndWatch();
+  }
+  else {
+    return sd.theme.build();
+  }
+}
 module.exports.buildSearch = sd.buildSearch.bind(sd);
 Object.defineProperty(module.exports, 'tree', {
   get: () => sd.tree

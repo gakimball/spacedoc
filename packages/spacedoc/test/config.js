@@ -1,5 +1,6 @@
 const { expect } = require('chai');
 const { Spacedoc } = require('..');
+const Theme = require('portatheme');
 
 describe('Spacedoc.config()', () => {
   it('sets configuration settings', () => {
@@ -42,46 +43,10 @@ describe('Spacedoc.config()', () => {
     expect(s.adapters.mock).to.be.a('function');
   });
 
-  it('loads the default template', () => {
-    let s = new Spacedoc().config();
+  it('loads the theme', () => {
+    const s = new Spacedoc().config();
 
-    expect(s.templates.default).to.be.a('function');
-  });
-
-  it('loads a Pug template', () => {
-    let s = new Spacedoc().config({
-      input: 'src',
-      output: 'dest',
-      template: 'test/fixtures/template.pug'
-    });
-
-    expect(s.templates.default).to.be.a('function');
-  });
-
-  it('loads a pug template folder', () => {
-    const s = new Spacedoc().config({
-      template: 'test/fixtures/template',
-    });
-
-    expect(s.templates.default).to.be.a('function');
-  });
-
-  it('throws an error if a template folder has no default file', () => {
-    const s = new Spacedoc();
-
-    expect(() => {
-      s.config({
-        template: 'test/fixtures/spacedoc-mock',
-      });
-    }).to.throw(Error);
-  });
-
-  it('allows a pre-made template function to be used', () => {
-    const s = new Spacedoc().config({
-      template: () => 'test'
-    });
-
-    expect(s.templates.default()).to.equal('test');
+    expect(s.theme).to.be.an.instanceOf(Theme);
   });
 
   it('loads JSON data from search config', () => {

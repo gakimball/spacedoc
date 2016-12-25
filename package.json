@@ -8,5 +8,8 @@
     "lerna": "2.0.0-beta.30",
     "lite-server": "^2.2.2",
     "mocha": "^3.1.2"
+  },
+  "dependencies": {
+    "portatheme": "^0.2.0"
   }
 }

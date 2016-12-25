@@ -5,67 +5,39 @@ const mockVinyl = require('./util/mockVinyl');
 
 const TEST_FILE = mockVinyl('test/fixtures/example.md');
 const TEST_FILE_ALT = mockVinyl('test/fixtures/example-alt-layout.md');
-const TEST_FILE_MISSING = mockVinyl('test/fixtures/example-missing-layout.md');
 
 describe('Spacedoc.build()', () => {
   it('builds an HTML file from the data of a page', () => {
     const s = new Spacedoc().config({
-      template: 'test/fixtures/template-simple.pug'
+      theme: 'test/fixtures/theme'
     });
 
-    const output = s.build({ kitty: 'kitty' });
+    const output = s.build({ kittens: 'kittens' });
     expect(output).to.be.a('string');
-    expect(output).to.contain('kitty');
+    expect(output).to.contain('<p>kittens');
   });
 
   it('adds global data to the template context', () => {
     const s = new Spacedoc().config({
-      template: 'test/fixtures/template-global.pug',
-      data: { kitty: 'kitty' }
+      theme: 'test/fixtures/theme-globals',
+      data: { kittens: 'kittens' }
     });
 
     const output = s.build();
-    expect(output).to.contain('kitty');
+    expect(output).to.contain('<p>kittens');
   });
 
-  describe('template errors', () => {
-    beforeEach(() => sinon.stub(console, 'warn'));
-    afterEach(() => console.warn.restore());
-
-    it('catches template errors', () => {
-      const s = new Spacedoc().config({
-        template: 'test/fixtures/template-broken.pug'
-      }).build();
-
-      expect(console.warn).to.have.been.calledOnce;
+  it('throws Pug errors', () => {
+    const s = new Spacedoc().config({
+      theme: 'test/fixtures/theme-broken'
     });
 
-    it('catches an undefined layout being set', () => {
-      const s = new Spacedoc().config({
-        template: 'test/fixtures/template',
-      });
-
-      return s.parse(TEST_FILE_MISSING).then(data => {
-        s.build(data);
-        expect(console.warn).to.have.been.calledOnce;
-      });
-    });
-
-    it('catches alternate layouts being defined in a single-template setup', () => {
-      const s = new Spacedoc().config({
-        template: () => '',
-      });
-
-      return s.parse(TEST_FILE_ALT).then(data => {
-        s.build(data);
-        expect(console.warn).to.have.been.calledOnce;
-      });
-    });
+    expect(s.build).to.throw(Error);
   });
 
   it('allows Front Matter to be retained on the page', () => {
     const s = new Spacedoc().config({
-      template: 'test/fixtures/template.pug',
+      theme: 'test/fixtures/theme',
       keepFm: true
     });
 
@@ -74,9 +46,9 @@ describe('Spacedoc.build()', () => {
 
   it('allows an alternate layout to be used', () => {
     const s = new Spacedoc().config({
-      template: 'test/fixtures/template',
+      theme: 'test/fixtures/theme',
     });
 
-    return expect(s.parse(TEST_FILE_ALT).then(data => s.build(data))).to.eventually.contain('So alt');
+    return expect(s.parse(TEST_FILE_ALT).then(data => s.build(data))).to.eventually.contain('<p>Puppies');
   });
 });

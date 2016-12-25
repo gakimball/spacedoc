@@ -64,7 +64,7 @@ module.exports = function config(opts = {}) {
 
   // Extend search defaults
   this.options.search = Object.assign({
-    output: null,
+    output: opts.output ? path.join(opts.output, 'assets/search.json') : null,
     extra: [],
     sort: [],
     pageTypes: {}

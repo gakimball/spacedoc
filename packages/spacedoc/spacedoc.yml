@@ -1,7 +1,5 @@
 input: _docs/**/*
 output: docs
-search:
-  output: docs/assets/search.json
 site:
   title: Spacedoc
   nav:

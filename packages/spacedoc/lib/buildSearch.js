@@ -19,6 +19,7 @@ const writeFile = pify(require('fs').writeFile);
  * @returns {Promise} Promise which resolves when the search file has been written to disk.
  * @todo Make hashes for search result types configurable
  * @todo Remove the page/component distinction, which is too specific
+ * @todo Fix search result page paths being relative
  */
 module.exports = function buildSearch(outFile = this.options.search.output) {
   if (!outFile) {

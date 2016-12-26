@@ -17,6 +17,7 @@ const writeFile = pify(require('fs').writeFile);
  * Generates a search file from the current tree of processed pages.
  * @param {string} outFile - Path to write to.
  * @returns {Promise} Promise which resolves when the search file has been written to disk.
+ * @todo Add hashes for doclet results
  * @todo Make hashes for search result types configurable
  * @todo Remove the page/component distinction, which is too specific
  * @todo Fix search result page paths being relative

@@ -1,6 +1,6 @@
 {
   "name": "spacedoc-theme-default",
-  "version": "1.0.0",
+  "version": "0.3.0",
   "description": "Default theme for Spacedoc",
   "main": "settings.js",
   "scripts": {

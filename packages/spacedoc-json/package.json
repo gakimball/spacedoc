@@ -1,6 +1,6 @@
 {
   "name": "spacedoc-json",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "JavaScript adapter for JSON Schema.",
   "main": "index.js",
   "scripts": {

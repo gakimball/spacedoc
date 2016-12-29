@@ -1,6 +1,6 @@
 {
   "name": "spacedoc-helpers",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Pug helper functions for Spacedoc",
   "main": "index.js",
   "scripts": {

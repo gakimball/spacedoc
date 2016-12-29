@@ -13,6 +13,7 @@ const yml = require('js-yaml');
  * @returns {Spacedoc} Spacedoc instance. This method can be chained to other Spacedoc methods.
  * @todo Combine options.config into options.adapters
  * @todo Allow *.js config files to be loaded (change needed in flexiconfig)
+ * @todo Make this function more declarative so its easier to see what's getting changed where
  */
 module.exports = function config(opts = {}) {
   // Load config from a file
@@ -50,7 +51,7 @@ module.exports = function config(opts = {}) {
    * @prop {Object.<String, String>} [search.pageTypes={}] - Custom page types to reference when generating search results.
    * @prop {Boolean} [silent=false] - Disable console output while processing pages.
    * @prop {Object} [site={}] - Theme globals.
-   * @prop {?(Function|String)} [theme] - Custom theme to use.
+   * @prop {(String|String[])} [theme] - Custom theme to use.
    */
   this.options = Object.assign({
     adapters: [],
@@ -61,7 +62,7 @@ module.exports = function config(opts = {}) {
     pageRoot: null,
     silent: false,
     site: {},
-    theme: path.join(__dirname, '../theme')
+    theme: 'spacedoc-theme-default'
   }, opts);
 
   // Extend search defaults
@@ -84,7 +85,12 @@ module.exports = function config(opts = {}) {
   this.options.adapters.map(adapter => this.addAdapter(adapter));
 
   // Load theme
-  this.theme = new Theme(this.options.theme);
+  if (Array.isArray(this.options.theme)) {
+    this.theme = new Theme(this.options.theme[0], this.options.theme[1]);
+  }
+  else {
+    this.theme = new Theme(this.options.theme);
+  }
   if (this.options.output) {
     this.theme.outputTo(this.options.output);
   }

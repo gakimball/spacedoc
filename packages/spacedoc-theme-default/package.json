@@ -1,0 +1,29 @@
+{
+  "name": "spacedoc-theme-default",
+  "version": "1.0.0",
+  "description": "Default theme for Spacedoc",
+  "main": "settings.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spacedoc/spacedoc-theme-default.git"
+  },
+  "keywords": [
+    "spacedoc-theme-default"
+  ],
+  "author": "Geoff Kimball <geoff@geoffkimball.com> (http://geoffkimball.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/spacedoc/spacedoc-theme-default/issues"
+  },
+  "homepage": "https://github.com/spacedoc/spacedoc-theme-default#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  },
+  "engines": {
+    "node": ">=4"
+  }
+}

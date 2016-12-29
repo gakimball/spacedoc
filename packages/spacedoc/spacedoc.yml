@@ -1,4 +1,4 @@
-input: _docs/**/*
+input: _docs/**/*.{pug,md}
 output: docs
 site:
   title: Spacedoc

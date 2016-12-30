@@ -49,3 +49,6 @@ jspm_packages
 # Build artifacts
 _build
 packages/spacedoc/docs
+
+# Eyeglass cache
+.eyeglass-cache

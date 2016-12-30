@@ -4,7 +4,7 @@
   "description": "Default theme for Spacedoc",
   "main": "settings.js",
   "scripts": {
-    "test": "mocha"
+    "test": "echo \"No tests yet.\""
   },
   "repository": {
     "type": "git",

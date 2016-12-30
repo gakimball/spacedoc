@@ -1,6 +1,6 @@
 //- Render a code sample using highlight.js.
 //- @param {String} code - Code sample.
-//- @todo Allow language to be specified.
+//- @param {String} [lang] - Language of sample.
 mixin code(code, lang)
   pre.sd-codeblock
     code(class=lang)

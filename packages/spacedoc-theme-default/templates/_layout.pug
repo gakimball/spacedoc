@@ -1,7 +1,7 @@
 doctype html
 
 head
-  title #{page.title} | #{site.title}
+  title #{page.title} | #{theme.title}
 
   link(rel='stylesheet', href='https://cdn.jsdelivr.net/foundation/6.2.1/foundation.min.css')
   link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/atom-one-dark.min.css')
@@ -12,8 +12,8 @@ body
     .column.row
       .top-bar-left
         ul.menu
-          li.menu-text= site.title
-          each title, url in site.nav
+          li.menu-text= theme.title
+          each title, url in theme.nav
             li.menu-item: a(href=url)= title
 
   block body

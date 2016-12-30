@@ -3,7 +3,7 @@ output: docs
 theme:
   - _docs/theme
   - spacedoc-theme-default
-site:
+themeOptions:
   title: Spacedoc
   nav:
     docs: Docs

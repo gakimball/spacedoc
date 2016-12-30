@@ -25,6 +25,12 @@ class Spacedoc {
      * @type PageData[]
      */
     this.tree = [];
+
+    /**
+     * Theme class instance. Used to render pages.
+     * @type
+     */
+    this.theme = null;
   }
 }
 

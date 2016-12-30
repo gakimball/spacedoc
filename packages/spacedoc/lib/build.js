@@ -11,18 +11,27 @@ const helpers = require('spacedoc-helpers');
  * @returns {String} Rendered HTML string.
  */
 module.exports = function build(data = {}) {
-  // Construct object of locals to drop into Pug template
+  /**
+   * Locals passed to a Pug template.
+   * @typedef {Object} PageLocals
+   * @prop {PageData} page - Page-specific data (includes doclets, page title, page body, etc.)
+   * @prop {Object} site - Site-wide data.
+   * @prop {PageData[]} site.pages - Complete list of pages.
+   * @prop {Object} spacedoc - Spacedoc helper functions and metadata. Includes all functions in the spacedoc-helpers package.
+   * @prop {PageFindFunction} spacedoc.find - Used to look up doclets attached to the current page.
+   * @prop {Object} spacedoc.adapters - List of loaded adapters.
+   * @prop {Object} theme - Theme-specific settings.
+   */
   const locals = {
-    // Page-specific data (includes doclets, page title, page body, etc.)
     page: data,
-    // Site-wide data, includes list of pages and template-defined globals
-    site: Object.assign({}, this.options.site, {
+    //
+    site: {
       pages: this.tree,
-    }),
-    // Spacedoc helpers, includes Lodash's filter function, the list of adapters, and the contents of the spacedoc-helpers package
+    },
     spacedoc: Object.assign({
       /**
        * Find a doclet within a specific adapter's data set.
+       * @callback PageFindFunction
        * @param {String} scope - Adapter data to search in.
        * @param {*} predicate - Argument to pass to `lodash.filter`.
        * @returns {?Object[]} List of doclets, or `undefined` if none were found.
@@ -35,6 +44,7 @@ module.exports = function build(data = {}) {
       },
       adapters: this.adapters,
     }, helpers),
+    theme: this.options.themeOptions,
   };
 
   // Render to HTML

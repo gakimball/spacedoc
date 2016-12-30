@@ -49,8 +49,8 @@ module.exports = function config(opts = {}) {
    * @prop {String[]} [search.sort=[]] - Sorting criteria for search results. The `type` property of each result is used for comparison.
    * @prop {Object.<String, String>} [search.pageTypes={}] - Custom page types to reference when generating search results.
    * @prop {Boolean} [silent=false] - Disable console output while processing pages.
-   * @prop {Object} [site={}] - Theme globals.
    * @prop {(String|String[])} [theme] - Custom theme to use.
+   * @prop {Object} [themeOptions={}] - Theme global variables.
    */
   this.options = Object.assign({
     adapters: [],
@@ -59,8 +59,8 @@ module.exports = function config(opts = {}) {
     markdown: markdown,
     pageRoot: null,
     silent: false,
-    site: {},
-    theme: 'spacedoc-theme-default'
+    theme: 'spacedoc-theme-default',
+    themeOptions: {},
   }, opts);
 
   // Extend search defaults
@@ -96,13 +96,13 @@ module.exports = function config(opts = {}) {
 
   // Get theme globals
   try {
-    this.options.site = Object.assign(
+    this.options.themeOptions = Object.assign(
       {},
       require(path.join(this.theme.location, 'settings.js')),
-      this.options.site
+      this.options.themeOptions
     );
   }
-  catch (e) {}
+  catch(e) {}
 
   // Load extra results from an external file
   if (opts.search && typeof opts.search.extra === 'string') {

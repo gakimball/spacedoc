@@ -13,7 +13,6 @@ const yml = require('js-yaml');
  * @returns {Spacedoc} Spacedoc instance. This method can be chained to other Spacedoc methods.
  * @todo Combine options.config into options.adapters
  * @todo Allow *.js config files to be loaded (change needed in flexiconfig)
- * @todo Make this function more declarative so its easier to see what's getting changed where
  */
 module.exports = function config(opts = {}) {
   // Load config from a file
@@ -57,7 +56,7 @@ module.exports = function config(opts = {}) {
     config: {},
     extension: 'html',
     markdown: markdown,
-    pageRoot: null,
+    pageRoot: getDefaultPageRoot(),
     silent: false,
     theme: 'spacedoc-theme-default',
     themeOptions: {},
@@ -71,54 +70,93 @@ module.exports = function config(opts = {}) {
     pageTypes: {}
   }, opts.search || {});
 
-  // Try to infer the root directory of pages
-  if (!this.options.pageRoot && this.options.input) {
-    this.options.pageRoot = globParent(this.options.input);
-  }
-  else {
-    this.options.pageRoot = process.cwd();
-  }
-
   // Load adapters
   this.options.adapters.map(adapter => this.addAdapter(adapter));
 
   // Load theme
-  if (Array.isArray(this.options.theme)) {
-    const paths = Array.from(this.options.theme).reverse();
-    this.theme = paths.reduce((theme, path) => new Theme(path, theme), undefined);
-  }
-  else {
-    this.theme = new Theme(this.options.theme);
-  }
+  this.theme = createTheme(this);
+
   if (this.options.output) {
     this.theme.outputTo(this.options.output);
   }
 
   // Get theme globals
-  try {
-    this.options.themeOptions = Object.assign(
-      {},
-      require(path.join(this.theme.location, 'settings.js')),
-      this.options.themeOptions
-    );
-  }
-  catch(e) {}
+  this.options.themeOptions = getThemeOptions(this);
 
   // Load extra results from an external file
-  if (opts.search && typeof opts.search.extra === 'string') {
-    const fileContents = fs.readFileSync(opts.search.extra);
-    switch (path.extname(opts.search.extra)) {
-      case '.json':
-        this.options.search.extra = JSON.parse(fileContents);
-        break;
-      case '.yml':
-        this.options.search.extra = yml.safeLoad(fileContents);
-        break;
-    }
-  }
-  else {
-    this.options.search.extra = [];
-  }
+  this.options.search.extra = getExtraSearchOpts();
 
   return this;
+
+  /**
+   * Get the default value of `options.pageRoot`.
+   *   - If `opts.input` was set, the root can be inferred from the glob pattern.
+   *   - Otherwise, the CWD is used.
+   * @returns {String} Default page root.
+   */
+  function getDefaultPageRoot() {
+    if (opts.input) {
+      return globParent(opts.input);
+    }
+    else {
+      return process.cwd();
+    }
+  }
+
+  /**
+   * Create the theme used by the renderer.
+   *   - If `opts.theme` is a string, load the theme as-is.
+   *   - If `opts.theme` is an array, compose a theme using the first value as the base theme, and subsequent values as inherited themes.
+   * @param {Spacedoc} inst - Spacedoc instance.
+   * @returns {Theme} Theme instance.
+   */
+  function createTheme(inst) {
+    if (Array.isArray(inst.options.theme)) {
+      const paths = Array.from(inst.options.theme).reverse();
+      return paths.reduce((theme, path) => new Theme(path, theme), undefined);
+    }
+    else {
+      return new Theme(inst.options.theme);
+    }
+  }
+
+  /**
+   * Get theme options. A theme can define variables that are passed to the Pug template when a page is rendered. These variables can be overridden by the user when configuring Spacedoc.
+   * @param {Spacedoc} inst - Spacedoc instance.
+   * @returns {Object} Theme options.
+   */
+  function getThemeOptions(inst) {
+    try {
+      return Object.assign(
+        {},
+        require(path.join(inst.theme.location, 'settings.js')),
+        inst.options.themeOptions
+      );
+    }
+    catch(e) {
+      return inst.options.themeOptions;
+    }
+  }
+
+  /**
+   * Get extra search results from an external file. It can be formatted as JSON or YML. If `opts.search.extra` was not set, the value returned will be an empty array.
+   * @returns {SearchResult[]} List of search results.
+   */
+  function getExtraSearchOpts() {
+    if (opts.search && typeof opts.search.extra === 'string') {
+      const fileContents = fs.readFileSync(opts.search.extra);
+
+      switch (path.extname(opts.search.extra)) {
+        case '.json':
+          return JSON.parse(fileContents);
+          break;
+        case '.yml':
+          return yml.safeLoad(fileContents);
+          break;
+      }
+    }
+    else {
+      return [];
+    }
+  }
 }

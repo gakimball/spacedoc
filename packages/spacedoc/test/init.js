@@ -56,16 +56,4 @@ describe('Spacedoc.init()', () => {
       expect(s.tree).to.have.length(1);
     });
   });
-
-  it('allows for incremental builds', () => {
-    const s = new Spacedoc().config({
-      input: 'test/fixtures/example.md',
-      template: 'test/fixtures/template.pug',
-      silent: true
-    });
-
-    return s.init().then(() => s.init()).then(() => {
-      expect(s.tree).to.have.length(1);
-    });
-  });
 });

@@ -26,13 +26,11 @@ const vfs = require('vinyl-fs');
  *       // Parsing finished
  *     });
  *
- * @param {Object} opts - Options for initialization.
- * @param {Boolean} [opts.incremental=false] Enable incremental compiling. On subsequent runs of `Spacedoc.init()` (such as in a Gulp task, after a file has been saved), the plugin will not reset the cached list of pages.
  * @returns {Stream.Writable.<Vinyl>} A stream containing the modified files. You can add `on('finish')` after `Spacedoc.init()` to listen for when processing is done.
  * @todo Remove synchronous file I/O
  * @todo Remove incremental builds
  */
-module.exports = function init(opts = {}) {
+module.exports = function init() {
   // Initialize options if Spacedoc.config() was not called
   if (isEmptyObject(this.options)) {
     this.config();
@@ -42,9 +40,7 @@ module.exports = function init(opts = {}) {
   const _this = this;
 
   // Reset the internal data tree
-  if (!opts.incremental) {
-    this.tree = [];
-  }
+  this.tree = [];
 
   // Make the destination folder
   if (this.options.output) {
@@ -82,27 +78,8 @@ module.exports = function init(opts = {}) {
        */
       (file, enc, cb) => {
         this.parse(file).then(page => {
-          if (!page) {
-            return cb();
-          }
-
-          // For complete builds, push all pages to the tree
-          if (!opts.incremental) {
+          if (page) {
             this.tree.push(page);
-          }
-          // For incremental builds, we have to figure out if the page already exists in the tree or not
-          else {
-            // Look for a page in the tree with a matching filename
-            const key = findIndex(this.tree, { fileName: page.fileName });
-
-            // If that page exists, we replace the existing page with the revised one
-            if (key > -1) {
-              this.tree[key] = page;
-            }
-            // Otherwise, we add the new page to the end of the tree
-            else {
-              this.tree.push(page);
-            }
           }
 
           cb();

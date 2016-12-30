@@ -17,16 +17,6 @@ describe('Spacedoc.build()', () => {
     expect(output).to.contain('<p>kittens');
   });
 
-  it('adds global data to the template context', () => {
-    const s = new Spacedoc().config({
-      theme: 'test/fixtures/theme-globals',
-      data: { kittens: 'kittens' }
-    });
-
-    const output = s.build();
-    expect(output).to.contain('<p>kittens');
-  });
-
   it('throws Pug errors', () => {
     const s = new Spacedoc().config({
       theme: 'test/fixtures/theme-broken'

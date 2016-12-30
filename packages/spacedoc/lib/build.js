@@ -12,7 +12,7 @@ const helpers = require('spacedoc-helpers');
  */
 module.exports = function build(data = {}) {
   // Construct object of locals to drop into Pug template
-  const locals = Object.assign({}, this.options.data, {
+  const locals = {
     // Page-specific data (includes doclets, page title, page body, etc.)
     page: data,
     // Site-wide data, includes list of pages and template-defined globals
@@ -35,13 +35,13 @@ module.exports = function build(data = {}) {
       },
       adapters: this.adapters,
     }, helpers),
-  });
+  };
 
   // Render to HTML
   let output;
 
   try {
-    output = this.theme.compileString(locals, data.layout || 'default');
+    output = this.theme.compileString(locals, data.layout);
   }
   catch (e) {
     console.log(`Got this error while parsing ${data.originalName}:`);

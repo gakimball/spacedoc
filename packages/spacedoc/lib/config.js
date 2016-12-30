@@ -40,7 +40,6 @@ module.exports = function config(opts = {}) {
    * @typedef {Object} ConfigOptions
    * @prop {String[]} [adapters=[]] - Adapters to load.
    * @prop {Object.<String, Object>} [config={}] - Options to pass to adapters. Each key is an adapter name, such as `sass` or `js`, and each value is an object of settings.
-   * @prop {Object} [data={}] - Extra data to pass to the template, which will be merged with the page's data.
    * @prop {String} [extension='html'] - Extension for use for output files.
    * @prop {Marked=} [markdown] - Instance of [markdown-it](https://www.npmjs.com/package/markdown-it) to use when converting Markdown to HTML.
    * @prop {?String} [pageRoot] - Root directory for pages.
@@ -56,7 +55,6 @@ module.exports = function config(opts = {}) {
   this.options = Object.assign({
     adapters: [],
     config: {},
-    data: {},
     extension: 'html',
     markdown: markdown,
     pageRoot: null,

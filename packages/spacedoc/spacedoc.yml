@@ -1,5 +1,8 @@
-input: _docs/**/*.{pug,md}
+input: _docs/pages/**/*.{pug,md}
 output: docs
+theme:
+  - _docs/theme
+  - spacedoc-theme-default
 site:
   title: Spacedoc
   nav:

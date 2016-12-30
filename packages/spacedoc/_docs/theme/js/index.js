@@ -1,0 +1,1 @@
+import 'spacedoc-theme-default';

@@ -86,7 +86,8 @@ module.exports = function config(opts = {}) {
 
   // Load theme
   if (Array.isArray(this.options.theme)) {
-    this.theme = new Theme(this.options.theme[0], this.options.theme[1]);
+    const paths = Array.from(this.options.theme).reverse();
+    this.theme = paths.reduce((theme, path) => new Theme(path, theme), undefined);
   }
   else {
     this.theme = new Theme(this.options.theme);

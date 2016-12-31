@@ -13,14 +13,14 @@ const pug = require('pug');
  * @param {String} name - Name of, or path to module.
  */
 module.exports = function addAdapter(name) {
-  let adapterPath = '';
+  let adapter;
 
   try {
-    adapterPath = require.resolve(`spacedoc-${name}`)
+    adapter = require(`spacedoc-${name}`)
   }
   catch (e) {
     try {
-      adapterPath = require.resolve(path.join(process.cwd(), name));
+      adapter = require(path.join(process.cwd(), name));
     }
 
     catch (e) {
@@ -28,7 +28,6 @@ module.exports = function addAdapter(name) {
     }
   }
 
-  const adapter = require(adapterPath);
   this.adapters[adapter.adapterName] = adapter;
 
   return this;

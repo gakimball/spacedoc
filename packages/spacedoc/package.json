@@ -70,6 +70,7 @@
     "cheerio": "^0.22.0",
     "jstransformer-markdown-it": "^2.0.0",
     "lite-server": "^2.2.2",
+    "mock-require": "^2.0.0",
     "sinon": "^1.17.5",
     "sinon-chai": "^2.8.0",
     "spacedoc-theme-default": "^0.3.0"

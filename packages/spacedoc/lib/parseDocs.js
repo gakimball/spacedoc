@@ -14,15 +14,11 @@
 module.exports = function parseDocs(adapters = {}) {
   // Array of asynchronous functions to run, one for each adapter
   const parsers = Object.keys(adapters).filter(lib => lib in this.adapters).map(lib => {
-    // Then find the configuration for the adapter and run it
-    const Adapter = this.adapters[lib];
-    const config = Object.assign(
-      typeof Adapter.config === 'function' ? Adapter.config() : {},
-      this.options.config[lib] || {}
-    );
+    const adapter = this.adapters[lib];
 
+    // @todo Can adapter.parse() just be returned?
     return new Promise((resolve, reject) => {
-      Adapter(adapters[lib], config)
+      adapter.parse(adapters[lib], adapter.config)
         .then(data => resolve({ adapter: lib, data: data }))
         .catch(e => reject(e));
     });

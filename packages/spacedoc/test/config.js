@@ -40,7 +40,7 @@ describe('Spacedoc.config()', () => {
       adapters: ['test/fixtures/spacedoc-mock']
     });
 
-    expect(s.adapters.mock).to.be.a('function');
+    expect(s.adapters.mock).to.be.an('object');
   });
 
   it('loads the theme', () => {

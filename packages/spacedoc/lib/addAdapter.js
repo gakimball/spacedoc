@@ -28,7 +28,19 @@ module.exports = function addAdapter(name) {
     }
   }
 
-  this.adapters[adapter.adapterName] = adapter;
+  /**
+   * Adapter definition.
+   * @typedef {Object} AdapterDefinition
+   * @prop {Function} parse - Parsing function. Extracts documentation data.
+   * @prop {Object} config - Parser configuration. Combines adapter defaults with user-defined settings.
+   */
+  this.adapters[adapter.adapterName] = {
+    parse: adapter,
+    config: Object.assign(
+      typeof adapter.config === 'function' ? adapter.config() : {},
+      this.options.config[adapter.adapterName] || {}
+    ),
+  };
 
   return this;
 }

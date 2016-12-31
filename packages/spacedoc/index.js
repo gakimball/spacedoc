@@ -16,7 +16,7 @@ class Spacedoc {
 
     /**
      * Adapters to use to parse documentation data.
-     * @type Object.<Function>
+     * @type Object.<String, AdapterDefinition>
      */
     this.adapters = {};
 

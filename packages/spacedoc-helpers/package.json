@@ -4,8 +4,7 @@
   "description": "Pug helper functions for Spacedoc",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
-    "prepublish": "npm test"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -27,11 +26,5 @@
     "highlight.js": "^9.6.0",
     "lodash.groupby": "^4.6.0",
     "markdown-it": "^8.0.1"
-  },
-  "devDependencies": {
-    "chai": "^3.5.0",
-    "eslint": "^3.4.0",
-    "eslint-config-airbnb": "^13.0.0",
-    "mocha": "^3.0.2"
   }
 }

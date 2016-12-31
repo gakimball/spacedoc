@@ -21,9 +21,5 @@
   "bugs": {
     "url": "https://github.com/spacedoc/spacedoc/issues"
   },
-  "homepage": "https://github.com/spacedoc/spacedoc#readme",
-  "devDependencies": {
-    "chai": "^3.5.0",
-    "mocha": "^3.1.2"
-  }
+  "homepage": "https://github.com/spacedoc/spacedoc#readme"
 }

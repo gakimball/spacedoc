@@ -9,8 +9,8 @@ const through = require('through2');
 const vfs = require('vinyl-fs');
 
 /**
- * Initialize Spacedoc, parsing a set of documentation pages and outputting HTML files. To call this function, `Spacedoc.config()` must have been called previously with the `template` parameter set.
- * This function can be called standalone, with the `src` and `dest` options having been set in `Spacedoc.config()`, or it can be called in a Gulp stream, and `src` and `dest` can be omitted.
+ * Initialize Spacedoc, parsing a set of documentation pages and outputting HTML files.
+ * This function can be called standalone, with the `input` and `output` options having been set in `Spacedoc.config()`, or it can be called in a Gulp stream, and `input` and `output` can be omitted.
  *
  * @example <caption>Use within a Gulp stream:</caption>
  *   gulp.src('docs/*.md')
@@ -26,9 +26,8 @@ const vfs = require('vinyl-fs');
  *       // Parsing finished
  *     });
  *
- * @returns {Stream.Writable.<Vinyl>} A stream containing the modified files. You can add `on('finish')` after `Spacedoc.init()` to listen for when processing is done.
+ * @returns {(Stream.Writable.<Vinyl>|Promise)} If called without `input`, returns a stream containing the modified files. You can add `on('finish')` after `Spacedoc.init()` to listen for when processing is done. If called with `input`, returns a Promise which resolves when all parsing and writing is finished, or rejects if there's an error.
  * @todo Remove synchronous file I/O
- * @todo Remove incremental builds
  */
 module.exports = function init() {
   // Initialize options if Spacedoc.config() was not called
@@ -47,7 +46,7 @@ module.exports = function init() {
     mkdirp(this.options.output);
   }
 
-  // If `src` was passed, make an ad-hoc stream for processing
+  // If `input` was passed, make an ad-hoc stream for processing
   if (this.options.input) {
     return new Promise((resolve, reject) => {
       vfs

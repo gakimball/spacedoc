@@ -11,12 +11,11 @@ const yml = require('js-yaml');
  * Set Spacedoc options. Call this before `Spacedoc.init()` is run.
  * @param {(ConfigOptions|String)} [opts={}] - Plugin options, or a path to a YML config file with options.
  * @returns {Spacedoc} Spacedoc instance. This method can be chained to other Spacedoc methods.
- * @todo Combine options.config into options.adapters
  */
 module.exports = function config(opts = {}) {
   // Find config. `opts` can be an object or a string to a file path. If `opts` wasn't passed, a file called `spacedoc.yml` is searched for. Failing that, all the defauls are used
   try {
-    opts = getConfig([opts, 'spacedoc.yml'], { format: 'yml' });
+    opts = getConfig([opts, 'spacedoc.yml']);
   }
   catch (e) {
     console.log('Spacedoc has not been configured.');
@@ -25,8 +24,7 @@ module.exports = function config(opts = {}) {
   /**
    * Options that can be passed to `Spacedoc.config()`.
    * @typedef {Object} ConfigOptions
-   * @prop {String[]} [adapters=[]] - Adapters to load.
-   * @prop {Object.<String, Object>} [config={}] - Options to pass to adapters. Each key is an adapter name, such as `sass` or `js`, and each value is an object of settings.
+   * @prop {(String|Array)[]} [adapters=[]] - Adapters to load.
    * @prop {String} [extension='html'] - Extension for use for output files.
    * @prop {Marked=} [markdown] - Instance of [markdown-it](https://www.npmjs.com/package/markdown-it) to use when converting Markdown to HTML.
    * @prop {?String} [pageRoot] - Root directory for pages.
@@ -41,7 +39,6 @@ module.exports = function config(opts = {}) {
    */
   this.options = Object.assign({
     adapters: [],
-    config: {},
     extension: 'html',
     markdown: markdown,
     pageRoot: getDefaultPageRoot(),

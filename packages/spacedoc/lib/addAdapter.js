@@ -10,10 +10,18 @@ const pug = require('pug');
  * @example <caption>Enabling an adapter in a folder:</caption>
  * Spacedoc.addAdapter('./lib/rdoc');
  *
- * @param {String} name - Name of, or path to module.
+ * @example <caption>Adding configuration:</caption>
+ * Spacedoc.addAdapter(['sass', { verbose: true }]);
+ *
+ * @param {(String|Array)} name - Name of, or path to module. Can also be an array with the name/path and a config object.
  */
 module.exports = function addAdapter(name) {
+  let config = {};
   let adapter;
+
+  if (Array.isArray(name)) {
+    [name, config] = name;
+  }
 
   try {
     adapter = require(`spacedoc-${name}`)
@@ -38,7 +46,7 @@ module.exports = function addAdapter(name) {
     parse: adapter,
     config: Object.assign(
       typeof adapter.config === 'function' ? adapter.config() : {},
-      this.options.config[adapter.adapterName] || {}
+      config
     ),
   };
 

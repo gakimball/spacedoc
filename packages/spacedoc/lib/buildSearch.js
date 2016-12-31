@@ -19,7 +19,6 @@ const writeFile = pify(require('fs').writeFile);
  * @returns {Promise} Promise which resolves when the search file has been written to disk.
  * @todo Add hashes for doclet results
  * @todo Make hashes for search result types configurable
- * @todo Remove the page/component distinction, which is too specific
  * @todo Fix search result page paths being relative
  */
 module.exports = function buildSearch(outFile = this.options.search.output) {
@@ -35,12 +34,6 @@ module.exports = function buildSearch(outFile = this.options.search.output) {
     const item = tree[i];
     const link = path.relative(this.options.pageRoot, item.fileName).replace('md', this.options.extension);
     const type = (() => {
-      // By default pages are classified as a "page"
-      // If it has code associated with it, then it's a "component" instead.
-      if (keysInObject(item.docs, Object.keys(this.adapters))) {
-        return 'component';
-      }
-
       // Check for special page types
       for (let t in this.options.search.pageTypes) {
         const func = this.options.search.pageTypes[t];

@@ -20,7 +20,7 @@ describe('Spacedoc.buildSearch()', () => {
     return s.init().then(() => s.buildSearch('test/fixtures/_build/search.json'));
   });
 
-  it('flags generic pages as "page"', () => {
+  it('flags pages as "page"', () => {
     const s = new Spacedoc().config({
       input: 'test/fixtures/example.md',
       template: 'test/fixtures/template.pug',
@@ -32,25 +32,6 @@ describe('Spacedoc.buildSearch()', () => {
       page = JSON.parse(data)[0];
 
       expect(page.type).to.equal('page');
-    });
-  });
-
-  it('flags pages with code hooks as "component"', () => {
-    const s = new Spacedoc().config({
-      adapters: Adapters,
-      input: 'test/fixtures/example.md',
-      template: 'test/fixtures/template.pug',
-      silent: true
-    });
-
-    return s.init().then(() => s.buildSearch('test/fixtures/_build/search.json')).then(() => {
-      var data = fs.readFileSync('./test/fixtures/_build/search.json').toString();
-      data = JSON.parse(data);
-
-      for (var i in data) {
-        if (data[i].name === 'Button')
-          expect(data[i].type).to.equal('component')
-      }
     });
   });
 

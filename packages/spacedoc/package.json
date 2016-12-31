@@ -35,7 +35,7 @@
   "dependencies": {
     "chalk": "^1.1.1",
     "escape-html": "^1.0.3",
-    "flexiconfig": "^1.0.1",
+    "flexiconfig": "^2.0.0",
     "front-matter": "^2.1.0",
     "glob": "^7.0.5",
     "glob-parent": "^3.0.0",
@@ -58,11 +58,11 @@
     "replace-ext": "^1.0.0",
     "rimraf": "^2.2.8",
     "sassdoc": "^2.0.0-rc.17",
-    "spacedoc-helpers": "^0.1.0",
+    "spacedoc-helpers": "^0.3.0",
     "strip-indent": "^2.0.0",
     "through2": "^2.0.1",
     "transform-markdown-links": "^1.0.0",
-    "vinyl": "^1.1.1",
+    "vinyl": "^2.0.0",
     "vinyl-fs": "^2.4.3"
   },
   "devDependencies": {
@@ -74,6 +74,6 @@
     "mocha": "^3.0.2",
     "sinon": "^1.17.5",
     "sinon-chai": "^2.8.0",
-    "spacedoc-theme-default": "^0.2.0"
+    "spacedoc-theme-default": "^0.3.0"
   }
 }

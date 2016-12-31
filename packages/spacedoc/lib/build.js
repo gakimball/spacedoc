@@ -24,7 +24,6 @@ module.exports = function build(data = {}) {
    */
   const locals = {
     page: data,
-    //
     site: {
       pages: this.tree,
     },

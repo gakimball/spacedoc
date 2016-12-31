@@ -1,5 +1,5 @@
-const isEmptyObject = require('is-empty-object');
 const fs = require('fs');
+const getConfig = require('flexiconfig');
 const globParent = require('glob-parent');
 const markdown = require('./util/markdown');
 const path = require('path');
@@ -9,29 +9,17 @@ const yml = require('js-yaml');
 
 /**
  * Set Spacedoc options. Call this before `Spacedoc.init()` is run.
- * @param {?(ConfigOptions|String)} [opts={}] - Plugin options, or a path to a YML config file with options.
+ * @param {(ConfigOptions|String)} [opts={}] - Plugin options, or a path to a YML config file with options.
  * @returns {Spacedoc} Spacedoc instance. This method can be chained to other Spacedoc methods.
  * @todo Combine options.config into options.adapters
- * @todo Allow *.js config files to be loaded (change needed in flexiconfig)
  */
 module.exports = function config(opts = {}) {
-  // Load config from a file
-  if (typeof opts === 'string') {
-    try {
-      opts = yml.safeLoad(fs.readFileSync(opts).toString());
-    }
-    catch (e) {
-      console.log(e);
-      console.warn(`Spacedoc: could not open config file ${opts}`);
-    }
+  // Find config. `opts` can be an object or a string to a file path. If `opts` wasn't passed, a file called `spacedoc.yml` is searched for. Failing that, all the defauls are used
+  try {
+    opts = getConfig([opts, 'spacedoc.yml'], { format: 'yml' });
   }
-
-  // Try to load config in current directory
-  else if (isEmptyObject(opts)) {
-    try {
-      opts = yml.safeLoad(fs.readFileSync(path.join(process.cwd(), 'spacedoc.yml')).toString());
-    }
-    catch (e) {}
+  catch (e) {
+    console.log('Spacedoc has not been configured.');
   }
 
   /**

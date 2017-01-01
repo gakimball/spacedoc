@@ -48,11 +48,11 @@ module.exports = function build(data = {}) {
 
   // Render to HTML
   try {
-    const output = this.theme.compileString(locals, data.layout);
+    const output = this.theme.compileString(locals, data.meta.layout);
 
     // Preserve Front Matter if configured to
     if (this.options.keepFm) {
-      return `---\n${yaml.safeDump(data._frontMatter)}\n---\n\n${output}`;
+      return `---\n${yaml.safeDump(data.meta)}\n---\n\n${output}`;
     }
 
     return output;

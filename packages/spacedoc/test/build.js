@@ -12,7 +12,7 @@ describe('Spacedoc.build()', () => {
       theme: 'test/fixtures/theme'
     });
 
-    const output = s.build({ kittens: 'kittens' });
+    const output = s.build({ kittens: 'kittens', meta: {} });
     expect(output).to.be.a('string');
     expect(output).to.contain('<p>kittens');
   });

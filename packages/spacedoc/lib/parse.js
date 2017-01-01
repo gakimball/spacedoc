@@ -16,7 +16,6 @@ const yamlComment = require('./util/yamlComment');
  * @param {(Vinyl|String)} file - File to parse, or a path to a file to parse.
  * @returns {Promise.<PageData>} Promise containing a page object.
  * @todo Make file I/O asynchronous.
- * @todo Consider not putting the entire contents of the page Front Matter in the top-level page metadata. (Risk of property conflicts.)
  */
 module.exports = function parse(file) {
   // If a string path is passed instead of a Vinyl file, create a new file from the string
@@ -42,25 +41,26 @@ module.exports = function parse(file) {
   /**
    * Data representation of a page. This object can be passed to `Spacedoc.build()` to render a full documentation page.
    * @typedef {Object} PageData
-   * @prop {Object} _frontMatter - Original Front Matter included in the page.
    * @prop {String} body - The main body of the page. This includes everything other than the Front Matter at the top. It's usually Markdown or HTML.
    * @prop {Object.<String, Object>} docs - Documentation data. Each key is the name of an adapter, such as `sass` or `js`, and each value is the data that adapter found.
    * @prop {String} fileName - Final path to the page, relative to the root page, which is defined by `options.pageRoot`.
    * @prop {String} group - Group the page is in.
    * @prop {?String} layout - Template layout to use. `default` is set if a page doesn't define this.
+   * @prop {Object} meta - Original Front Matter included in the page.
    * @prop {?Number} order - Order of page within navigation.
    * @prop {String} originalName - Path to the page as originally given to the parser.
    * @prop {String} title - Page title.
    */
-  const page = Object.assign({}, pageData.attributes, {
-    _frontMatter: Object.assign({}, pageData.attributes),
+  const page = {
     body: '',
-    docs: pageData.attributes.docs || {},
+    docs: {},
     fileName: getPageFileName(file.path, this.options.pageRoot, this.options.extension),
     group: pageData.attributes.group || null,
+    meta: pageData.attributes,
     order: getPageOrder(file.path),
     originalName: file.path,
-  });
+    title: pageData.attributes.title,
+  };
 
   // If there's no title...
   if (!page.title) {
@@ -107,7 +107,7 @@ module.exports = function parse(file) {
   }
 
   // When all adapter data has been collected, add it to the page object
-  return this.parseDocs(page.docs).then(results => {
+  return this.parseDocs(page.meta.docs).then(results => {
     for (let res of results) {
       page.docs[res.adapter] = res.data;
     }

@@ -8,4 +8,6 @@ module.exports = {
     baseDir: './docs',
     index: 'index.html',
   },
+  logLevel: 'warn',
+  logFileChanges: false,
 }

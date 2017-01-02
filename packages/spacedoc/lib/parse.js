@@ -27,7 +27,7 @@ module.exports = function parse(file) {
       });
     }
     catch (e) {
-      return new Promise((resolve, reject) => reject(new Error(`Spacedoc.parse(): error loading file ${file}`)));
+      return Promise.reject(new Error(`Spacedoc.parse(): error loading file ${file}`));
     }
   }
 

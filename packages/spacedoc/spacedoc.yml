@@ -1,8 +1,13 @@
 input: _docs/pages/**/*.{pug,md}
 output: docs
+adapters:
+  - ../spacedoc-js
+  - ../spacedoc-json
+  - ../spacedoc-sass
 theme:
   - _docs/theme
   - spacedoc-theme-default
+debug: true
 themeOptions:
   title: Spacedoc
   nav:

@@ -54,7 +54,7 @@ module.exports = function parse(file) {
   const page = {
     body: '',
     docs: {},
-    fileName: getPageFileName(file.path, this.options.pageRoot, this.options.extension),
+    fileName: getPageFileName(file.path, this.options.pageRoot),
     group: pageData.attributes.group || null,
     meta: pageData.attributes,
     order: getPageOrder(file.path),
@@ -81,7 +81,7 @@ module.exports = function parse(file) {
   }
 
   // Render as Markdown for .md files
-  if (this.options.markdown && path.extname(page.originalName) === '.md') {
+  if (path.extname(page.originalName) === '.md') {
     try {
       // Replace links to `.md` files with `.html`
       const markdown = transformLinks(pageData.body, link => {

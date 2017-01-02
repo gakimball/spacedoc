@@ -32,7 +32,7 @@ module.exports = function buildSearch(outFile = this.options.search.output) {
   // Each item in the tree is a page
   for (let i in tree) {
     const item = tree[i];
-    const link = path.relative(this.options.pageRoot, item.fileName).replace('md', this.options.extension);
+    const link = path.relative(this.options.pageRoot, item.fileName).replace('md', 'html');
     const type = (() => {
       // Check for special page types
       for (let t in this.options.search.pageTypes) {

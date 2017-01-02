@@ -16,17 +16,6 @@ describe('Spacedoc.parse()', () => {
       .with.property('body').that.contain('<h2');
   });
 
-  it('does not touch Markdown if configured to ignore it', () => {
-    const s = new Spacedoc().config({
-      template: 'test/fixtures/template.pug',
-      markdown: null
-    });
-
-    return expect(s.parse(TEST_FILE))
-      .to.eventually.have.property('body')
-      .that.not.contain('<h2');
-  });
-
   it('only compiles files ending in .md', () => {
     const s = new Spacedoc().config();
 
@@ -47,7 +36,6 @@ describe('Spacedoc.parse()', () => {
     const s = new Spacedoc().config({
       adapters: ['test/fixtures/spacedoc-mock'],
       template: 'test/fixtures/template.pug',
-      markdown: null
     });
 
     return expect(s.parse(TEST_FILE))
@@ -77,7 +65,7 @@ describe('Spacedoc.parse()', () => {
     return expect(s.parse('test/fixtures/nope.md')).to.be.rejected;
   });
 
-  it('renames readme.md to index.md', () => {
+  it('renames readme.md to index.html', () => {
     const s = new Spacedoc().config();
 
     return expect(s.parse('test/fixtures/readme/readme.md'))

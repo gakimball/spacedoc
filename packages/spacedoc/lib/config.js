@@ -25,8 +25,7 @@ module.exports = function config(opts = {}) {
    * Options that can be passed to `Spacedoc.config()`.
    * @typedef {Object} ConfigOptions
    * @prop {(String|Array)[]} [adapters=[]] - Adapters to load.
-   * @prop {String} [extension='html'] - Extension for use for output files.
-   * @prop {Marked=} [markdown] - Instance of [markdown-it](https://www.npmjs.com/package/markdown-it) to use when converting Markdown to HTML.
+   * @prop {Marked} [markdown] - Instance of [markdown-it](https://www.npmjs.com/package/markdown-it) to use when converting Markdown to HTML.
    * @prop {?String} [pageRoot] - Root directory for pages.
    * @prop {Object} [search={}] - Search-specific options.
    * @prop {String} [search.outFile=''] - Filename to write search JSON to.
@@ -39,7 +38,6 @@ module.exports = function config(opts = {}) {
    */
   this.options = Object.assign({
     adapters: [],
-    extension: 'html',
     markdown: markdown,
     pageRoot: getDefaultPageRoot(),
     silent: false,

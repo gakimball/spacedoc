@@ -9,14 +9,34 @@ const path = require('path');
  */
 module.exports = function(value) {
   return jsdoc.explain({ files: value })
-    .then(items => items.filter(item => item.kind !== 'package').map(parseItem));
+    .then(items => items.filter(filterItem).map(parseItem));
 }
 
 module.exports.adapterName = 'js';
 module.exports.order = ['class', 'constant', 'event', 'function', 'module', 'namespace', 'typedef'];
+
+// @todo Move these exports to a separate file so they can still be tested but not exported here
 module.exports.getPreview = getPreview;
 module.exports.getTypes = getTypes;
 module.exports.getExample = getExample;
+
+/**
+ * Filter a JSDoc doclet from Spacedoc.
+ *   - Items with no JSDoc comments are filtered out.
+ *   - Items with an `@ignore` annotation are filtered out, per JSDoc rules.
+ *   - Packages are filtered out. (This could change in the future, but they aren't as useful given the way Spacedoc assembles documentation.)
+ *
+ * @param {Object} item - JSDoc doclet.
+ * @returns {Boolean} If the item should be kept.
+ */
+function filterItem(item) {
+  const cond =
+    item.undocumented !== true
+    && item.ignore !== true
+    && item.kind !== 'package';
+
+  return cond;
+}
 
 /**
  * Convert a JSDoc doclet into a Spacedoc doclet.
@@ -45,8 +65,7 @@ function parseItem(item) {
     parent: item.memberof,
     // alias:,
     // aliased:
-    ignore: false,
-    // access:
+    access: item.access,
     deprecated: item.deprecated,
     this: item.this,
     parameters: (item.params || []).map(param => ({
@@ -57,7 +76,7 @@ function parseItem(item) {
       nullable: param.nullable,
       optional: param.optional,
     })),
-    parameters: (item.properties || []).map(param => ({
+    properties: (item.properties || []).map(param => ({
       name: param.name,
       types: getTypes(param.type),
       description: param.description,

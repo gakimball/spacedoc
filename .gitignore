@@ -52,3 +52,6 @@ packages/spacedoc/docs
 
 # Eyeglass cache
 .eyeglass-cache
+
+# Spacedoc debug
+debug.json

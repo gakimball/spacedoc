@@ -27,4 +27,4 @@ module.exports = function getPageFileName(filePath, pageRoot) {
   newPath = replaceExt(newPath, '.html');
 
   return newPath;
-}
+};

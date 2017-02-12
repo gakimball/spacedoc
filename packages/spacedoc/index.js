@@ -93,7 +93,7 @@ module.exports.build = ({ watch = false }) => {
   else {
     return sd.theme.build();
   }
-}
+};
 
 /**
  * Generate a search file from the pages and doclets in the site.

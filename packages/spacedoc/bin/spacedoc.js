@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const meow = require('meow');
-const Spacedoc = require('..');
+const spacedoc = require('..');
 
 const cli = meow(`
   Usage
@@ -18,18 +18,18 @@ const cli = meow(`
   },
 });
 
-Spacedoc.config(cli.flags.config);
+spacedoc.config(cli.flags.config);
 
-Spacedoc({ watch: cli.flags.watch }, err => {
-  if (Spacedoc._instance.options.search.output) {
-    Spacedoc.buildSearch();
+spacedoc({ watch: cli.flags.watch }, err => {
+  if (spacedoc._instance.options.search.output) {
+    spacedoc.buildSearch();
   }
 
-  if (Spacedoc._instance.options.debug) {
-    fs.writeFileSync('debug.json', JSON.stringify(Spacedoc.tree, null, '  '));
+  if (spacedoc._instance.options.debug) {
+    fs.writeFileSync('debug.json', JSON.stringify(spacedoc.tree, null, '  '));
   }
 });
 
-Spacedoc.build({ watch: cli.flags.watch }).catch(err => {
+spacedoc.build({ watch: cli.flags.watch }).catch(err => {
   console.log(err);
 });

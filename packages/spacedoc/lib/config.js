@@ -3,7 +3,6 @@ const getConfig = require('flexiconfig');
 const globParent = require('glob-parent');
 const markdown = require('./util/markdown');
 const path = require('path');
-const pug = require('pug');
 const Theme = require('portatheme');
 const yml = require('js-yaml');
 
@@ -116,7 +115,7 @@ module.exports = function config(opts = {}) {
         inst.options.themeOptions
       );
     }
-    catch(e) {
+    catch (e) {
       return inst.options.themeOptions;
     }
   }
@@ -132,14 +131,13 @@ module.exports = function config(opts = {}) {
       switch (path.extname(opts.search.extra)) {
         case '.json':
           return JSON.parse(fileContents);
-          break;
         case '.yml':
           return yml.safeLoad(fileContents);
-          break;
+        // No default
       }
     }
     else {
       return [];
     }
   }
-}
+};

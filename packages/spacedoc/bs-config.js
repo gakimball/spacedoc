@@ -2,7 +2,7 @@ module.exports = {
   injectChanges: false,
   files: ['./docs/**/*'],
   watchOptions: {
-    "ignored": 'node_modules',
+    ignored: 'node_modules',
   },
   server: {
     baseDir: './docs',
@@ -10,4 +10,4 @@ module.exports = {
   },
   logLevel: 'warn',
   logFileChanges: false,
-}
+};

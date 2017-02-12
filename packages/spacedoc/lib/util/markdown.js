@@ -38,8 +38,8 @@ const markdown = markdownIt({
       codeBlocks.map(({ code, lang }, index) => {
         const { value } = (lang ? hljs.highlight(lang, code) : hljs.highlightAuto(code));
 
-        tabs += `<li class="tabs-title${index > 0 ? '' : ' is-active'}"><a href="#${id+index}"${index > 0 ? '' : 'aria-selected="true"'}>${lang}</a></li>`;
-        tabContent += `<div class="tabs-panel${index > 0 ? '': ' is-active'}" id="${id+index}"><pre class="sd-codeblock"><code class="hljs ${lang}">${value}</code></pre></div>`;
+        tabs += `<li class="tabs-title${index > 0 ? '' : ' is-active'}"><a href="#${id + index}"${index > 0 ? '' : 'aria-selected="true"'}>${lang}</a></li>`;
+        tabContent += `<div class="tabs-panel${index > 0 ? '' : ' is-active'}" id="${id + index}"><pre class="sd-codeblock"><code class="hljs ${lang}">${value}</code></pre></div>`;
       }).join('\n');
 
       return `<pre class="sd-multisample"><ul class="tabs" data-tabs id="${id}">${tabs}</ul><div class="tabs-content" data-tabs-content="${id}">${tabContent}</div></pre>`;

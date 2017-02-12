@@ -49,4 +49,4 @@ module.exports = function build(data = {}) {
     console.log(e);
     return '';
   }
-}
+};

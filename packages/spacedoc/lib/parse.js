@@ -1,12 +1,10 @@
 const File = require('vinyl');
 const frontMatter = require('front-matter');
 const fs = require('fs');
-const hljs = require('highlight.js');
 const path = require('path');
 const getPageFileName = require('./util/getPageFileName');
 const getPageOrder = require('./util/getPageOrder');
 const pug = require('pug');
-const replaceBase = require('replace-basename');
 const replaceExt = require('replace-ext');
 const transformLinks = require('transform-markdown-links');
 const yamlComment = require('./util/yamlComment');
@@ -32,7 +30,9 @@ module.exports = function parse(file) {
   }
 
   // Don't process directories
-  if (file.isDirectory()) return Promise.resolve();
+  if (file.isDirectory()) {
+    return Promise.resolve();
+  }
 
   const extension = path.extname(file.path);
   const contents = yamlComment(file.contents.toString(), extension);
@@ -116,4 +116,4 @@ module.exports = function parse(file) {
   }).catch(err => {
     console.log(err);
   });
-}
+};

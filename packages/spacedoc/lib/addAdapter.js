@@ -24,14 +24,14 @@ module.exports = function addAdapter(name) {
   }
 
   try {
-    adapter = require(`spacedoc-${name}`)
+    adapter = require(`spacedoc-${name}`);
   }
-  catch (e) {
+  catch (err1) {
     try {
       adapter = require(path.join(process.cwd(), name));
     }
 
-    catch (e) {
+    catch (err2) {
       throw new Error(`Couldn\'t load an adapter named "${name}". Make sure you have a module called "spacedoc-${name}" installed.`);
     }
   }
@@ -51,4 +51,4 @@ module.exports = function addAdapter(name) {
   };
 
   return this;
-}
+};

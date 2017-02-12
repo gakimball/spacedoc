@@ -32,4 +32,4 @@ module.exports = function yamlComment(input, extension) {
   }
 
   return input;
-}
+};

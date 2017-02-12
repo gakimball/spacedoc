@@ -25,4 +25,4 @@ module.exports = function parseDocs(adapters = {}) {
   });
 
   return Promise.all(parsers);
-}
+};

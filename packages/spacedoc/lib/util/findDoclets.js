@@ -45,4 +45,4 @@ module.exports = function findDoclets(doclets = {}, inheritAccess = true) {
   }
 
   return find;
-}
+};

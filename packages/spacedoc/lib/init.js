@@ -1,5 +1,4 @@
 const File = require('vinyl');
-const findIndex = require('lodash.findindex');
 const fs = require('fs');
 const isEmptyObject = require('is-empty-object');
 const mkdirp = require('mkdirp').sync;
@@ -107,7 +106,7 @@ module.exports = function init() {
             mkdirp(path.dirname(filePath));
 
             // Then write file
-            fs.writeFile(filePath, file.contents.toString(), (err, res) => {
+            fs.writeFile(filePath, file.contents.toString(), err => {
               if (err) {
                 reject(err);
               }
@@ -139,4 +138,4 @@ module.exports = function init() {
       }
     );
   }
-}
+};

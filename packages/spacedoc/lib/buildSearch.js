@@ -78,30 +78,18 @@ module.exports = function buildSearch(outFile = this.options.search.output) {
   // Write the finished results to disk
   return mkdirp(path.dirname(outFile))
     .then(() => writeFile(outFile, JSON.stringify(results, null, '  ')));
-}
-
-/**
- * Determines if any key in an array exists on an object.
- * @private
- * @param {object} obj - Object to check for keys.
- * @param {array} keys - Keys to check.
- * @returns {boolean} `true` if any key is found on the object, or `false` if not.
- */
-function keysInObject(obj, keys) {
-  for (let i in keys) {
-    if (keys[i] in obj) return true;
-  }
-  return false;
-}
+};
 
 /**
  * Given an object with enteries that are all arrays, combine all those arrays together.
  * @private
- * @param {Object.<String, Array>} Object to process.
+ * @param {Object.<String, Array>} obj - Object to process.
  * @returns {Array} Flattened array.
  */
 function flatten(obj) {
   let output = [];
-  Object.keys(obj).map(key => output = output.concat(obj[key]));
+  Object.keys(obj).map(key => {
+    output = output.concat(obj[key]);
+  });
   return output;
 }

@@ -14,4 +14,4 @@ module.exports = function getPageOrder(filePath) {
   else {
     return null;
   }
-}
+};

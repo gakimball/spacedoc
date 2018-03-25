@@ -24,6 +24,6 @@
   "homepage": "https://github.com/spacedoc/spacedoc-js#readme",
   "dependencies": {
     "escape-html": "^1.0.3",
-    "jsdoc-api": "^2.0.1"
+    "jsdoc-api": "^2.0.6"
   }
 }

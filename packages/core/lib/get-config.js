@@ -2,9 +2,10 @@ const getConfig = require('flexiconfig');
 const getAdapter = require('./get-adapter');
 
 /**
- * Set Spacedoc options. Call this before `Spacedoc.init()` is run.
- * @param {(ConfigOptions|String)} [opts={}] - Plugin options, or a path to a YML config file with options.
- * @returns {Spacedoc} Spacedoc instance. This method can be chained to other Spacedoc methods.
+ * Generate Spacedoc options. If a non-empty object is passed to the function, it will be added
+ * to the default config. Otherwise, a `spacedoc.yml` will be loaded, if it exists.
+ * @param {SpacedocParserOptions} [opts={}] - Spacedoc options.
+ * @returns {SpacedocParserOptions} Spacedoc options with defaults added.
  */
 module.exports = (opts = {}) => {
   // Config can either be an object or an external config file
@@ -17,11 +18,10 @@ module.exports = (opts = {}) => {
 
   /**
    * Options that can be passed to `Spacedoc.config()`.
-   * @typedef {Object} ConfigOptions
-   * @prop {(String[]|Array[])} [adapters=[]] - Adapters to load.
+   * @typedef {Object} SpacedocParserOptions
+   * @prop {(String[]|Array[])} adapters - Adapters to load.
    * @prop {String} input - Folder containing documentation pages.
-   * @prop {(String|String[])} - Folder(s) containing documentable code.
-   * @prop {Boolean} [silent=false] - Disable console output while processing pages.
+   * @prop {(String|String[])} docs - Folder(s) containing documentable code.
    */
   const options = Object.assign({
     adapters: [],

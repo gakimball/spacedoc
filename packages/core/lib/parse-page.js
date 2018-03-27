@@ -17,13 +17,8 @@ module.exports = options => filePath => {
    * Data representation of a page. This object can be passed to `Spacedoc.build()` to render a full documentation page.
    * @typedef {Object} PageData
    * @prop {String} body - The main body of the page. This includes everything other than the Front Matter at the top. It's usually Markdown or HTML.
-   * @prop {Object.<String, Object>} docs - Documentation data. Each key is the name of an adapter, such as `sass` or `js`, and each value is the data that adapter found.
-   * @prop {String} fileName - Final path to the page, relative to the root page, which is defined by `options.pageRoot`.
-   * @prop {String} group - Group the page is in.
-   * @prop {?String} layout - Template layout to use. `default` is set if a page doesn't define this.
    * @prop {Object} meta - Original Front Matter included in the page.
    * @prop {?Number} order - Order of page within navigation.
-   * @prop {String} originalPath - Path to the page as originally given to the parser.
    * @prop {String} title - Page title.
    */
   const page = {

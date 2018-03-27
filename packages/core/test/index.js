@@ -1,6 +1,6 @@
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
-const spacedoc = require('..');
+const Spacedoc = require('..');
 
 const { expect } = chai;
 
@@ -8,15 +8,19 @@ chai.use(chaiAsPromised);
 
 describe('spacedoc()', () => {
   it('parses a folder of pages', () => {
-    return expect(spacedoc({
+    const s = new Spacedoc({
       pages: 'test/fixtures',
-    })()).to.eventually.have.property('pages').with.lengthOf(4);
+    });
+
+    return expect(s.parse()).to.eventually.have.property('pages').with.lengthOf(4);
   });
 
   it('parses a glob of docs', () => {
-    return expect(spacedoc({
+    const s = new Spacedoc({
       adapters: ['./test/fixtures/adapter'],
       docs: ['test/fixtures'],
-    })()).to.eventually.have.deep.property('docs.fixture').with.lengthOf(1);
+    });
+
+    return expect(s.parse()).to.eventually.have.deep.property('docs.fixture').with.lengthOf(1);
   });
 });

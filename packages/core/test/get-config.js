@@ -28,7 +28,7 @@ describe('getConfig()', () => {
     });
 
     it('loads from an external config file', () => {
-      expect(getConfig()).to.have.property('silent', true);
+      expect(getConfig()).to.have.property('pages', 'kittens');
     });
   });
 });

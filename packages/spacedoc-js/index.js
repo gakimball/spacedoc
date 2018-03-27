@@ -14,6 +14,7 @@ module.exports = function(value) {
 
 module.exports.adapterName = 'js';
 module.exports.order = ['class', 'constant', 'event', 'function', 'module', 'namespace', 'typedef'];
+module.exports.extensions = ['js', 'jsx'];
 
 // @todo Move these exports to a separate file so they can still be tested but not exported here
 module.exports.getPreview = getPreview;

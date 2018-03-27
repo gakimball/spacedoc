@@ -15,6 +15,7 @@ module.exports = (value, config = {}) => {
 
 module.exports.adapterName = 'sass';
 module.exports.order = ['variable', 'mixin', 'function', 'placeholder'];
+module.exports.extensions = ['scss', 'sass'];
 module.exports.getTypes = getTypes;
 module.exports.getPreview = getPreview;
 

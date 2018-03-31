@@ -1,5 +1,6 @@
 const { expect } = require('chai');
-const adapter = require('../');
+const parseItem = require('../lib/parse-item');
+const getTypes = require('../lib/get-types');
 
 describe('JSON Schema Adapter', () => {
   describe('Parser', () => {
@@ -17,7 +18,7 @@ describe('JSON Schema Adapter', () => {
         default: 'Winston',
       };
 
-      expect(adapter.parseItem(Input, 'path/to/schema.json')).to.eql({
+      expect(parseItem(Input, 'path/to/schema.json')).to.eql({
         meta: {
           name: 'Name',
           longname: 'root',
@@ -53,7 +54,7 @@ describe('JSON Schema Adapter', () => {
         },
       };
 
-      expect(adapter.parseItem(Input, 'path/to/schema.json')).to.eql({
+      expect(parseItem(Input, 'path/to/schema.json')).to.eql({
         meta: {
           name: 'Cat Info',
           longname: 'root',
@@ -123,7 +124,7 @@ describe('JSON Schema Adapter', () => {
         },
       };
 
-      expect(adapter.parseItem(JsonSchema, 'path/to/schema.json')).to.eql({
+      expect(parseItem(JsonSchema, 'path/to/schema.json')).to.eql({
         meta: {
           name: 'Cats',
           longname: 'root',
@@ -154,15 +155,15 @@ describe('JSON Schema Adapter', () => {
 
   describe('getTypes()', () => {
     it('returns an empty array for undefined values', () => {
-      expect(adapter.getTypes()).to.eql([]);
+      expect(getTypes()).to.eql([]);
     });
 
     it('converts a string to an array with one item', () => {
-      expect(adapter.getTypes('string')).to.eql(['string']);
+      expect(getTypes('string')).to.eql(['string']);
     });
 
     it('keeps arrays as-is', () => {
-      expect(adapter.getTypes(['string', 'number'])).to.eql(['string', 'number']);
+      expect(getTypes(['string', 'number'])).to.eql(['string', 'number']);
     });
   });
 });

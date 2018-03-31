@@ -1,6 +1,8 @@
-const escapeHTML = require('escape-html');
-const jsdoc = require('jsdoc-api');
 const path = require('path');
+const jsdoc = require('jsdoc-api');
+const getPreview = require('./lib/get-preview');
+const getTypes = require('./lib/get-types');
+const getExample = require('./lib/get-example');
 
 /**
  * Parse a series of JavaScript files using JSDoc and generate a set of doclets.
@@ -10,16 +12,11 @@ const path = require('path');
 module.exports = function(value) {
   return jsdoc.explain({ files: value })
     .then(items => items.filter(filterItem).map(parseItem));
-}
+};
 
 module.exports.adapterName = 'js';
 module.exports.order = ['class', 'constant', 'event', 'function', 'module', 'namespace', 'typedef'];
 module.exports.extensions = ['js', 'jsx'];
-
-// @todo Move these exports to a separate file so they can still be tested but not exported here
-module.exports.getPreview = getPreview;
-module.exports.getTypes = getTypes;
-module.exports.getExample = getExample;
 
 /**
  * Filter a JSDoc doclet from Spacedoc.
@@ -58,7 +55,7 @@ function parseItem(item) {
       file: {
         path: path.join(item.meta.path, item.meta.filename),
         name: item.meta.filename,
-      }
+      },
     },
     types: getTypes(item.type),
     preview: getPreview(item),
@@ -103,69 +100,4 @@ function parseItem(item) {
     extends: item.augments,
     // group:,
   }
-}
-
-/**
- * Create a preview snippet of a piece of JavaScript code.
- * @param {Object} item - Doclet to process.
- * @returns {String} Code preview.
- */
-function getPreview(item) {
-  let preview;
-
-  switch (item.kind) {
-    case 'class':
-      preview = `new ${item.longname}();`;
-      break;
-    case 'function':
-      preview = `${item.longname.replace(/#/g, '.')}();`;
-      break;
-    default:
-      preview = null;
-  }
-
-  if (preview) {
-    return {
-      code: preview,
-      language: 'js',
-    };
-  }
-  else {
-    return false;
-  }
-}
-
-/**
- * Pull the list of types out of the `types` property of a JSDoc doclet.
- * @param {Object} types - JSDoc type definition.
- * @returns {String[]} List of types.
- */
-function getTypes(types) {
-  if (!types || !types.names) return [];
-
-  return types.names;
-}
-
-/**
- * Parse a JSDoc `@example` annotation.
- * @param {String} example - Example contents.
- * @returns {Object} Formatted object containing example info.
- */
-function getExample(example) {
-  const match = example.match(/^<caption>(.+?)<\/caption>\n(.*)$/);
-
-  // Example with caption
-  if (match) {
-    return {
-      language: 'js',
-      description: match[1],
-      code: match[2],
-    };
-  }
-
-  // Example with no caption
-  return {
-    language: 'js',
-    code: example,
-  };
 }

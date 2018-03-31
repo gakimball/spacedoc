@@ -1,10 +1,10 @@
 const { expect } = require('chai');
-const adapter = require('..');
+const getExample = require('../lib/get-example');
 
 describe('JSDoc Adapter', () => {
   describe('getExample()', () => {
     it('parses an example with a caption', () => {
-      expect(adapter.getExample('<caption>This is a caption.</caption>\n"use strict";')).to.eql({
+      expect(getExample('<caption>This is a caption.</caption>\n"use strict";')).to.eql({
         language: 'js',
         code: '"use strict";',
         description: 'This is a caption.',
@@ -12,7 +12,7 @@ describe('JSDoc Adapter', () => {
     });
 
     it('parses an example with no caption', () => {
-      expect(adapter.getExample('"use strict";')).to.eql({
+      expect(getExample('"use strict";')).to.eql({
         language: 'js',
         code: '"use strict";',
       });

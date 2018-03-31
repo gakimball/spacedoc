@@ -1,6 +1,6 @@
-const escapeHTML = require('escape-html');
-const path = require('path');
 const sassdoc = require('sassdoc');
+const getTypes = require('./lib/get-types');
+const getPreview = require('./lib/get-preview');
 
 /**
  * Parse one or more Sass files and create a series of Spacedoc doclets.
@@ -11,13 +11,11 @@ const sassdoc = require('sassdoc');
 module.exports = (value, config = {}) => {
   console.log(value);
   return sassdoc.parse(value, config).then(items => items.map(parseItem));
-}
+};
 
 module.exports.adapterName = 'sass';
 module.exports.order = ['variable', 'mixin', 'function', 'placeholder'];
 module.exports.extensions = ['scss', 'sass'];
-module.exports.getTypes = getTypes;
-module.exports.getPreview = getPreview;
 
 /**
  * Convert a SassDoc doclet into Spacedoc's doclet format.
@@ -83,59 +81,5 @@ function parseItem(item) {
     })),
     groups: item.group,
     outputs: item.output,
-  }
-}
-
-/**
- * Convert SassDoc's string `@type` annotation into an array of types.
- * @param {String} type - Type string.
- * @returns {String[]} Array of types.
- * @example
- * getTypes(''); // => []
- * getTypes('String'); // => ['String']
- * getTypes('String | Number'); // => ['String', 'Number']
- */
-function getTypes(type = '') {
-  return type.replace(/\s/g, '').split('|');
-}
-
-/**
- * Generate a preview of a doclet.
- * @param {Object} item - SassDoc doclet to use.
- * @returns {String} Code preview of doclet.
- * @todo Display parameters in function and mixin previews.
- *
- * @example <caption>Variable preview.</caption>
- * $variable: 'value';
- *
- * @example <caption>Function preview.</caption>
- * function();
- *
- * @example <caption>Mixin preview.</caption>
- * @include mixin();
- *
- * @example <caption>Placeholder preview.</caption>
- * @extend %placeholder;
- */
-function getPreview(item) {
-  let preview;
-
-  switch (item.context.type) {
-    case 'variable':
-      preview = `$${item.context.name}: ${item.context.value};`;
-      break;
-    case 'function':
-      preview = `${item.context.name}();`;
-      break;
-    case 'mixin':
-      preview = `@include ${item.context.name}();`;
-      break;
-    case 'placeholder':
-      preview = `@extend %${item.context.name};`;
-  }
-
-  return {
-    code: preview,
-    language: 'scss',
   };
 }

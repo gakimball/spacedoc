@@ -1,4 +1,4 @@
-const { expect } = require('chai');
+const {expect} = require('chai');
 const parseItem = require('../lib/parse-item');
 const getTypes = require('../lib/get-types');
 
@@ -15,7 +15,7 @@ describe('JSON Schema Adapter', () => {
         type: 'string',
         title: 'Name',
         description: 'Name of cat.',
-        default: 'Winston',
+        default: 'Winston'
       };
 
       expect(parseItem(Input, 'path/to/schema.json')).to.eql({
@@ -25,11 +25,11 @@ describe('JSON Schema Adapter', () => {
           description: 'Name of cat.',
           file: {
             path: 'path/to/schema.json',
-            name: 'schema.json',
+            name: 'schema.json'
           }
         },
         types: ['string'],
-        value: 'Winston',
+        value: 'Winston'
       });
     });
 
@@ -43,15 +43,15 @@ describe('JSON Schema Adapter', () => {
             title: 'Cat Name',
             type: 'string',
             description: 'Name of cat.',
-            default: 'Winston',
+            default: 'Winston'
           },
           age: {
             title: 'Cat Age',
             type: 'number',
             description: 'Age of cat.',
-            default: 16,
-          },
-        },
+            default: 16
+          }
+        }
       };
 
       expect(parseItem(Input, 'path/to/schema.json')).to.eql({
@@ -61,7 +61,7 @@ describe('JSON Schema Adapter', () => {
           description: 'Info on cat.',
           file: {
             path: 'path/to/schema.json',
-            name: 'schema.json',
+            name: 'schema.json'
           }
         },
         types: ['object'],
@@ -71,14 +71,14 @@ describe('JSON Schema Adapter', () => {
             name: 'name',
             description: 'Name of cat.',
             types: ['string'],
-            default: 'Winston',
+            default: 'Winston'
           },
           {
             name: 'age',
             description: 'Age of cat.',
             types: ['number'],
-            default: 16,
-          },
+            default: 16
+          }
         ],
         children: [
           {
@@ -88,11 +88,11 @@ describe('JSON Schema Adapter', () => {
               description: 'Name of cat.',
               file: {
                 path: 'path/to/schema.json',
-                name: 'schema.json',
+                name: 'schema.json'
               }
             },
             types: ['string'],
-            value: 'Winston',
+            value: 'Winston'
           },
           {
             meta: {
@@ -101,12 +101,12 @@ describe('JSON Schema Adapter', () => {
               description: 'Age of cat.',
               file: {
                 path: 'path/to/schema.json',
-                name: 'schema.json',
+                name: 'schema.json'
               }
             },
             types: ['number'],
-            value: 16,
-          },
+            value: 16
+          }
         ]
       });
     });
@@ -120,8 +120,8 @@ describe('JSON Schema Adapter', () => {
           title: 'Cat Name',
           type: 'string',
           description: 'Name of cat.',
-          default: 'Winston',
-        },
+          default: 'Winston'
+        }
       };
 
       expect(parseItem(JsonSchema, 'path/to/schema.json')).to.eql({
@@ -131,8 +131,8 @@ describe('JSON Schema Adapter', () => {
           description: 'List of cats.',
           file: {
             path: 'path/to/schema.json',
-            name: 'schema.json',
-          },
+            name: 'schema.json'
+          }
         },
         types: ['array'],
         value: undefined,
@@ -143,12 +143,12 @@ describe('JSON Schema Adapter', () => {
             description: 'Name of cat.',
             file: {
               path: 'path/to/schema.json',
-              name: 'schema.json',
-            },
+              name: 'schema.json'
+            }
           },
           types: ['string'],
-          value: 'Winston',
-        }],
+          value: 'Winston'
+        }]
       });
     });
   });

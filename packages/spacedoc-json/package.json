@@ -21,5 +21,6 @@
   "bugs": {
     "url": "https://github.com/spacedoc/spacedoc/issues"
   },
-  "homepage": "https://github.com/spacedoc/spacedoc#readme"
+  "homepage": "https://github.com/spacedoc/spacedoc#readme",
+  "xo": false
 }

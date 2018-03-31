@@ -1,10 +1,11 @@
-const { expect } = require('chai');
+const {expect} = require('chai');
 const sinon = require('sinon');
 const Spacedoc = require('..').Spacedoc;
 const MockAdapter = require('./fixtures/spacedoc-mock');
 
 describe('Spacedoc.parseDocs()', () => {
-  let output, AdapterFunc;
+  let output;
+  let AdapterFunc;
 
   before(() => {
     AdapterFunc = sinon.spy(MockAdapter);
@@ -12,11 +13,11 @@ describe('Spacedoc.parseDocs()', () => {
     const s = new Spacedoc().config({
       adapters: ['test/fixtures/spacedoc-mock'],
       config: {
-        mock: { setting: 'hi' }
+        mock: {setting: 'hi'}
       }
     });
 
-    return s.parseDocs({ mock: 'customValue' }).then(data => {
+    return s.parseDocs({mock: 'customValue'}).then(data => {
       output = data;
     });
   });
@@ -27,6 +28,6 @@ describe('Spacedoc.parseDocs()', () => {
   });
 
   xit('calls Adapter.parse() with input value and global configs', () => {
-    expect(AdapterFunc).to.have.been.calledWithExactly('customValue', { setting: 'hi' });
+    expect(AdapterFunc).to.have.been.calledWithExactly('customValue', {setting: 'hi'});
   });
 });

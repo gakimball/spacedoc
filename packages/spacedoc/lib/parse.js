@@ -1,13 +1,13 @@
-const File = require('vinyl');
-const frontMatter = require('front-matter');
 const fs = require('fs');
 const path = require('path');
-const getPageFileName = require('./util/getPageFileName');
-const getPageOrder = require('./util/getPageOrder');
+const frontMatter = require('front-matter');
+const File = require('vinyl');
 const pug = require('pug');
 const replaceExt = require('replace-ext');
 const transformLinks = require('transform-markdown-links');
-const yamlComment = require('./util/yamlComment');
+const getPageFileName = require('./util/get-page-filename');
+const getPageOrder = require('./util/get-page-order');
+const yamlComment = require('./util/yaml-comment');
 
 /**
  * Parses a single documentation page, collecting the needed documentation data based on the settings in the page's Front Matter. The file is not modified in the process.
@@ -15,16 +15,15 @@ const yamlComment = require('./util/yamlComment');
  * @returns {Promise.<PageData>} Promise containing a page object.
  * @todo Make file I/O asynchronous.
  */
-module.exports = function parse(file) {
+module.exports = function (file) {
   // If a string path is passed instead of a Vinyl file, create a new file from the string
   if (typeof file === 'string') {
     try {
       file = new File({
         path: file,
-        contents: fs.readFileSync(file),
+        contents: fs.readFileSync(file)
       });
-    }
-    catch (e) {
+    } catch (e) {
       return Promise.reject(new Error(`Spacedoc.parse(): error loading file ${file}`));
     }
   }
@@ -59,7 +58,7 @@ module.exports = function parse(file) {
     meta: pageData.attributes,
     order: getPageOrder(file.path),
     originalName: file.path,
-    title: pageData.attributes.title,
+    title: pageData.attributes.title
   };
 
   // If there's no title...
@@ -73,9 +72,8 @@ module.exports = function parse(file) {
         // And remove it from the original Markdown so we don't get two titles
         pageData.body = pageData.body.replace(match[0], '');
       }
-    }
-    // ...or just use the page's filename
-    else {
+    } else {
+      // ...or just use the page's filename
       page.title = path.basename(page.fileName, path.extname(page.fileName));
     }
   }
@@ -91,24 +89,21 @@ module.exports = function parse(file) {
       });
       page.body = this.options.markdown.render(markdown);
       page.fileName = replaceExt(page.fileName, '.html');
-    }
-    catch (e) {
+    } catch (e) {
       return Promise.reject(new Error(`Markdown error: ${e.message}`));
     }
-  }
-  // Render as Pug for .pug files
-  else if (path.extname(page.originalName) === '.pug') {
+  } else if (path.extname(page.originalName) === '.pug') {
+    // Render as Pug for .pug files
     page.body = pug.render(pageData.body);
     page.fileName = replaceExt(page.fileName, '.html');
-  }
-  // Everything else keep as-is
-  else {
+  } else {
+    // Everything else keep as-is
     page.body = pageData.body;
   }
 
   // When all adapter data has been collected, add it to the page object
   return this.parseDocs(page.meta.docs).then(results => {
-    for (let res of results) {
+    for (const res of results) {
       page.docs[res.adapter] = res.data;
     }
 

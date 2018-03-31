@@ -11,7 +11,7 @@ const replaceExt = require('replace-ext');
  * @param {String} [pageRoot] - Root directory.
  * @returns {String} Modified file path.
  */
-module.exports = function getPageFileName(filePath, pageRoot) {
+module.exports = function (filePath, pageRoot) {
   // Generate a path relative to the page root
   let newPath = path.relative(pageRoot || '', filePath);
 

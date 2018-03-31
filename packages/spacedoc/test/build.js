@@ -1,7 +1,6 @@
-const { expect } = require('chai');
-const sinon = require('sinon');
-const { Spacedoc } = require('..');
-const mockVinyl = require('./util/mockVinyl');
+const {expect} = require('chai');
+const {Spacedoc} = require('..');
+const mockVinyl = require('./util/mock-vinyl');
 
 const TEST_FILE = mockVinyl('test/fixtures/example.md');
 const TEST_FILE_ALT = mockVinyl('test/fixtures/example-alt-layout.md');
@@ -12,7 +11,7 @@ describe('Spacedoc.build()', () => {
       theme: 'test/fixtures/theme'
     });
 
-    const output = s.build({ kittens: 'kittens', meta: {} });
+    const output = s.build({kittens: 'kittens', meta: {}});
     expect(output).to.be.a('string');
     expect(output).to.contain('<p>kittens');
   });
@@ -36,7 +35,7 @@ describe('Spacedoc.build()', () => {
 
   it('allows an alternate layout to be used', () => {
     const s = new Spacedoc().config({
-      theme: 'test/fixtures/theme',
+      theme: 'test/fixtures/theme'
     });
 
     return expect(s.parse(TEST_FILE_ALT).then(data => s.build(data))).to.eventually.contain('<p>Puppies');

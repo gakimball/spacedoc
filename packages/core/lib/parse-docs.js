@@ -15,13 +15,13 @@ module.exports = (adapters = new Map()) => filePath => {
   if (!adapter) {
     return Promise.resolve({
       adapter: null,
-      doclets: [],
+      doclets: []
     });
   }
 
   // Run the adapter
   return adapter.parse(filePath, adapter.config).then(doclets => ({
     adapter: adapter.name,
-    doclets,
+    doclets
   }));
 };

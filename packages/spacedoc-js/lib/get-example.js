@@ -11,13 +11,13 @@ module.exports = example => {
     return {
       language: 'js',
       description: match[1],
-      code: match[2],
+      code: match[2]
     };
   }
 
   // Example with no caption
   return {
     language: 'js',
-    code: example,
+    code: example
   };
 };

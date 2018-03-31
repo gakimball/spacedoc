@@ -1,5 +1,5 @@
-const { expect } = require('chai');
-const getPageOrder = require('../lib/util/getPageOrder');
+const {expect} = require('chai');
+const getPageOrder = require('../lib/util/get-page-order');
 
 describe('getPageOrder()', () => {
   it('gets the order number from a filename', () => {
@@ -7,6 +7,6 @@ describe('getPageOrder()', () => {
   });
 
   it('returns null for a filename with no number', () => {
-    expect(getPageOrder('path/to/intro.md')).to.be.null;
+    expect(getPageOrder('path/to/intro.md')).to.equal(null);
   });
 });

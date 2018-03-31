@@ -9,7 +9,7 @@ const getTypes = require('./get-types');
  * @returns {SpacedocDoclet} Spacedoc doclet.
  * @todo Strip `undefined` properties from the final doclet object.
  */
-const parseItem = module.exports = (item, filePath, name = 'root') => {
+const parseItem = (item, filePath, name = 'root') => {
   const doclet = {
     meta: {
       name: item.title,
@@ -17,11 +17,11 @@ const parseItem = module.exports = (item, filePath, name = 'root') => {
       description: item.description,
       file: {
         path: filePath,
-        name: path.basename(filePath),
-      },
+        name: path.basename(filePath)
+      }
     },
     types: getTypes(item.type),
-    value: item.default,
+    value: item.default
   };
 
   // For object types with properties, add the properties to the `properties` and `children` property of the doclet.
@@ -36,7 +36,7 @@ const parseItem = module.exports = (item, filePath, name = 'root') => {
         name: prop,
         types: getTypes(property.type),
         description: property.description,
-        default: property.default,
+        default: property.default
       });
 
       doclet.children.push(
@@ -52,3 +52,5 @@ const parseItem = module.exports = (item, filePath, name = 'root') => {
 
   return doclet;
 };
+
+module.exports = parseItem;

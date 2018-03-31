@@ -1,11 +1,11 @@
-const File = require('vinyl');
 const fs = require('fs');
+const path = require('path');
+const File = require('vinyl');
 const isEmptyObject = require('is-empty-object');
 const mkdirp = require('mkdirp').sync;
-const path = require('path');
-const statusLog = require('./util/statusLog');
 const through = require('through2');
 const vfs = require('vinyl-fs');
+const statusLog = require('./util/status-log');
 
 /**
  * Initialize Spacedoc, parsing a set of documentation pages and outputting HTML files.
@@ -28,7 +28,7 @@ const vfs = require('vinyl-fs');
  * @returns {(Stream.Writable.<Vinyl>|Promise)} If called without `input`, returns a stream containing the modified files. You can add `on('finish')` after `Spacedoc.init()` to listen for when processing is done. If called with `input`, returns a Promise which resolves when all parsing and writing is finished, or rejects if there's an error.
  * @todo Remove synchronous file I/O
  */
-module.exports = function init() {
+module.exports = function () {
   // Initialize options if Spacedoc.config() was not called
   if (isEmptyObject(this.options)) {
     this.config();
@@ -49,16 +49,15 @@ module.exports = function init() {
   if (this.options.input) {
     return new Promise((resolve, reject) => {
       vfs
-        .src(this.options.input, { base: this.options.pageRoot })
+        .src(this.options.input, {base: this.options.pageRoot})
         .pipe(transform.apply(this))
         .on('finish', resolve)
         .on('error', reject);
     });
   }
   // Otherwise, go straight to the transform function.
-  else {
-    return transform.apply(this);
-  }
+
+  return transform.apply(this);
 
   /**
    * Create a stream transform function to manipulate files.
@@ -90,12 +89,12 @@ module.exports = function init() {
        * @this stream.Transform
        * @param {Function} cb - Callback that signals the function is finished.
        */
-      function(cb) {
+      function (cb) {
         const tasks = _this.tree.map(page => new Promise((resolve, reject) => {
           const file = new File({
             path: page.fileName,
             base: _this.options.pageRoot,
-            contents: new Buffer(_this.build(page)),
+            contents: Buffer.from(_this.build(page))
           });
 
           // Write new file to disk if necessary
@@ -109,13 +108,11 @@ module.exports = function init() {
             fs.writeFile(filePath, file.contents.toString(), err => {
               if (err) {
                 reject(err);
-              }
-              else {
+              } else {
                 finish.apply(this);
               }
             });
-          }
-          else {
+          } else {
             finish.apply(this);
           }
 

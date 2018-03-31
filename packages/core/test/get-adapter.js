@@ -1,4 +1,4 @@
-const { expect } = require('chai');
+const {expect} = require('chai');
 const mock = require('mock-require');
 const getAdapter = require('../lib/get-adapter.js');
 
@@ -8,7 +8,7 @@ describe('getAdapter()', () => {
       name: 'mock',
       extensions: [],
       parse: () => {},
-      config: () => ({ puppies: false }),
+      config: () => ({puppies: false})
     };
 
     mock('spacedoc-mock', adapter);
@@ -31,10 +31,10 @@ describe('getAdapter()', () => {
   });
 
   it('combines adapter configuration', () => {
-    const adapter = getAdapter(['mock', { kittens: true }]);
+    const adapter = getAdapter(['mock', {kittens: true}]);
     expect(adapter.config).to.eql({
       puppies: false,
-      kittens: true,
+      kittens: true
     });
   });
 });

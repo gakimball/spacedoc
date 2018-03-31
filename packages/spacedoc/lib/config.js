@@ -1,22 +1,21 @@
 const fs = require('fs');
+const path = require('path');
 const getConfig = require('flexiconfig');
 const globParent = require('glob-parent');
-const markdown = require('./util/markdown');
-const path = require('path');
 const Theme = require('portatheme');
 const yml = require('js-yaml');
+const markdown = require('./util/markdown');
 
 /**
  * Set Spacedoc options. Call this before `Spacedoc.init()` is run.
  * @param {(ConfigOptions|String)} [opts={}] - Plugin options, or a path to a YML config file with options.
  * @returns {Spacedoc} Spacedoc instance. This method can be chained to other Spacedoc methods.
  */
-module.exports = function config(opts = {}) {
+module.exports = function (opts = {}) {
   // Find config. `opts` can be an object or a string to a file path. If `opts` wasn't passed, a file called `spacedoc.yml` is searched for. Failing that, all the defauls are used
   try {
     opts = getConfig([opts, 'spacedoc.yml']);
-  }
-  catch (e) {
+  } catch (e) {
     console.log('Spacedoc has not been configured.');
   }
 
@@ -37,11 +36,11 @@ module.exports = function config(opts = {}) {
    */
   this.options = Object.assign({
     adapters: [],
-    markdown: markdown,
+    markdown,
     pageRoot: getDefaultPageRoot(),
     silent: false,
     theme: 'spacedoc-theme-default',
-    themeOptions: {},
+    themeOptions: {}
   }, opts);
 
   // Extend search defaults
@@ -80,9 +79,8 @@ module.exports = function config(opts = {}) {
     if (opts.input) {
       return globParent(opts.input);
     }
-    else {
-      return process.cwd();
-    }
+
+    return process.cwd();
   }
 
   /**
@@ -97,9 +95,8 @@ module.exports = function config(opts = {}) {
       const paths = Array.from(inst.options.theme).reverse();
       return paths.reduce((theme, path) => new Theme(path, theme), undefined);
     }
-    else {
-      return new Theme(inst.options.theme);
-    }
+
+    return new Theme(inst.options.theme);
   }
 
   /**
@@ -114,8 +111,7 @@ module.exports = function config(opts = {}) {
         require(path.join(inst.theme.location, 'settings.js')),
         inst.options.themeOptions
       );
-    }
-    catch (e) {
+    } catch (e) {
       return inst.options.themeOptions;
     }
   }
@@ -135,8 +131,7 @@ module.exports = function config(opts = {}) {
           return yml.safeLoad(fileContents);
         // No default
       }
-    }
-    else {
+    } else {
       return [];
     }
   }

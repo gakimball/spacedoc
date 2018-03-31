@@ -1,7 +1,7 @@
-const { expect } = require('chai');
+const {expect} = require('chai');
 const getTypes = require('../lib/get-types');
 const getPreview = require('../lib/get-preview');
-const parseSassDoc = require('./util/parseSassDoc');
+const parseSassDoc = require('./util/parse-sassdoc');
 
 describe('SassDoc Adapter', () => {
   describe('getPreview()', () => {

@@ -7,11 +7,32 @@
     "test:template": "./packages/spacedoc/bin/spacedoc.js --config test/spacedoc.yml & lite-server"
   },
   "devDependencies": {
-    "@gakimball/eslint-config": "^1.0.0",
     "chai": "^3.5.0",
-    "eslint": "^3.15.0",
     "lerna": "2.0.0-beta.31",
     "lite-server": "^2.2.2",
-    "mocha": "^3.1.2"
+    "mocha": "^3.1.2",
+    "xo": "^0.20.3"
+  },
+  "xo": {
+    "space": true,
+    "ignores": [
+      "packages/*/test/fixtures/**/*.js"
+    ],
+    "overrides": [
+      {
+        "files": ["packages/*/test/**/*.js", "packages/*/test.js"],
+        "envs": ["node", "mocha"],
+        "rules": {
+          "import/no-extraneous-dependencies": "off",
+          "no-unused-expressions": "off"
+        }
+      }
+    ],
+    "settings": {
+      "import/core-modules": [
+        "spacedoc-helpers",
+        "spacedoc-theme-default"
+      ]
+    }
   }
 }

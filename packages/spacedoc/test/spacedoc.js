@@ -1,5 +1,5 @@
-const { expect } = require('chai');
-const { Spacedoc } = require('..');
+const {expect} = require('chai');
+const {Spacedoc} = require('..');
 
 describe('Spacedoc constructor', () => {
   it('creates a new instance of Spacedoc', () => {

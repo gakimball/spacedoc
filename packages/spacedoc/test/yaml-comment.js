@@ -1,5 +1,5 @@
-const { expect } = require('chai');
-const yamlComment = require('../lib/util/yamlComment');
+const {expect} = require('chai');
+const yamlComment = require('../lib/util/yaml-comment');
 
 const pugInput =
 `//-
@@ -7,7 +7,7 @@ const pugInput =
   ---
 
 h1 Hello world
-`
+`;
 
 const htmlInput =
 `<!--

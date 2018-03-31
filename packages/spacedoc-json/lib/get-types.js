@@ -12,11 +12,9 @@ module.exports = type => {
     if (Array.isArray(type)) {
       return type;
     }
-    else {
-      return [type];
-    }
+
+    return [type];
   }
-  else {
-    return [];
-  }
+
+  return [];
 };

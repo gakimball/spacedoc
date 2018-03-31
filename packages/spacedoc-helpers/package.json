@@ -26,5 +26,6 @@
     "highlight.js": "^9.12.0",
     "lodash.groupby": "^4.6.0",
     "markdown-it": "^8.4.1"
-  }
+  },
+  "xo": false
 }

@@ -1,6 +1,6 @@
-const { expect } = require('chai');
+const {expect} = require('chai');
 const Spacedoc = require('..').Spacedoc;
-const mockVinyl = require('./util/mockVinyl');
+const mockVinyl = require('./util/mock-vinyl');
 
 const TEST_FILE = mockVinyl('test/fixtures/example.md');
 const TEST_FILE_HTML = mockVinyl('test/fixtures/example.html');
@@ -35,7 +35,7 @@ describe('Spacedoc.parse()', () => {
   it('loads data from adapters', () => {
     const s = new Spacedoc().config({
       adapters: ['test/fixtures/spacedoc-mock'],
-      template: 'test/fixtures/template.pug',
+      template: 'test/fixtures/template.pug'
     });
 
     return expect(s.parse(TEST_FILE))

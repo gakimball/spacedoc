@@ -26,7 +26,7 @@ module.exports = options => filePath => {
     path: path.relative(pageRoot, filePath).replace(/\.md$/, '').replace(/^\d+-/, ''),
     meta: pageData.attributes,
     order: getPageOrder(filePath),
-    title: pageData.attributes.title,
+    title: pageData.attributes.title
   };
 
   // If there's no title...
@@ -38,9 +38,8 @@ module.exports = options => filePath => {
       page.title = match[1];
       // And remove it from the original Markdown so we don't get two titles
       pageData.body = pageData.body.replace(match[0], '');
-    }
-    // ...or just use the page's filename
-    else {
+    } else {
+      // ...or just use the page's filename
       page.title = path.basename(page.path);
     }
   }

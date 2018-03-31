@@ -14,13 +14,13 @@ const cli = meow(`
 `, {
   alias: {
     c: 'config',
-    w: 'watch',
-  },
+    w: 'watch'
+  }
 });
 
 spacedoc.config(cli.flags.config);
 
-spacedoc({ watch: cli.flags.watch }, err => {
+spacedoc({watch: cli.flags.watch}, () => {
   if (spacedoc._instance.options.search.output) {
     spacedoc.buildSearch();
   }
@@ -30,6 +30,6 @@ spacedoc({ watch: cli.flags.watch }, err => {
   }
 });
 
-spacedoc.build({ watch: cli.flags.watch }).catch(err => {
+spacedoc.build({watch: cli.flags.watch}).catch(err => {
   console.log(err);
 });

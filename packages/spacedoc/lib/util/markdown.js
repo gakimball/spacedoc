@@ -18,11 +18,11 @@ const markdown = markdownIt({
   highlight: (code, lang) => {
     // Rendering for HTML examples
     if (lang === 'html_example') {
-      const { value } = hljs.highlight('html', code);
+      const {value} = hljs.highlight('html', code);
       return `<pre class="sd-codeblock"><code class="hljs ${lang}">${value}</code></pre><div class="sd-codesample">${code}</div>`;
     }
     // Rendering multiple examples
-    else if (lang === 'multi') {
+    if (lang === 'multi') {
       const codeBlocks = [];
       const id = randomId(6);
       let tabs = '';
@@ -30,13 +30,13 @@ const markdown = markdownIt({
 
       markdownIt({
         highlight: (code, lang) => {
-          codeBlocks.push({ code, lang, });
+          codeBlocks.push({code, lang});
           return '';
         }
       }).render(stripIndent(code));
 
-      codeBlocks.map(({ code, lang }, index) => {
-        const { value } = (lang ? hljs.highlight(lang, code) : hljs.highlightAuto(code));
+      codeBlocks.forEach(({code, lang}, index) => {
+        const {value} = (lang ? hljs.highlight(lang, code) : hljs.highlightAuto(code));
 
         tabs += `<li class="tabs-title${index > 0 ? '' : ' is-active'}"><a href="#${id + index}"${index > 0 ? '' : 'aria-selected="true"'}>${lang}</a></li>`;
         tabContent += `<div class="tabs-panel${index > 0 ? '' : ' is-active'}" id="${id + index}"><pre class="sd-codeblock"><code class="hljs ${lang}">${value}</code></pre></div>`;
@@ -45,11 +45,10 @@ const markdown = markdownIt({
       return `<pre class="sd-multisample"><ul class="tabs" data-tabs id="${id}">${tabs}</ul><div class="tabs-content" data-tabs-content="${id}">${tabContent}</div></pre>`;
     }
     // Rendering for everything else
-    else {
-      const { value } = (lang ? hljs.highlight(lang, code) : hljs.highlightAuto(code));
-      return `<pre class="sd-codeblock"><code class="hljs ${lang}">${value}</code></pre>`;
-    }
-  },
+
+    const {value} = (lang ? hljs.highlight(lang, code) : hljs.highlightAuto(code));
+    return `<pre class="sd-codeblock"><code class="hljs ${lang}">${value}</code></pre>`;
+  }
 });
 
 module.exports = markdown;

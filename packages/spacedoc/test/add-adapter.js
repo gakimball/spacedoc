@@ -1,16 +1,16 @@
-const { expect } = require('chai');
+const {expect} = require('chai');
 const mock = require('mock-require');
-const { Spacedoc } = require('..');
+const {Spacedoc} = require('..');
 
 describe('Spacedoc.addAdapter()', () => {
   before(() => {
     const adapter = () => {};
     adapter.adapterName = 'test';
-    adapter.config = () => ({ puppies: false });
+    adapter.config = () => ({puppies: false});
     mock('spacedoc-test', adapter);
   });
 
-  after(() => mock.stop('spacedoc-test'))
+  after(() => mock.stop('spacedoc-test'));
 
   it('returns itself', () => {
     const s = new Spacedoc().addAdapter('test');
@@ -33,10 +33,10 @@ describe('Spacedoc.addAdapter()', () => {
   });
 
   it('combines adapter configuration', () => {
-    const s = new Spacedoc().addAdapter(['test', { kittens: true }]);
+    const s = new Spacedoc().addAdapter(['test', {kittens: true}]);
     expect(s.adapters.test.config).to.eql({
       puppies: false,
-      kittens: true,
+      kittens: true
     });
   });
 

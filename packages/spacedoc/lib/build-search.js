@@ -1,7 +1,9 @@
+const fs = require('fs');
+const path = require('path');
 const pify = require('pify');
 const mkdirp = pify(require('mkdirp'));
-const path = require('path');
-const writeFile = pify(require('fs').writeFile);
+
+const writeFile = pify(fs.writeFile);
 
 /**
  * Search result item.
@@ -21,7 +23,7 @@ const writeFile = pify(require('fs').writeFile);
  * @todo Make hashes for search result types configurable
  * @todo Fix search result page paths being relative
  */
-module.exports = function buildSearch(outFile = this.options.search.output) {
+module.exports = function (outFile = this.options.search.output) {
   if (!outFile) {
     return Promise.reject(new Error('Spacedoc.buildSearch(): must specify a destination file'));
   }
@@ -30,15 +32,16 @@ module.exports = function buildSearch(outFile = this.options.search.output) {
   const results = [].concat(this.options.search.extra);
 
   // Each item in the tree is a page
-  for (let i in tree) {
-    const item = tree[i];
+  tree.forEach(item => {
     const link = path.relative(this.options.pageRoot, item.fileName).replace('md', 'html');
     const type = (() => {
       // Check for special page types
-      for (let t in this.options.search.pageTypes) {
-        const func = this.options.search.pageTypes[t];
-        if (func(item)) {
-          return t;
+      for (const t in this.options.search.pageTypes) {
+        if (Object.prototype.hasOwnProperty.call(this.options.search.pageTypes, t)) {
+          const func = this.options.search.pageTypes[t];
+          if (func(item)) {
+            return t;
+          }
         }
       }
 
@@ -47,15 +50,15 @@ module.exports = function buildSearch(outFile = this.options.search.output) {
 
     // Add the page itself as a search result
     results.push({
-      type: type,
+      type,
       name: item.title,
       description: item.description,
-      link: link,
+      link,
       tags: item.tags || []
     });
 
     // Generate search results for each doclet
-    for (let a in this.adapters) {
+    Object.keys(this.adapters).forEach(a => {
       const doclets = item.docs[a];
 
       if (Array.isArray(doclets)) {
@@ -63,12 +66,12 @@ module.exports = function buildSearch(outFile = this.options.search.output) {
           type: `${a} ${v.meta.type}`,
           name: v.meta.name,
           description: v.meta.description,
-          link: link,
-          tags: item.tags || [],
+          link,
+          tags: item.tags || []
         })));
       }
-    }
-  }
+    });
+  });
 
   // Re-order search results based on search config
   results.sort((a, b) => {
@@ -88,7 +91,7 @@ module.exports = function buildSearch(outFile = this.options.search.output) {
  */
 function flatten(obj) {
   let output = [];
-  Object.keys(obj).map(key => {
+  Object.keys(obj).forEach(key => {
     output = output.concat(obj[key]);
   });
   return output;

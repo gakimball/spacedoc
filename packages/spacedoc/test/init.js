@@ -1,7 +1,6 @@
-const { expect } = require('chai');
 const fs = require('fs');
-const rimraf = require('rimraf');
-const { Spacedoc } = require('..');
+const {expect} = require('chai');
+const {Spacedoc} = require('..');
 const vfs = require('vinyl-fs');
 
 describe('Spacedoc.init()', () => {
@@ -26,7 +25,7 @@ describe('Spacedoc.init()', () => {
     vfs.src('test/fixtures/example.md')
       .pipe(s.init())
       .on('error', done)
-      .on('data', function(file) {
+      .on('data', file => {
         expect(file.path).to.contain('.html');
         expect(file.contents.toString()).to.contain('<h2');
         done();
@@ -37,7 +36,7 @@ describe('Spacedoc.init()', () => {
     const s = new Spacedoc().config({
       input: 'test/fixtures/example.md',
       template: 'test/fixtures/template.pug',
-      silent: true,
+      silent: true
     });
 
     return s.init().then(() => {

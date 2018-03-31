@@ -1,5 +1,5 @@
 const path = require('path');
-const { expect } = require('chai');
+const {expect} = require('chai');
 const parsePage = require('../lib/parse-page');
 
 describe('parsePage()', () => {
@@ -7,7 +7,7 @@ describe('parsePage()', () => {
 
   before(() => {
     getPage = parsePage({
-      pages: 'test/fixtures',
+      pages: 'test/fixtures'
     });
   });
 
@@ -19,7 +19,7 @@ describe('parsePage()', () => {
       path: 'file',
       meta: {},
       order: null,
-      title: 'file',
+      title: 'file'
     });
   });
 

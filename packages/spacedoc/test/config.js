@@ -1,10 +1,10 @@
-const { expect } = require('chai');
-const { Spacedoc } = require('..');
+const {expect} = require('chai');
+const {Spacedoc} = require('..');
 const Theme = require('portatheme');
 
 describe('Spacedoc.config()', () => {
   it('sets configuration settings', () => {
-    let s = new Spacedoc().config({
+    const s = new Spacedoc().config({
       input: 'src',
       output: 'dest'
     });
@@ -51,7 +51,7 @@ describe('Spacedoc.config()', () => {
 
   it('loads JSON data from search config', () => {
     const s = new Spacedoc().config({
-      search: { extra: 'test/fixtures/search.json' }
+      search: {extra: 'test/fixtures/search.json'}
     });
 
     expect(s.options.search.extra).to.be.an('array');
@@ -60,7 +60,7 @@ describe('Spacedoc.config()', () => {
 
   it('loads YAML data from search config', () => {
     const s = new Spacedoc().config({
-      search: { extra: 'test/fixtures/search.yml' }
+      search: {extra: 'test/fixtures/search.yml'}
     });
 
     expect(s.options.search.extra).to.be.an('array');

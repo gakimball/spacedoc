@@ -5,7 +5,7 @@ module.exports = {
     meta: {
       name: 'Thing',
       description: 'A thing',
-      type: 'thing',
-    },
-  }]),
+      type: 'thing'
+    }
+  }])
 };

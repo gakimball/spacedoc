@@ -1,6 +1,6 @@
-const findDoclets = require('./util/findDoclets');
 const helpers = require('spacedoc-helpers');
 const yaml = require('js-yaml');
+const findDoclets = require('./util/find-doclets');
 
 /**
  * Create an HTML page out of a documentation object.
@@ -9,7 +9,7 @@ const yaml = require('js-yaml');
  * @todo Return `null` if there's an error, and have `init()` respond to it by not writing the page to disk.
  * @todo Rename `data` param to `page`.
  */
-module.exports = function build(data = {}) {
+module.exports = function (data = {}) {
   /**
    * Locals passed to a Pug template.
    * @typedef {Object} PageLocals
@@ -24,13 +24,13 @@ module.exports = function build(data = {}) {
   const locals = {
     page: data,
     site: {
-      pages: this.tree,
+      pages: this.tree
     },
     spacedoc: Object.assign({
       find: findDoclets(data.docs),
-      adapters: this.adapters,
+      adapters: this.adapters
     }, helpers),
-    theme: this.options.themeOptions,
+    theme: this.options.themeOptions
   };
 
   // Render to HTML
@@ -43,8 +43,7 @@ module.exports = function build(data = {}) {
     }
 
     return output;
-  }
-  catch (e) {
+  } catch (e) {
     console.log(`Got this error while parsing ${data.originalName}:`);
     console.log(e);
     return '';

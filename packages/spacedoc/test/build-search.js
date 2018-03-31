@@ -1,7 +1,7 @@
-const { expect } = require('chai');
+const {expect} = require('chai');
 const fs = require('fs');
 const rimraf = require('rimraf');
-const { Spacedoc } = require('..');
+const {Spacedoc} = require('..');
 
 const Adapters = ['test/fixtures/spacedoc-mock'];
 
@@ -28,8 +28,8 @@ describe('Spacedoc.buildSearch()', () => {
     });
 
     return s.init().then(() => s.buildSearch('test/fixtures/_build/search.json')).then(() => {
-      var data = fs.readFileSync('./test/fixtures/_build/search.json').toString();
-      page = JSON.parse(data)[0];
+      const data = fs.readFileSync('./test/fixtures/_build/search.json').toString();
+      const page = JSON.parse(data)[0];
 
       expect(page.type).to.equal('page');
     });
@@ -42,7 +42,7 @@ describe('Spacedoc.buildSearch()', () => {
       silent: true,
       search: {
         pageTypes: {
-          custom: function(item) {
+          custom(item) {
             expect(item).to.be.an('object');
             return true;
           }
@@ -51,8 +51,8 @@ describe('Spacedoc.buildSearch()', () => {
     });
 
     return s.init().then(() => s.buildSearch('test/fixtures/_build/search.json')).then(() => {
-      var data = fs.readFileSync('./test/fixtures/_build/search.json').toString();
-      page = JSON.parse(data)[0];
+      const data = fs.readFileSync('./test/fixtures/_build/search.json').toString();
+      const page = JSON.parse(data)[0];
 
       expect(page.type).to.equal('custom');
     });
@@ -67,7 +67,7 @@ describe('Spacedoc.buildSearch()', () => {
     });
 
     return s.init().then(() => s.buildSearch('test/fixtures/_build/search.json')).then(() => {
-      var data = fs.readFileSync('./test/fixtures/_build/search.json').toString();
+      let data = fs.readFileSync('./test/fixtures/_build/search.json').toString();
       data = JSON.parse(data);
 
       expect(data).to.be.an('array');
@@ -87,7 +87,7 @@ describe('Spacedoc.buildSearch()', () => {
     });
 
     return s.init().then(() => s.buildSearch('test/fixtures/_build/search.json')).then(() => {
-      var data = fs.readFileSync('./test/fixtures/_build/search.json').toString();
+      let data = fs.readFileSync('./test/fixtures/_build/search.json').toString();
       data = JSON.parse(data);
 
       expect(data).to.be.an('array');
@@ -101,12 +101,12 @@ describe('Spacedoc.buildSearch()', () => {
       template: 'test/fixtures/template.pug',
       silent: true,
       search: {
-        output: 'test/fixtures/_build/search.json',
+        output: 'test/fixtures/_build/search.json'
       }
     });
 
     return s.init().then(() => s.buildSearch('test/fixtures/_build/search.json')).then(() => {
-      expect(fs.existsSync('./test/fixtures/_build/search.json')).to.be.true;
+      expect(fs.existsSync('./test/fixtures/_build/search.json')).to.equal(true);
     });
   });
 
@@ -114,7 +114,7 @@ describe('Spacedoc.buildSearch()', () => {
     const s = new Spacedoc().config({
       input: 'test/fixtures/example.md',
       template: 'test/fixtures/template.pug',
-      silent: true,
+      silent: true
     });
 
     return expect(s.init().then(() => s.buildSearch())).to.be.rejected;

@@ -25,14 +25,11 @@ module.exports = name => {
 
   try {
     adapter = require(`spacedoc-${name}`);
-  }
-  catch (err1) {
+  } catch (err1) {
     try {
       adapter = require(path.join(process.cwd(), name));
-    }
-
-    catch (err2) {
-      throw new Error(`Couldn\'t load an adapter named "${name}". Make sure you have a module called "spacedoc-${name}" installed.`);
+    } catch (err2) {
+      throw new Error(`Couldn't load an adapter named "${name}". Make sure you have a module called "spacedoc-${name}" installed.`);
     }
   }
 
@@ -46,6 +43,6 @@ module.exports = name => {
     config: Object.assign(
       typeof adapter.config === 'function' ? adapter.config() : {},
       config
-    ),
+    )
   });
 };

@@ -5,6 +5,6 @@ const sassdoc = require('sassdoc');
  * @param {String} file - Name of file in fixtures folder to parse.
  * @returns {Promise.<Object[]>} - Promise containing documentation items.
  */
-module.exports = function parseSassDoc(file) {
+module.exports = file => {
   return sassdoc.parse(`test/fixtures/${file}.scss`).then(data => data[0]);
-}
+};

@@ -24,5 +24,6 @@
   "homepage": "https://github.com/spacedoc/sass#readme",
   "dependencies": {
     "sassdoc": "^2.5.0"
-  }
+  },
+  "xo": false
 }

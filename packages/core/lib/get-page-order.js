@@ -9,9 +9,8 @@ module.exports = filePath => {
   const fileName = path.basename(filePath);
 
   if (fileName.match(/^\d+-/)) {
-    return parseInt(fileName.split('-')[0]);
+    return parseInt(fileName.split('-')[0], 10);
   }
-  else {
-    return null;
-  }
+
+  return null;
 };

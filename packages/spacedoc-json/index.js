@@ -6,7 +6,7 @@ const parseItem = require('./lib/parse-item');
  * @param {(String|String[])} value - Paths to process.
  * @returns {SpacedocDoclet[]} Spacedoc doclets.
  */
-module.exports = (value) => {
+module.exports = value => {
   if (typeof value === 'string') {
     value = [value];
   }
@@ -17,9 +17,8 @@ module.exports = (value) => {
         const schema = require(path.join(process.cwd(), val));
         return parseItem(schema, val);
       }));
-    }
-    else {
-      reject('The input value must be a single path or an array of paths.');
+    } else {
+      reject(new Error('The input value must be a single path or an array of paths.'));
     }
   });
 };

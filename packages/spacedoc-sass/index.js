@@ -33,12 +33,12 @@ function parseItem(item) {
         start: item.context.line.start,
         end: item.context.line.end,
         commentStart: item.commentRange.start,
-        commentEnd: item.commentRange.end,
+        commentEnd: item.commentRange.end
       },
       file: {
         path: item.file.path,
-        name: item.file.name,
-      },
+        name: item.file.name
+      }
     },
     types: getTypes(item.type),
     preview: getPreview(item),
@@ -51,35 +51,35 @@ function parseItem(item) {
       name: param.name,
       types: getTypes(param.type),
       description: param.description,
-      default: param.default,
+      default: param.default
     })),
     properties: (item.property || []).map(param => ({
       name: param.name,
       types: getTypes(param.type),
       description: param.description,
-      default: param.default,
+      default: param.default
     })),
     throws: (item.throw || []).map(thrw => ({
-      description: thrw,
+      description: thrw
     })),
     examples: (item.example || []).map(example => ({
       language: example.type,
       code: example.code,
-      description: example.description,
+      description: example.description
     })),
     returns: (item.return ? {
       types: getTypes(item.return.type),
-      description: item.return.description,
+      description: item.return.description
     } : null),
     links: (item.link || []).map(link => ({
       url: link.url,
-      description: link.caption,
+      description: link.caption
     })),
     changelog: (item.since || []).map(since => ({
       version: since.version,
-      description: since.description,
+      description: since.description
     })),
     groups: item.group,
-    outputs: item.output,
+    outputs: item.output
   };
 }

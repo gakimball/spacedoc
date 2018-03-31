@@ -9,8 +9,8 @@ const getExample = require('./lib/get-example');
  * @param {(String|String[])} value - File(s) to process.
  * @returns {SpacedocDoclet[]} Spacedoc doclets.
  */
-module.exports = function(value) {
-  return jsdoc.explain({ files: value })
+module.exports = function (value) {
+  return jsdoc.explain({files: value})
     .then(items => items.filter(filterItem).map(parseItem));
 };
 
@@ -29,9 +29,9 @@ module.exports.extensions = ['js', 'jsx'];
  */
 function filterItem(item) {
   const cond =
-    item.undocumented !== true
-    && item.ignore !== true
-    && item.kind !== 'package';
+    item.undocumented !== true &&
+    item.ignore !== true &&
+    item.kind !== 'package';
 
   return cond;
 }
@@ -50,18 +50,18 @@ function parseItem(item) {
       description: item.description,
       code: {
         comment: item.comment,
-        start: item.meta.lineno,
+        start: item.meta.lineno
       },
       file: {
         path: path.join(item.meta.path, item.meta.filename),
-        name: item.meta.filename,
-      },
+        name: item.meta.filename
+      }
     },
     types: getTypes(item.type),
     preview: getPreview(item),
     value: item.meta.code.value,
     parent: item.memberof,
-    // alias:,
+    // Alias:,
     // aliased:
     access: item.access,
     deprecated: item.deprecated,
@@ -70,34 +70,34 @@ function parseItem(item) {
       name: param.name,
       types: getTypes(param.type),
       description: param.description,
-      // default: param.default,
+      // Default: param.default,
       nullable: param.nullable,
-      optional: param.optional,
+      optional: param.optional
     })),
     properties: (item.properties || []).map(param => ({
       name: param.name,
       types: getTypes(param.type),
       description: param.description,
-      // default: param.default,
+      // Default: param.default,
       nullable: param.nullable,
-      optional: param.optional,
+      optional: param.optional
     })),
-    // requires:,
+    // Requires:,
     // requiredBy:,
     throws: (item.exceptions || []).map(exception => ({
       types: getTypes(exception.type),
-      description: exception.description,
+      description: exception.description
     })),
     examples: (item.examples || []).map(example => getExample(example)),
     returns: (item.returns ? {
       types: getTypes(item.returns[0].type),
-      description: item.returns[0].description,
+      description: item.returns[0].description
     } : {}),
-    // links:,
+    // Links:,
     // changelog:,
     fires: item.fires,
     listens: item.listens,
-    extends: item.augments,
-    // group:,
-  }
+    extends: item.augments
+    // Group:,
+  };
 }

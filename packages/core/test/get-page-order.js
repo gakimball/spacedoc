@@ -1,4 +1,4 @@
-const { expect } = require('chai');
+const {expect} = require('chai');
 const getPageOrder = require('../lib/get-page-order');
 
 describe('getPageOrder()', () => {

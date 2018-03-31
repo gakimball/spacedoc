@@ -46,9 +46,11 @@
     "js-yaml": "^3.11.0",
     "jsdoc-api": "^2.0.6",
     "lodash.filter": "^4.6.0",
+    "lodash.find": "^4.6.0",
     "lodash.findindex": "^4.6.0",
     "lodash.frompairs": "^4.0.1",
     "markdown-it": "^8.4.1",
+    "meow": "^4.0.0",
     "mkdirp": "^0.5.1",
     "pify": "^2.3.0",
     "portatheme": "^0.3.0",
@@ -74,5 +76,6 @@
     "sinon": "^1.17.7",
     "sinon-chai": "^2.14.0",
     "spacedoc-theme-default": "^0.3.0"
-  }
+  },
+  "xo": false
 }

@@ -7,7 +7,7 @@ const _find = require('lodash.find');
  * @param {Boolean} [inheritAccess=true] - Filter out an item if any of its ancestors are private.
  * @returns {PageFindFunction} Find function.
  */
-module.exports = function findDoclets(doclets = {}, inheritAccess = true) {
+module.exports = function (doclets = {}, inheritAccess = true) {
   /**
    * Find a doclet within a specific adapter's data set.
    * @callback PageFindFunction
@@ -24,7 +24,8 @@ module.exports = function findDoclets(doclets = {}, inheritAccess = true) {
         if (doclet.access === 'private') {
           return false;
         }
-        else if (inheritAccess) {
+
+        if (inheritAccess) {
           for (
             let item = doclet;
             typeof item !== 'undefined';
@@ -37,11 +38,12 @@ module.exports = function findDoclets(doclets = {}, inheritAccess = true) {
 
           return true;
         }
+
+        return true;
       });
     }
-    else {
-      return [];
-    }
+
+    return [];
   }
 
   return find;

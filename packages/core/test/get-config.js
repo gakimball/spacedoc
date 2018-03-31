@@ -1,5 +1,5 @@
 const path = require('path');
-const { expect } = require('chai');
+const {expect} = require('chai');
 const getConfig = require('../lib/get-config');
 
 describe('getConfig()', () => {
@@ -9,7 +9,7 @@ describe('getConfig()', () => {
 
   it('loads adapters', () => {
     const config = getConfig({
-      adapters: ['./test/fixtures/adapter'],
+      adapters: ['./test/fixtures/adapter']
     });
 
     expect(config.adapters.has('fixture')).to.equal(true);

@@ -1,24 +1,22 @@
-;(function() {
-
+(function () {
 /**
  * Creates a new button.
  * @component button
  * @class
  */
-var Button = function() {
-  
-}
+  const Button = function () {
 
-Button.prototype = {
+  };
+
+  Button.prototype = {
   /**
    * Do something.
    * @component button
    * @function
    * @param {string} option - An option to do a thing.
    */
-  doSomething: function(option) {
+    doSomething(option) {
 
-  }
-}
-
+    }
+  };
 })();

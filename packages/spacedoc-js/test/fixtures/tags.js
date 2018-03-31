@@ -42,8 +42,8 @@ class TaggedThings {
  * @mixin
  */
 const Events = {
-  on: () => {},
-}
+  on: () => {}
+};
 
 /**
  * This thing uses a mixin.

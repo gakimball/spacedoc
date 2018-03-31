@@ -5,13 +5,12 @@ const path = require('path');
  * @param {String} filePath - File name.
  * @returns {?Number} Page order, or `null` if no order.
  */
-module.exports = function getPageOrder(filePath) {
+module.exports = function (filePath) {
   const fileName = path.basename(filePath);
 
   if (fileName.match(/^\d+-/)) {
-    return parseInt(fileName.split('-')[0]);
+    return parseInt(fileName.split('-')[0], 10);
   }
-  else {
-    return null;
-  }
+
+  return null;
 };

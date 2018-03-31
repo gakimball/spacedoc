@@ -6,7 +6,7 @@ const path = require('path');
  * @param {Page} b - Page B.
  * @returns {Integer} Number indicating sort direction.
  */
-module.exports = function sortPages(a, b) {
+module.exports = function (a, b) {
   const pathA = path.basename(a.fileName).toLowerCase();
   const pathB = path.basename(b.fileName).toLowerCase();
   let numA;
@@ -25,16 +25,20 @@ module.exports = function sortPages(a, b) {
     return numA - numB;
   }
   // If path A has an order but path B doesn't, sort it above
-  else if (numA && !numB) {
+  if (numA && !numB) {
     return -1;
   }
   // Likewise, if the reverse is true, sort it below
-  else if (!numA && numB) {
+  if (!numA && numB) {
     return 1;
   }
 
   // If neither path has an order, compare the strings
-  if (pathA < pathB) return -1;
-  if (pathA > pathB) return 1;
+  if (pathA < pathB) {
+    return -1;
+  }
+  if (pathA > pathB) {
+    return 1;
+  }
   return 0;
-}
+};

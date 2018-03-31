@@ -15,15 +15,14 @@ const strip = require('strip-indent');
  * `;
  * yamlComment(input, '.html');
  */
-module.exports = function yamlComment(input, extension) {
+module.exports = function (input, extension) {
   if (extension === '.pug') {
     const rx = /^\/\/-\n([\s\S]+:[\s\S]+-{3})/;
     const match = rx.exec(input);
     if (match) {
       return input.replace(match[0], `---\n${strip(match[1])}`);
     }
-  }
-  else if (extension === '.html') {
+  } else if (extension === '.html') {
     const rx = /^.*<!--\n([\s\S]+:[\s\S]+)\n-->/m;
     const match = rx.exec(input);
     if (match) {

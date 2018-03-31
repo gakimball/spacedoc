@@ -1,7 +1,7 @@
-const { expect } = require('chai');
-const getPageFileName = require('../lib/util/getPageFileName');
+const {expect} = require('chai');
+const getPageFileName = require('../lib/util/get-page-filename');
 
-describe('getPageFileName', () => {
+describe('get-page-filename', () => {
   it('changes the extension to .html', () => {
     expect(getPageFileName('path/to/doggos.pug')).to.equal('path/to/doggos.html');
   });

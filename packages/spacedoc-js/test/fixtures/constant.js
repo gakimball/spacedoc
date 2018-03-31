@@ -10,4 +10,4 @@
  */
 const Thingg = {
   hi: 'hi'
-}
+};

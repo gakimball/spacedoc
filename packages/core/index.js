@@ -23,7 +23,7 @@ module.exports = class Spacedoc {
   parse() {
     const output = {
       pages: [],
-      docs: {},
+      docs: {}
     };
 
     this.options.adapters.forEach((adapter, name) => {

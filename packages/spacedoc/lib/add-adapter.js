@@ -1,5 +1,4 @@
 const path = require('path');
-const pug = require('pug');
 
 /**
  * An an adapter by attempting to `require()` it. The function first checks for an installed module, then tries to run `require()` relative to the current working directory.
@@ -15,7 +14,7 @@ const pug = require('pug');
  *
  * @param {(String|Array)} name - Name of, or path to module. Can also be an array with the name/path and a config object.
  */
-module.exports = function addAdapter(name) {
+module.exports = function (name) {
   let config = {};
   let adapter;
 
@@ -25,14 +24,11 @@ module.exports = function addAdapter(name) {
 
   try {
     adapter = require(`spacedoc-${name}`);
-  }
-  catch (err1) {
+  } catch (err1) {
     try {
       adapter = require(path.join(process.cwd(), name));
-    }
-
-    catch (err2) {
-      throw new Error(`Couldn\'t load an adapter named "${name}". Make sure you have a module called "spacedoc-${name}" installed.`);
+    } catch (err2) {
+      throw new Error(`Couldn't load an adapter named "${name}". Make sure you have a module called "spacedoc-${name}" installed.`);
     }
   }
 
@@ -47,7 +43,7 @@ module.exports = function addAdapter(name) {
     config: Object.assign(
       typeof adapter.config === 'function' ? adapter.config() : {},
       config
-    ),
+    )
   };
 
   return this;

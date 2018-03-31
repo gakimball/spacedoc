@@ -20,10 +20,9 @@ module.exports = item => {
   if (preview) {
     return {
       code: preview,
-      language: 'js',
+      language: 'js'
     };
   }
-  else {
-    return false;
-  }
+
+  return false;
 };

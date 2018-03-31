@@ -38,6 +38,6 @@ module.exports = item => {
 
   return {
     code: preview,
-    language: 'scss',
+    language: 'scss'
   };
 };

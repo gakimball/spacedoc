@@ -35,12 +35,13 @@ class Spacedoc {
   }
 }
 
-// Assign Spacedoc class methods
-['addAdapter', 'build', 'buildSearch', 'config', 'init', 'parse', 'parseDocs'].map(fn => {
-  Object.assign(Spacedoc.prototype, {
-    [fn]: require(`./lib/${fn}`),
-  });
-});
+Spacedoc.prototype.addAdapter = require('./lib/add-adapter');
+Spacedoc.prototype.build = require('./lib/build');
+Spacedoc.prototype.buildSearch = require('./lib/build-search');
+Spacedoc.prototype.config = require('./lib/config');
+Spacedoc.prototype.init = require('./lib/init');
+Spacedoc.prototype.parse = require('./lib/parse');
+Spacedoc.prototype.parseDocs = require('./lib/parse-docs');
 
 /**
  * Exported Spacedoc instance.
@@ -57,17 +58,16 @@ const sd = new Spacedoc();
  * @param {Function} cb - If watching, callback to run whenever files change.
  * @returns {(Promise|Function)} If the `input` option was set in `Spacedoc.config()`, a Promise will be returned. Otherwise, a stream transform function will be returned.
  */
-module.exports = ({ watch = false }, cb) => {
+module.exports = ({watch = false}, cb = () => {}) => {
   if (watch && sd.options.input) {
-    globWatcher(sd.options.input, { ignoreInitial: false }, () => {
+    globWatcher(sd.options.input, {ignoreInitial: false}, () => {
       return sd.init().then(() => {
-        cb && cb(null);
+        cb(null);
       }).catch(err => {
-        cb && cb(err);
+        cb(err);
       });
     });
-  }
-  else {
+  } else {
     return sd.init();
   }
 };
@@ -86,13 +86,12 @@ module.exports.config = sd.config.bind(sd);
  * @param {Boolean} [options.watch=false] - Watch files for changes and re-build assets.
  * @returns {Promise} Promise which resolves when the build process finishes, or rejects when there's an error. If the `watch` option is enabled, the Promise will not resolve.
  */
-module.exports.build = ({ watch = false }) => {
+module.exports.build = ({watch = false}) => {
   if (watch) {
     return sd.theme.buildAndWatch();
   }
-  else {
-    return sd.theme.build();
-  }
+
+  return sd.theme.build();
 };
 
 /**

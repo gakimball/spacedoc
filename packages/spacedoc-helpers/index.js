@@ -1,7 +1,7 @@
 const groupBy = require('lodash.groupby');
 const hljs = require('highlight.js');
 const md = require('markdown-it')();
-const sortPages = require('./lib/sortPages');
+const sortPages = require('./lib/sort-pages');
 
 /**
  * Global helpers available to all templates and adapters.
@@ -10,7 +10,7 @@ module.exports = {
   highlight,
   markdown,
   title,
-  groupPages,
+  groupPages
 };
 
 /**
@@ -23,9 +23,8 @@ function highlight(code = '', lang = null) {
   if (lang) {
     return hljs.highlight(lang, code).value;
   }
-  else {
-    return hljs.highlightAuto(code, ['html', 'css', 'scss', 'javascript', 'json']).value;
-  }
+
+  return hljs.highlightAuto(code, ['html', 'css', 'scss', 'javascript', 'json']).value;
 }
 
 /**
@@ -38,9 +37,8 @@ function markdown(text = '', inline = false) {
   if (inline) {
     return md.renderInline(text);
   }
-  else {
-    return md.render(text);
-  }
+
+  return md.render(text);
 }
 
 /**
@@ -58,7 +56,7 @@ function title(text = '') {
  * @returns {PageGroup[]} Grouped pages.
  */
 function groupPages(pages = []) {
-  const groups = groupBy(pages, ({ group }) => group === null ? '$default' : group);
+  const groups = groupBy(pages, ({group}) => group === null ? '$default' : group);
 
   /**
    * Group definition with name and pages.
@@ -68,6 +66,6 @@ function groupPages(pages = []) {
    */
   return Object.keys(groups).sort().map(key => ({
     name: key,
-    pages: groups[key].sort(sortPages),
+    pages: groups[key].sort(sortPages)
   }));
 }

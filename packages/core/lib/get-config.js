@@ -11,8 +11,7 @@ module.exports = (opts = {}) => {
   // Config can either be an object or an external config file
   try {
     Object.assign(opts, getConfig([opts, 'spacedoc.yml']));
-  }
-  catch (e) {
+  } catch (e) {
     console.log('Spacedoc has not been configured.');
   }
 
@@ -26,7 +25,7 @@ module.exports = (opts = {}) => {
   const options = Object.assign({
     adapters: [],
     docs: null,
-    pages: null,
+    pages: null
   }, opts);
 
   return {
@@ -35,6 +34,6 @@ module.exports = (opts = {}) => {
       return [adapter.name, adapter];
     })),
     docs: options.docs,
-    pages: options.pages,
+    pages: options.pages
   };
 };
